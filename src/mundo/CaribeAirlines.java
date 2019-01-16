@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import aeronaveLogica.Aeronave;
+import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
 import aeronavesData.DatosAeronave;
 import aeronavesInterface.VentanaAeronave;
@@ -18,7 +19,7 @@ public class CaribeAirlines {
 	public CaribeAirlines() {
 		misAeronaves = new ArrayList<>();
 		datosAeronaves = new DatosAeronave();
-		//crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 	}
 	
 	//Metodos Aeronaves
@@ -27,6 +28,8 @@ public class CaribeAirlines {
 		String idTipoAeronave, tipoVuelo, marca, linea, capacidadCarga, capacidadAsientos;
 		
 		String matricula, registro;
+		
+		int tipoAeronave, sillasEjecutiva, sillasEconomica;
 		
 		registro = "";
 		
@@ -38,16 +41,22 @@ public class CaribeAirlines {
 		capacidadAsientos = "<html>150 asientos: 12 Ejecutivos" + "<br>" + "138 Economicos</html>"; //preguntar
 		
 		matricula = "Av001";
-		Aeronave uno = new Aeronave(matricula, registro);
+		Aeronave uno = new Aeronave(idTipoAeronave, matricula, registro);
 		
 		matricula = "Av002";
-		Aeronave dos = new Aeronave(matricula, registro);
+		Aeronave dos = new Aeronave(idTipoAeronave, matricula, registro);
 		
 		List<Aeronave> flotaDeAeronavesAirbus_A320 = new ArrayList<>();
 		flotaDeAeronavesAirbus_A320.add(uno);
 		flotaDeAeronavesAirbus_A320.add(dos);
 		
-		TipoAeronave Airbus_A320 = new TipoAeronave(idTipoAeronave, tipoVuelo, marca, linea, capacidadCarga, capacidadAsientos, flotaDeAeronavesAirbus_A320);
+		tipoAeronave = 0;
+		sillasEjecutiva = 12;
+		sillasEconomica = 138;
+		DistribucionSillas ubicacionSillasAirbus_A320 = new DistribucionSillas(tipoAeronave, sillasEjecutiva, sillasEconomica);
+		
+		TipoAeronave Airbus_A320 = new TipoAeronave(idTipoAeronave, tipoVuelo, marca, linea,
+				capacidadCarga, capacidadAsientos, flotaDeAeronavesAirbus_A320, ubicacionSillasAirbus_A320);
 	
 		idTipoAeronave = "air002";
 		tipoVuelo = "Internacional";
@@ -57,16 +66,22 @@ public class CaribeAirlines {
 		capacidadAsientos = "<html>252 asientos: 30 Ejecutivos" + "<br>" + "222 Economicos</html>";
 		
 		matricula = "Av003";
-		Aeronave tres = new Aeronave(matricula, registro);
+		Aeronave tres = new Aeronave(idTipoAeronave, matricula, registro);
 		
 		matricula = "Av004";
-		Aeronave cuatro = new Aeronave(matricula, registro);
+		Aeronave cuatro = new Aeronave(idTipoAeronave, matricula, registro);
 		
 		List<Aeronave> flotaDeAeronavesAirbus_A330 = new ArrayList<>();
 		flotaDeAeronavesAirbus_A330.add(tres);
 		flotaDeAeronavesAirbus_A330.add(cuatro);
 		
-		TipoAeronave Airbus_A330 = new TipoAeronave(idTipoAeronave, tipoVuelo, marca, linea, capacidadCarga, capacidadAsientos, flotaDeAeronavesAirbus_A330);
+		tipoAeronave = 1;
+		sillasEjecutiva = 30;
+		sillasEconomica = 222;
+		DistribucionSillas ubicacionSillasAirbus_A330 = new DistribucionSillas(tipoAeronave, sillasEjecutiva, sillasEconomica);
+		
+		TipoAeronave Airbus_A330 = new TipoAeronave(idTipoAeronave, tipoVuelo, marca, linea,
+				capacidadCarga, capacidadAsientos, flotaDeAeronavesAirbus_A330, ubicacionSillasAirbus_A330);
 	
 		idTipoAeronave = "air003";
 		tipoVuelo = "Internacional";
@@ -76,16 +91,22 @@ public class CaribeAirlines {
 		capacidadAsientos = "<html>250 asientos: 28 Ejecutivos" + "<br>" + "222 Economicos</html>";
 		
 		matricula = "Av005";
-		Aeronave cinco = new Aeronave(matricula, registro);
+		Aeronave cinco = new Aeronave(idTipoAeronave, matricula, registro);
 		
 		matricula = "Av006";
-		Aeronave seis = new Aeronave(matricula, registro);
+		Aeronave seis = new Aeronave(idTipoAeronave, matricula, registro);
 		
 		List<Aeronave> flotaDeAeronavesBoeing_787 = new ArrayList<>();
 		flotaDeAeronavesBoeing_787.add(cinco);
 		flotaDeAeronavesBoeing_787.add(seis);
 		
-		TipoAeronave Boeing_787 = new TipoAeronave(idTipoAeronave, tipoVuelo, marca, linea, capacidadCarga, capacidadAsientos, flotaDeAeronavesBoeing_787);
+		tipoAeronave = 2;
+		sillasEjecutiva = 28;
+		sillasEconomica = 222;
+		DistribucionSillas ubicacionSillasBoeing_787 = new DistribucionSillas(tipoAeronave, sillasEjecutiva, sillasEconomica);
+		
+		TipoAeronave Boeing_787 = new TipoAeronave(idTipoAeronave, tipoVuelo, marca, linea,
+				capacidadCarga, capacidadAsientos, flotaDeAeronavesBoeing_787, ubicacionSillasBoeing_787);
 		
 		misAeronaves.add(Airbus_A320);
 		misAeronaves.add(Airbus_A330);
@@ -131,6 +152,16 @@ public class CaribeAirlines {
 			break;
 		}
 		return tabla;
+	}
+	public int encontrarPosiciontipoAeronave(String idTipoAeronave){
+		int pos = -1;
+		for (int i = 0; i < misAeronaves.size(); i++) {
+			if(misAeronaves.get(i).getAtributos().get("idTipoAeronave").equals(idTipoAeronave)) {
+				pos = i;
+			}
+		}
+			
+		return pos;
 	}
 	//Getter & Setter
 
