@@ -19,7 +19,7 @@ public class CaribeAirlines {
 	public CaribeAirlines() {
 		misAeronaves = new ArrayList<>();
 		datosAeronaves = new DatosAeronave();
-		crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		//crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 	}
 	
 	//Metodos Aeronaves

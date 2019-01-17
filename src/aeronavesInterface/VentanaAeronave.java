@@ -55,9 +55,9 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 	private CaribeAirlines miAerolinea;
 	
 	private static final int X = 10;
-	private static final int Y = 48;
+	private static final int Y = 43;
 	private static final int WIDTH = 290;
-	private static final int HEIGHT = 355;
+	private static final int HEIGHT = 405;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -81,7 +81,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		verFlota = false;
 		
 		setTitle("Aeronaves");
-		setBounds(100, 100, 450, 450);
+		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -101,7 +101,6 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 						int row = tableAeronaves.rowAtPoint(e.getPoint());
 						
 						tableDatos.setVisible(true);
-						textAreaTripulacion.setVisible(false);
 						
 						btnFlota.setVisible(true);
 						btnSillas.setVisible(true);
@@ -160,16 +159,17 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		tableDatos.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tableDatos.setBorder(null);
 		tableDatos.setEnabled(false);
-		tableDatos.setRowHeight(HEIGHT / misAeronaves.get(0).getAtributos().size());
-		tableDatos.getColumnModel().getColumn(0).setPreferredWidth(130);
-		tableDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+		tableDatos.setRowHeight(HEIGHT/misAeronaves.get(0).getAtributos().size());
+		tableDatos.getColumnModel().getColumn(0).setPreferredWidth(120);
+		tableDatos.getColumnModel().getColumn(1).setPreferredWidth(170);
 		
+	}
+	public void verTripulacion() {
 		textAreaTripulacion = new JTextArea();
 		textAreaTripulacion.setEditable(false);
 		contentPane.add(textAreaTripulacion);
 		textAreaTripulacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textAreaTripulacion.setBounds(X, Y, WIDTH, HEIGHT);
-		
 	}
 	public void verSillas() {
 		int pos = miAerolinea.encontrarPosiciontipoAeronave(idTipoAeronave);
@@ -200,17 +200,14 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		tableSillasEjecutiva.setEnabled(false);
 		tableSillasEjecutiva.setShowGrid(true);
 		tableSillasEjecutiva.setBounds(X, Y, WIDTH, sillasEjecutiva.length*(HEIGHT/filaTotal));
-		tableSillasEjecutiva.setRowHeight(HEIGHT / filaTotal);
+		tableSillasEjecutiva.setRowHeight(HEIGHT/filaTotal);
 		contentPane.add(tableSillasEjecutiva);
 		
 		for (int i = 0; i < tableSillasEjecutiva.getRowCount(); i++) {
 			for (int j = 0; j < tableSillasEjecutiva.getColumnCount(); j++) {
 				
 				if(!sillasEjecutiva[i][j].equals("pasillo")) {
-					DefaultTableCellRenderer conBordes = new DefaultTableCellRenderer();
-					conBordes.setBorder(new LineBorder(Color.BLUE));
 					tableSillasEjecutiva.setValueAt(sillasEjecutiva[i][j], i, j);
-					tableSillasEjecutiva.getColumnModel().getColumn(j).setCellRenderer(conBordes);
 				}else {
 					tableSillasEjecutiva.setValueAt("", i, j);
 				}
@@ -226,17 +223,14 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		tableSillasEconomica.setEnabled(false);
 		tableSillasEconomica.setShowGrid(true);
 		tableSillasEconomica.setBounds(X, Y + sillasEjecutiva.length*(HEIGHT/filaTotal) + espacio, WIDTH, sillasEconomica.length*(HEIGHT/filaTotal));
-		tableSillasEconomica.setRowHeight(HEIGHT / filaTotal);
+		tableSillasEconomica.setRowHeight(HEIGHT/filaTotal);
 		contentPane.add(tableSillasEconomica);
 		
 		for (int i = 0; i < tableSillasEconomica.getRowCount(); i++) {
 			for (int j = 0; j < tableSillasEconomica.getColumnCount(); j++) {
 				
 				if(!sillasEconomica[i][j].equals("pasillo")) {
-					DefaultTableCellRenderer conBordes = new DefaultTableCellRenderer();
-					conBordes.setBorder(new LineBorder(new Color(0, 0, 0)));
 					tableSillasEconomica.setValueAt(sillasEconomica[i][j], i, j);
-					tableSillasEconomica.getColumnModel().getColumn(j).setCellRenderer(conBordes);
 				}else {
 					tableSillasEconomica.setValueAt("", i, j);
 				}
@@ -255,13 +249,10 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		
 		if (e.getSource() == btnTripulacion) {
 			tableDatos.setVisible(false);
-			textAreaTripulacion.setVisible(true);
-			tableSillasEjecutiva.setVisible(false);
-			tableSillasEconomica.setVisible(false);
+			verTripulacion();
 		}
 		if (e.getSource() == btnSillas) {
 			tableDatos.setVisible(false);
-			textAreaTripulacion.setVisible(false);
 			verSillas();
 		}
 		if (e.getSource() == btnFlota) {
