@@ -1,35 +1,36 @@
-package aeronavesData;
+package vueloData;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import aeronaveLogica.TipoAeronave;
-public class DatosAeronave {
+import vueloLogica.Ruta;
+
+public class DatosRuta {
 	private String archivo;
-	public DatosAeronave() {
-		archivo = "src/aeronavesData/datosAeronave.txt";
+	public DatosRuta() {
+		archivo = "src/aeronavesData/datosRuta.txt";
 	}
-	public void serializacionOut (List<TipoAeronave> misAeronaves){
+	public void serializacionOut (List<Ruta> misRutas){
 		try {
 			FileOutputStream fos = new FileOutputStream(archivo);
 			ObjectOutput oos = new ObjectOutputStream(fos);
-			oos.writeObject(misAeronaves);
+			oos.writeObject(misRutas);
 			oos.close();
 		} catch (Exception e) {
 			System.out.println("ERROR; AL ENVIAR ARCHIVO AERONAVE");
 		}
 		
 	}
-	public List<TipoAeronave> serializacionIn (){
-		List<TipoAeronave> misAeronaves = new ArrayList<>();
+	public List<Ruta> serializacionIn (){
+		List<Ruta> misRutas = new ArrayList<>();
 		try {
 			FileInputStream fis = new FileInputStream(archivo);
 			ObjectInput ois = new ObjectInputStream(fis);
-			misAeronaves = (List<TipoAeronave>) ois.readObject();
+			misRutas = (List<Ruta>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
 			System.out.println("ERROR; AL LEER ARCHIVO AERONAVE");
 		}
-		return misAeronaves;
+		return misRutas;
 	}
 }
