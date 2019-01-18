@@ -16,7 +16,7 @@ public class DatosAeronave {
 			oos.writeObject(misAeronaves);
 			oos.close();
 		} catch (Exception e) {
-			System.out.println("ERROR; AL ENVIAR ARCHIVO AERONAVE");
+			System.out.println("ERROR; AL ENVIAR ARCHIVO AERONAVE" +e);
 		}
 		
 	}
@@ -28,7 +28,7 @@ public class DatosAeronave {
 			misAeronaves = (List<TipoAeronave>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			System.out.println("ERROR; AL LEER ARCHIVO AERONAVE");
+			System.out.println("ERROR; AL LEER ARCHIVO AERONAVE" +e);
 		}
 		return misAeronaves;
 	}

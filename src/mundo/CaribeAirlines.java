@@ -10,17 +10,24 @@ import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
 import aeronavesData.DatosAeronave;
 import aeronavesInterface.VentanaAeronave;
+import rutaData.DatosRuta;
+import rutaLogica.Ruta;
 
 public class CaribeAirlines {
 	private List<TipoAeronave> misAeronaves;
 	private DatosAeronave datosAeronaves;
+	private List<Ruta> misRutas;
+	private DatosRuta datosRutas;
 	
 	//Constructor
 	public CaribeAirlines() {
 		misAeronaves = new ArrayList<>();
 		datosAeronaves = new DatosAeronave();
+		misRutas = new ArrayList<>();
+		datosRutas = new DatosRuta();
 		Origen creaciones = new Origen();
 		//creaciones.crearMisAviones(misAeronaves, datosAeronaves); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		//creaciones.crearMisRutas(misRutas, datosRutas, misAeronaves);
 	}
 	
 	//Metodos Aeronaves
@@ -62,6 +69,7 @@ public class CaribeAirlines {
 		}
 		return tabla;
 	}
+	
 	public int encontrarPosiciontipoAeronave(String idTipoAeronave){
 		int pos = -1;
 		for (int i = 0; i < misAeronaves.size(); i++) {
@@ -72,15 +80,25 @@ public class CaribeAirlines {
 			
 		return pos;
 	}
+	
+	
+	
 	//Getter & Setter
-
 	public List<TipoAeronave> getMisAeronaves() {
 		misAeronaves = datosAeronaves.serializacionIn();
 		return misAeronaves;
 	}
+	public void setMisAeronaves(List<Ruta> misRutas) {
+		this.misRutas = misRutas;
+		datosRutas.serializacionOut(misRutas);
+	}
+	public List<Ruta> getMisRutas() {
+		misRutas = datosRutas.serializacionIn();
+		return misRutas;
+	}
 
-	public void setMisAeronaves(List<TipoAeronave> misAeronaves) {
-		this.misAeronaves = misAeronaves;
-		datosAeronaves.serializacionOut(misAeronaves);
+	public void setMisRutas(List<Ruta> misRutas) {
+		this.misRutas = misRutas;
+		datosRutas.serializacionOut(misRutas);
 	}
 }

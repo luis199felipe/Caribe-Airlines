@@ -1,14 +1,14 @@
-package vueloData;
+package rutaData;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import vueloLogica.Ruta;
+import rutaLogica.Ruta;
 
 public class DatosRuta {
 	private String archivo;
 	public DatosRuta() {
-		archivo = "src/aeronavesData/datosRuta.txt";
+		archivo = "src/rutaData/datosRuta.txt";
 	}
 	public void serializacionOut (List<Ruta> misRutas){
 		try {
@@ -17,7 +17,7 @@ public class DatosRuta {
 			oos.writeObject(misRutas);
 			oos.close();
 		} catch (Exception e) {
-			System.out.println("ERROR; AL ENVIAR ARCHIVO AERONAVE");
+			System.out.println("ERROR; AL ENVIAR ARCHIVO RUTA " +e);
 		}
 		
 	}
@@ -29,7 +29,7 @@ public class DatosRuta {
 			misRutas = (List<Ruta>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			System.out.println("ERROR; AL LEER ARCHIVO AERONAVE");
+			System.out.println("ERROR; AL LEER ARCHIVO RUTA" +e);
 		}
 		return misRutas;
 	}

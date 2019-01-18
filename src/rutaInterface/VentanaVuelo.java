@@ -1,4 +1,4 @@
-package vueloInterface;
+package rutaInterface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

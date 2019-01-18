@@ -1,9 +1,10 @@
-package vueloLogica;
+package rutaLogica;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public class Tripulacion {
+public class Tripulacion implements Serializable{
 	private HashMap<String, String> miTripulacion;
 	private Tripulante piloto;
 	private Tripulante copiloto;
@@ -26,7 +27,7 @@ public class Tripulacion {
 		for (int i = 0; i < auxiliares.size(); i++) {
 			mostrar += auxiliares.get(i).getAtributos().get("Nombre") + auxiliares.get(i).getAtributos().get("Identificacion") + ",";
 		}
-		mostrar.substring(0, mostrar.length()-1);
+		mostrar = mostrar.substring(0, mostrar.length()-1);
 		System.out.println(mostrar);
 		return mostrar;
 	}

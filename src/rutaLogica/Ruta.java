@@ -1,29 +1,32 @@
-package vueloLogica;
+package rutaLogica;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import aeronaveLogica.Aeronave;
 
-public class Ruta {
+public class Ruta implements Serializable{
 	private HashMap<String, String> atributos;
 	private Tripulacion miTripulacion;
 	private Aeronave miAeronave;
 	
 	//Constructor
-	public Ruta(String origen, String destino, String duracionHoras, String duracionMinutos, String horaSalida,
-			String horaLlegada,String tiempoEsperaHoras, String horaRegreso, Tripulacion miTripulacion,
+	public Ruta(String fecha, String origen, String destino, String idaRegreso, String duracion, String horaSalida,
+			String horaLlegada,String tiempoEsperaHoras, Tripulacion miTripulacion,
 			Aeronave miAeronave) {
+		
 		this.miTripulacion = miTripulacion;
 		this.miAeronave = miAeronave;
+		
 		atributos = new HashMap<>();
+		atributos.put("Fecha", fecha);
 		atributos.put("Origen", origen);
 		atributos.put("Destino", destino);
-		atributos.put("DuracionHoras", duracionHoras);
-		atributos.put("DuracionMinutos", duracionMinutos);
+		atributos.put("Ida o Regreso", idaRegreso);
+		atributos.put("Duracion", duracion);
 		atributos.put("HoraSalida", horaSalida);
 		atributos.put("HoraLLegada", horaLlegada);
 		atributos.put("TiempoEsperaHoras", tiempoEsperaHoras);
-		atributos.put("HoraRegreso", horaRegreso);
 	}
 	
 	//Getters & Setters

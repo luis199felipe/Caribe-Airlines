@@ -3,15 +3,19 @@ package aeronaveLogica;
 import java.io.Serializable;
 
 public class Aeronave implements Serializable{
+	private String ubicacion;
 	private String idTipoAeronave;
 	private String matricula;
 	private String registro;
+	private boolean disponible;
 
 	//Constructor
-	public Aeronave(String idTipoAeronave, String matricula, String registro) {
+	public Aeronave(String ubicacion, String idTipoAeronave, String matricula, String registro, boolean disponible) {
+		this.ubicacion = ubicacion;
 		this.idTipoAeronave = idTipoAeronave;
 		this.matricula = matricula;
 		this.registro = registro;
+		this.disponible = disponible;
 	}
 	
 	//Getter & Setter
@@ -20,6 +24,18 @@ public class Aeronave implements Serializable{
 	}
 	public void setIdTipoAeronave(String idTipoAeronave) {
 		this.idTipoAeronave = idTipoAeronave;
+	}
+	public String getUbicacion() {
+		return ubicacion;
+	}
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+	public boolean isDisponible() {
+		return disponible;
+	}
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
 	}
 	public String getMatricula() {
 		return matricula;

@@ -1,8 +1,9 @@
-package vueloLogica;
+package rutaLogica;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Tripulante {
+public class Tripulante implements Serializable{
 	private HashMap<String, String> atributos;
 	
 	//Constructor
