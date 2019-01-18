@@ -1,15 +1,59 @@
 package VentaLogica;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+
+import mundo.CaribeAirlines;
+import rutaLogica.Ruta;
+
 
 public class Compra {
 
+	private double idCompra;
 	private String tipoClase;
 	private double valor;
 	private double subtotal;
 	private double total;
 	private Calendar fechaSalida;
 	private Calendar fechaIngreso;
+	
+	private List<Ruta> misRutas;
+	
+	
+	public Compra() {//Aqui la aerolinea se recibe por parametro. Por ahora creo uno para no entrar a editar la interfaz principal.
+		CaribeAirlines aerolinea = new CaribeAirlines();
+		misRutas = aerolinea.getMisRutas();
+	}
+	
+	
+	public HashSet<String> getCiudades(){
+		HashSet<String> ciudades = new HashSet();
+		
+		for (int i = 0; i < misRutas.size(); i++) {
+			//System.out.println(misRutas.get(i).getAtributos().get("Destino"));
+			ciudades.add(misRutas.get(i).getAtributos().get("Destino"));
+		}
+		
+		return ciudades;	
+	}
+	
+	public HashSet<String> getFechasDeCiudad(String Ciudad) {
+		HashSet<String> fechas = new HashSet();
+		System.out.println("Va a empezar buscando fechas");
+		for (int i = 0; i < misRutas.size(); i++) {
+			if (misRutas.get(i).getAtributos().get("Destino").equals(Ciudad)) {
+				fechas.add(misRutas.get(i).getAtributos().get("Fecha"));
+			}			
+		}
+		
+		return fechas;
+		
+	}
+
+	
 
 	public Compra(String tipoClase, double valor, double subtotal, double total, Calendar fechaSalida,
 			Calendar fechaIngreso) {
@@ -68,5 +112,7 @@ public class Compra {
 	public void setFechaIngreso(Calendar fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
+
+
 
 }

@@ -14,9 +14,11 @@ import rutaLogica.Tripulante;
 
 public class Origen {
 	private CaribeAirlines aerolinea;
+	
 	public Origen(CaribeAirlines aerolinea) {
 		this.aerolinea = aerolinea;
 	}
+	
 	public void RegistroRutas () {
 		
 		List<TipoAeronave> misAeronaves = aerolinea.getMisAeronaves();

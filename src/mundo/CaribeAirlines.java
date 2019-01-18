@@ -27,8 +27,8 @@ public class CaribeAirlines {
 		datosRutas = new DatosRuta();
 		Origen creaciones = new Origen(this);
 		//creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		//creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.tx
-		//creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE AHI NUEVA RUTA DE VUELO
+		//creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		//creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE HAY NUEVA RUTA DE VUELO
 	}
 	
 	//Metodos Aeronaves
@@ -70,6 +70,7 @@ public class CaribeAirlines {
 		}
 		return tabla;
 	}
+	
 	
 	public int encontrarPosiciontipoAeronave(String idTipoAeronave){
 		int pos = -1;
