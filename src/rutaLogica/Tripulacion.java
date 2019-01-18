@@ -28,7 +28,6 @@ public class Tripulacion implements Serializable{
 			mostrar += auxiliares.get(i).getAtributos().get("Nombre") + auxiliares.get(i).getAtributos().get("Identificacion") + ",";
 		}
 		mostrar = mostrar.substring(0, mostrar.length()-1);
-		System.out.println(mostrar);
 		return mostrar;
 	}
 	//Getters & Setters

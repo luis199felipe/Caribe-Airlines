@@ -25,9 +25,10 @@ public class CaribeAirlines {
 		datosAeronaves = new DatosAeronave();
 		misRutas = new ArrayList<>();
 		datosRutas = new DatosRuta();
-		Origen creaciones = new Origen();
-		//creaciones.crearMisAviones(misAeronaves, datosAeronaves); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		//creaciones.crearMisRutas(misRutas, datosRutas, misAeronaves);
+		Origen creaciones = new Origen(this);
+		//creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		//creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.tx
+		//creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE AHI NUEVA RUTA DE VUELO
 	}
 	
 	//Metodos Aeronaves
@@ -88,9 +89,9 @@ public class CaribeAirlines {
 		misAeronaves = datosAeronaves.serializacionIn();
 		return misAeronaves;
 	}
-	public void setMisAeronaves(List<Ruta> misRutas) {
-		this.misRutas = misRutas;
-		datosRutas.serializacionOut(misRutas);
+	public void setMisAeronaves(List<TipoAeronave> misAeronaves) {
+		this.misAeronaves = misAeronaves;
+		datosAeronaves.serializacionOut(misAeronaves);
 	}
 	public List<Ruta> getMisRutas() {
 		misRutas = datosRutas.serializacionIn();

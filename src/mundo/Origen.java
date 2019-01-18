@@ -13,11 +13,34 @@ import rutaLogica.Tripulacion;
 import rutaLogica.Tripulante;
 
 public class Origen {
-	
-	public Origen() {
+	private CaribeAirlines aerolinea;
+	public Origen(CaribeAirlines aerolinea) {
+		this.aerolinea = aerolinea;
+	}
+	public void RegistroRutas () {
+		
+		List<TipoAeronave> misAeronaves = aerolinea.getMisAeronaves();
+		List<Ruta> misRutas = aerolinea.getMisRutas();
+		
+		for (int i = 0; i < misAeronaves.size(); i++) {
+			for (int j = 0; j < misAeronaves.get(i).getFlotaDeAeronaves().size(); j++) {
+				
+				String matriculaAeronave = misAeronaves.get(i).getFlotaDeAeronaves().get(j).getMatricula();
+				for (int k = 0; k < misRutas.size(); k++) {
+					String matriculaRutaAeronave = misRutas.get(k).getMiAeronave().getMatricula();
+					if(matriculaAeronave.equals(matriculaRutaAeronave)) {
+						misAeronaves.get(i).getFlotaDeAeronaves().get(j).getRegistro().add(misRutas.get(k));
+					}
+				}
+				
+			}
+		}
+		
+		
+		aerolinea.setMisAeronaves(misAeronaves);
 		
 	}
-	public void crearMisRutas(List<Ruta> misRutas,DatosRuta datosRuta, List<TipoAeronave> misAeronaves) {
+	public void crearMisRutas() {
 		
 		Tripulante piloto1 = new Tripulante("piloto", "41897", "Carlos Trejos", "Barrio esmeralda calle 2 casa 5", "carlost@gmail.com", "03/10/1975", "Curso de aviación");
 		Tripulante piloto2 = new Tripulante("piloto", "51567", "Jhon Castañeda", "Barrio Paz calle 4 casa 51", "jhonc@gmail.com", "13/06/1973", "Curso de aviación");
@@ -33,8 +56,15 @@ public class Origen {
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
-		Aeronave miAeronave1 = misAeronaves.get(0).getFlotaDeAeronaves().get(0);
-		Aeronave miAeronave2 = misAeronaves.get(0).getFlotaDeAeronaves().get(1);
+		List<Aeronave> misAeronaves = new ArrayList<>();
+		
+		for (int i = 0; i < aerolinea.getMisAeronaves().size(); i++) {
+			for (int j = 0; j < aerolinea.getMisAeronaves().get(i).getFlotaDeAeronaves().size(); j++) {
+				misAeronaves.add(aerolinea.getMisAeronaves().get(i).getFlotaDeAeronaves().get(j));
+			}
+		}
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////
 		
 		List<Tripulante> auxiliares1 = new ArrayList<>();
 		auxiliares1.add(aux1);
@@ -49,15 +79,12 @@ public class Origen {
 		Tripulacion miTripulacion1 = new Tripulacion(piloto1, copiloto1, auxiliares1);
 		Tripulacion miTripulacion2 = new Tripulacion(piloto2, copiloto2, auxiliares2);
 		
-		Ruta ruta1 = new Ruta("01/01/2019", "CDMX", "Monterrey", "Ida", "2:45", "6:00", "8:45", "3", miTripulacion1, miAeronave1);
-		Ruta ruta2 = new Ruta("01/01/2019", "Monterrey", "CDMX", "Regreso", "2:45", "11:45", "14:30", "3", miTripulacion1, miAeronave1);
-		Ruta ruta3 = new Ruta("02/01/2019", "CDMX", "Cancun", "Ida", "3:12", "8:00", "11:12", "3", miTripulacion2, miAeronave2);
-		Ruta ruta4 = new Ruta("02/01/2019", "Cancun", "CDMX", "Regreso", "3:12", "14:12", "17:24", "3", miTripulacion2, miAeronave2);
+		Ruta ruta1 = new Ruta("01/01/2019", "CDMX", "Monterrey", "Ida", "2:45", "6:00", "8:45", "3", miTripulacion1, misAeronaves.get(0));
+		Ruta ruta2 = new Ruta("01/01/2019", "Monterrey", "CDMX", "Regreso", "2:45", "11:45", "14:30", "3", miTripulacion1, misAeronaves.get(0));
+		Ruta ruta3 = new Ruta("02/01/2019", "CDMX", "Cancun", "Ida", "3:12", "8:00", "11:12", "3", miTripulacion2, misAeronaves.get(1));
+		Ruta ruta4 = new Ruta("02/01/2019", "Cancun", "CDMX", "Regreso", "3:12", "14:12", "17:24", "3", miTripulacion2, misAeronaves.get(1));
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
-		
-		Aeronave miAeronave3 = misAeronaves.get(1).getFlotaDeAeronaves().get(0);
-		Aeronave miAeronave4 = misAeronaves.get(1).getFlotaDeAeronaves().get(1);
 		
 		List<Tripulante> auxiliares3 = new ArrayList<>();
 		auxiliares3.add(aux1);
@@ -71,23 +98,22 @@ public class Origen {
 		Tripulacion miTripulacion3 = new Tripulacion(piloto1, copiloto1, auxiliares3);
 		Tripulacion miTripulacion4 = new Tripulacion(piloto2, copiloto2, auxiliares3);
 		
-		Ruta ruta5 = new Ruta("03/01/2019", "CDMX", "BuenosAires", "Ida", "9:05", "23:30", "8:35", "3", miTripulacion3, miAeronave3);
-		Ruta ruta6 = new Ruta("04/01/2019", "BuenosAires", "CDMX", "Regreso", "9:05", "11:35", "20:40", "3", miTripulacion3, miAeronave3);
-		Ruta ruta7 = new Ruta("05/01/2019", "CDMX", "LosAngeles", "Ida", "3:25", "9:45", "13:10", "3", miTripulacion4, miAeronave4);
-		Ruta ruta8 = new Ruta("05/01/2019", "LosAngeles", "CDMX", "Regreso", "3:25", "16:10", "19:35", "3", miTripulacion4, miAeronave4);
+		Ruta ruta5 = new Ruta("03/01/2019", "CDMX", "BuenosAires", "Ida", "9:05", "23:30", "8:35", "3", miTripulacion3, misAeronaves.get(2));
+		Ruta ruta6 = new Ruta("04/01/2019", "BuenosAires", "CDMX", "Regreso", "9:05", "11:35", "20:40", "3", miTripulacion3, misAeronaves.get(2));
+		Ruta ruta7 = new Ruta("05/01/2019", "CDMX", "LosAngeles", "Ida", "3:25", "9:45", "13:10", "3", miTripulacion4, misAeronaves.get(3));
+		Ruta ruta8 = new Ruta("05/01/2019", "LosAngeles", "CDMX", "Regreso", "3:25", "16:10", "19:35", "3", miTripulacion4, misAeronaves.get(3));
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
-		
-		Aeronave miAeronave5 = misAeronaves.get(2).getFlotaDeAeronaves().get(0);
-		Aeronave miAeronave6 = misAeronaves.get(2).getFlotaDeAeronaves().get(1);
 		
 		Tripulacion miTripulacion5 = new Tripulacion(piloto2, copiloto1, auxiliares3);
 		Tripulacion miTripulacion6 = new Tripulacion(piloto1, copiloto2, auxiliares3);
 		
-		Ruta ruta9 = new Ruta("06/01/2019", "CDMX", "Bogota", "Ida", "3:45", "13:30", "17:15", "3", miTripulacion5, miAeronave3);
-		Ruta ruta10 = new Ruta("06/01/2019", "Bogota", "CDMX", "Regreso", "3:45", "20:15", "00:00", "3", miTripulacion5, miAeronave3);
-		Ruta ruta11 = new Ruta("06/01/2019", "CDMX", "Panama", "Ida", "2:55", "14:45", "17:40", "3", miTripulacion6, miAeronave4);
-		Ruta ruta12 = new Ruta("06/01/2019", "Panama", "CDMX", "Regreso", "2:55", "20:40", "23:35", "3", miTripulacion6, miAeronave4);
+		Ruta ruta9 = new Ruta("06/01/2019", "CDMX", "Bogota", "Ida", "3:45", "13:30", "17:15", "3", miTripulacion5, misAeronaves.get(4));
+		Ruta ruta10 = new Ruta("06/01/2019", "Bogota", "CDMX", "Regreso", "3:45", "20:15", "00:00", "3", miTripulacion5, misAeronaves.get(4));
+		Ruta ruta11 = new Ruta("06/01/2019", "CDMX", "Panama", "Ida", "2:55", "14:45", "17:40", "3", miTripulacion6, misAeronaves.get(5));
+		Ruta ruta12 = new Ruta("06/01/2019", "Panama", "CDMX", "Regreso", "2:55", "20:40", "23:35", "3", miTripulacion6, misAeronaves.get(5));
+		
+		List<Ruta> misRutas = new ArrayList<>();
 		
 		misRutas.add(ruta1);
 		misRutas.add(ruta2);
@@ -101,12 +127,15 @@ public class Origen {
 		misRutas.add(ruta10);
 		misRutas.add(ruta11);
 		misRutas.add(ruta12);
-		datosRuta.serializacionOut(misRutas);
-	}
-	public void crearMisAviones(List<TipoAeronave> misAeronaves,DatosAeronave datosAeronaves) {
 		
-		Aeronave uno = new Aeronave("CMDX", "air001", "Av001", "", true);
-		Aeronave dos = new Aeronave("CMDX", "air001", "Av002", "", true);
+		aerolinea.setMisRutas(misRutas);
+		
+	}
+	
+	public void crearMisAviones() {
+		
+		Aeronave uno = new Aeronave("CMDX", "air001", "Av001", true);
+		Aeronave dos = new Aeronave("CMDX", "air001", "Av002", true);
 		
 		List<Aeronave> flotaDeAeronavesAirbus_A320 = new ArrayList<>();
 		flotaDeAeronavesAirbus_A320.add(uno);
@@ -120,8 +149,8 @@ public class Origen {
 	
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
-		Aeronave tres = new Aeronave("CMDX", "air002", "Av003", "", true);
-		Aeronave cuatro = new Aeronave("CMDX", "air002", "Av004", "", true);
+		Aeronave tres = new Aeronave("CMDX", "air002", "Av003", true);
+		Aeronave cuatro = new Aeronave("CMDX", "air002", "Av004", true);
 		
 		List<Aeronave> flotaDeAeronavesAirbus_A330 = new ArrayList<>();
 		flotaDeAeronavesAirbus_A330.add(tres);
@@ -135,8 +164,8 @@ public class Origen {
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
 	
-		Aeronave cinco = new Aeronave("CMDX", "air003", "Av005", "", true);	
-		Aeronave seis = new Aeronave("CMDX", "air003", "Av006", "", true);
+		Aeronave cinco = new Aeronave("CMDX", "air003", "Av005", true);	
+		Aeronave seis = new Aeronave("CMDX", "air003", "Av006", true);
 		
 		List<Aeronave> flotaDeAeronavesBoeing_787 = new ArrayList<>();
 		flotaDeAeronavesBoeing_787.add(cinco);
@@ -150,11 +179,11 @@ public class Origen {
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
+		List<TipoAeronave> misAeronaves = new ArrayList<>();
 		misAeronaves.add(Airbus_A320);
 		misAeronaves.add(Airbus_A330);
 		misAeronaves.add(Boeing_787);
 		
-		datosAeronaves.serializacionOut(misAeronaves);
-		
+		aerolinea.setMisAeronaves(misAeronaves);
 	}
 }

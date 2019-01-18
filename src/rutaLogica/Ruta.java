@@ -36,4 +36,16 @@ public class Ruta implements Serializable{
 	public void setAtributos(HashMap<String, String> atributos) {
 		this.atributos = atributos;
 	}
+	public Tripulacion getMiTripulacion() {
+		return miTripulacion;
+	}
+	public void setMiTripulacion(Tripulacion miTripulacion) {
+		this.miTripulacion = miTripulacion;
+	}
+	public Aeronave getMiAeronave() {
+		return miAeronave;
+	}
+	public void setMiAeronave(Aeronave miAeronave) {
+		this.miAeronave = miAeronave;
+	}
 }

@@ -47,16 +47,16 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTable tableAeronaves, tableDatos, tableSillasEjecutiva, tableSillasEconomica;
-	private JButton btnTripulacion, btnSillas, btnFlota;
+	private JButton btnSillas, btnFlota;
 	private JTextArea textAreaTripulacion;
-	private DefaultTableModel modeloSillasEjecutiva, modeloSillasEconomica;
+	private JLabel lblTitulo;
 	private String idTipoAeronave;
-	private boolean verTripulacion, verSillas, verFlota;
+	private boolean verSillas, verFlota;
 	private CaribeAirlines miAerolinea;
 	
 	private static final int X = 10;
-	private static final int Y = 43;
-	private static final int WIDTH = 290;
+	private static final int Y = 65;
+	private static final int WIDTH = 314;
 	private static final int HEIGHT = 405;
 
 	public static void main(String[] args) {
@@ -76,12 +76,11 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		miAerolinea = new CaribeAirlines();
 		List<TipoAeronave> misAeronaves = miAerolinea.getMisAeronaves();
 		
-		verTripulacion = false;
 		verSillas = false;
 		verFlota = false;
 		
 		setTitle("Aeronaves");
-		setBounds(100, 100, 450, 500);
+		setBounds(100, 100, 350, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,13 +89,18 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		tableAeronaves = new JTable(1, misAeronaves.size());
 		tableAeronaves.setEnabled(false);
 		tableAeronaves.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tableAeronaves.setFont(new Font("Tahoma", Font.BOLD, 15));
+		tableAeronaves.setFont(new Font("Tahoma", Font.BOLD, 12));
 		tableAeronaves.setRowHeight(23);
-		tableAeronaves.setBounds(10, 11, 414, 23);
+		tableAeronaves.setBounds(10, 11, 314, 20);
 		tableAeronaves.addMouseListener(
 				new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {
 						
+						if(verSillas == true) {
+							tableSillasEconomica.setVisible(false);
+							tableSillasEjecutiva.setVisible(false);
+						}
+
 						int column = tableAeronaves.columnAtPoint(e.getPoint());
 						int row = tableAeronaves.rowAtPoint(e.getPoint());
 						
@@ -104,7 +108,6 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 						
 						btnFlota.setVisible(true);
 						btnSillas.setVisible(true);
-						btnTripulacion.setVisible(true);
 						
 						String[][] datos = miAerolinea.llenarTablaDeDatosAeronave(column);
 						for (int i = 0; i < tableDatos.getRowCount(); i++) {
@@ -112,6 +115,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 								tableDatos.setValueAt(datos[i][j], i, j);
 							}
 						}
+						lblTitulo.setText(datos[4][1] + " " + datos[6][1]);
 					
 					}
 				});
@@ -130,27 +134,25 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 			}
 		}
 		
-		btnTripulacion = new JButton("Ver Tripulaci\u00F3n");
-		btnTripulacion.addActionListener(this);
-		btnTripulacion.setFont(new Font("Tahoma", Font.BOLD, 9));
-		btnTripulacion.setBounds(310, 161, 114, 23);
-		contentPane.add(btnTripulacion);
-		
 		btnSillas = new JButton("Ver Sillas");
 		btnSillas.addActionListener(this);
+		btnSillas.setVisible(false);
 		btnSillas.setFont(new Font("Tahoma", Font.BOLD, 9));
-		btnSillas.setBounds(310, 195, 114, 23);
+		btnSillas.setBounds(210, 477, 114, 23);
 		contentPane.add(btnSillas);
 		
 		btnFlota = new JButton("Ver Flota");
 		btnFlota.addActionListener(this);
+		btnFlota.setVisible(false);
 		btnFlota.setFont(new Font("Tahoma", Font.BOLD, 9));
-		btnFlota.setBounds(310, 227, 114, 23);
+		btnFlota.setBounds(10, 477, 114, 23);
 		contentPane.add(btnFlota);
 		
-		btnFlota.setVisible(false);
-		btnSillas.setVisible(false);
-		btnTripulacion.setVisible(false);
+		lblTitulo = new JLabel("");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setBounds(10, 38, 314, 20);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		contentPane.add(lblTitulo);
 		
 		tableDatos = new JTable(misAeronaves.get(0).getAtributos().size(), 2);//fila,columna
 		tableDatos.setBounds(X, Y, WIDTH, HEIGHT);
@@ -164,13 +166,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		tableDatos.getColumnModel().getColumn(1).setPreferredWidth(170);
 		
 	}
-	public void verTripulacion() {
-		textAreaTripulacion = new JTextArea();
-		textAreaTripulacion.setEditable(false);
-		contentPane.add(textAreaTripulacion);
-		textAreaTripulacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textAreaTripulacion.setBounds(X, Y, WIDTH, HEIGHT);
-	}
+	
 	public void verSillas() {
 		int pos = miAerolinea.encontrarPosiciontipoAeronave(idTipoAeronave);
 		DistribucionSillas ubicacionSillas = miAerolinea.getMisAeronaves().get(pos).getUbicacionSillas();
@@ -241,25 +237,21 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 			}
 		}
 		
+
+		tableSillasEconomica.setVisible(true);
+		tableSillasEjecutiva.setVisible(true);
 		verSillas = true;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		idTipoAeronave = (String) tableDatos.getValueAt(5, 1);
-		
-		if (e.getSource() == btnTripulacion) {
-			tableDatos.setVisible(false);
-			verTripulacion();
-		}
 		if (e.getSource() == btnSillas) {
 			tableDatos.setVisible(false);
 			verSillas();
 		}
 		if (e.getSource() == btnFlota) {
 			tableDatos.setVisible(false);
-			textAreaTripulacion.setVisible(false);
-			tableSillasEjecutiva.setVisible(false);
-			tableSillasEconomica.setVisible(false);
+			System.out.println(miAerolinea.getMisAeronaves().get(0).getFlotaDeAeronaves().get(0).getRegistro().get(0).getAtributos().get("Ida o Regreso"));
 		}
 	}
 }
