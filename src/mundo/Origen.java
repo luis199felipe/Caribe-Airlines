@@ -85,6 +85,10 @@ public class Origen {
 		Ruta ruta2 = new Ruta("01/01/2019", "Monterrey", "CDMX", "Regreso", "2:45", "11:45", "14:30", "3", miTripulacion1, misAeronaves.get(0));
 		Ruta ruta3 = new Ruta("02/01/2019", "CDMX", "Cancun", "Ida", "3:12", "8:00", "11:12", "3", miTripulacion2, misAeronaves.get(1));
 		Ruta ruta4 = new Ruta("02/01/2019", "Cancun", "CDMX", "Regreso", "3:12", "14:12", "17:24", "3", miTripulacion2, misAeronaves.get(1));
+		Ruta ruta13 = new Ruta("03/01/2019", "CDMX", "Monterrey", "Ida", "2:45", "6:00", "8:45", "3", miTripulacion1, misAeronaves.get(1));
+		Ruta ruta14 = new Ruta("03/01/2019", "Monterrey", "CDMX", "Regreso", "2:45", "11:45", "14:30", "3", miTripulacion1, misAeronaves.get(1));
+		Ruta ruta15 = new Ruta("04/01/2019", "CDMX", "Cancun", "Ida", "3:12", "8:00", "11:12", "3", miTripulacion2, misAeronaves.get(0));
+		Ruta ruta16 = new Ruta("04/01/2019", "Cancun", "CDMX", "Regreso", "3:12", "14:12", "17:24", "3", miTripulacion2, misAeronaves.get(0));
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -104,6 +108,10 @@ public class Origen {
 		Ruta ruta6 = new Ruta("04/01/2019", "BuenosAires", "CDMX", "Regreso", "9:05", "11:35", "20:40", "3", miTripulacion3, misAeronaves.get(2));
 		Ruta ruta7 = new Ruta("05/01/2019", "CDMX", "LosAngeles", "Ida", "3:25", "9:45", "13:10", "3", miTripulacion4, misAeronaves.get(3));
 		Ruta ruta8 = new Ruta("05/01/2019", "LosAngeles", "CDMX", "Regreso", "3:25", "16:10", "19:35", "3", miTripulacion4, misAeronaves.get(3));
+		Ruta ruta17 = new Ruta("06/01/2019", "CDMX", "BuenosAires", "Ida", "9:05", "23:30", "8:35", "3", miTripulacion3, misAeronaves.get(3));
+		Ruta ruta18 = new Ruta("06/01/2019", "BuenosAires", "CDMX", "Regreso", "9:05", "11:35", "20:40", "3", miTripulacion3, misAeronaves.get(3));
+		Ruta ruta19 = new Ruta("07/01/2019", "CDMX", "LosAngeles", "Ida", "3:25", "9:45", "13:10", "3", miTripulacion4, misAeronaves.get(2));
+		Ruta ruta20 = new Ruta("07/01/2019", "LosAngeles", "CDMX", "Regreso", "3:25", "16:10", "19:35", "3", miTripulacion4, misAeronaves.get(2));
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -112,8 +120,12 @@ public class Origen {
 		
 		Ruta ruta9 = new Ruta("06/01/2019", "CDMX", "Bogota", "Ida", "3:45", "13:30", "17:15", "3", miTripulacion5, misAeronaves.get(4));
 		Ruta ruta10 = new Ruta("06/01/2019", "Bogota", "CDMX", "Regreso", "3:45", "20:15", "00:00", "3", miTripulacion5, misAeronaves.get(4));
-		Ruta ruta11 = new Ruta("06/01/2019", "CDMX", "Panama", "Ida", "2:55", "14:45", "17:40", "3", miTripulacion6, misAeronaves.get(5));
-		Ruta ruta12 = new Ruta("06/01/2019", "Panama", "CDMX", "Regreso", "2:55", "20:40", "23:35", "3", miTripulacion6, misAeronaves.get(5));
+		Ruta ruta11 = new Ruta("07/01/2019", "CDMX", "Panama", "Ida", "2:55", "14:45", "17:40", "3", miTripulacion6, misAeronaves.get(5));
+		Ruta ruta12 = new Ruta("07/01/2019", "Panama", "CDMX", "Regreso", "2:55", "20:40", "23:35", "3", miTripulacion6, misAeronaves.get(5));
+		Ruta ruta21 = new Ruta("08/01/2019", "CDMX", "Bogota", "Ida", "3:45", "13:30", "17:15", "3", miTripulacion5, misAeronaves.get(5));
+		Ruta ruta22 = new Ruta("08/01/2019", "Bogota", "CDMX", "Regreso", "3:45", "20:15", "00:00", "3", miTripulacion5, misAeronaves.get(5));
+		Ruta ruta23 = new Ruta("09/01/2019", "CDMX", "Panama", "Ida", "2:55", "14:45", "17:40", "3", miTripulacion6, misAeronaves.get(4));
+		Ruta ruta24 = new Ruta("09/01/2019", "Panama", "CDMX", "Regreso", "2:55", "20:40", "23:35", "3", miTripulacion6, misAeronaves.get(4));
 		
 		List<Ruta> misRutas = new ArrayList<>();
 		
@@ -129,6 +141,18 @@ public class Origen {
 		misRutas.add(ruta10);
 		misRutas.add(ruta11);
 		misRutas.add(ruta12);
+		misRutas.add(ruta13);
+		misRutas.add(ruta14);
+		misRutas.add(ruta15);
+		misRutas.add(ruta16);
+		misRutas.add(ruta17);
+		misRutas.add(ruta18);
+		misRutas.add(ruta19);
+		misRutas.add(ruta20);
+		misRutas.add(ruta21);
+		misRutas.add(ruta22);
+		misRutas.add(ruta23);
+		misRutas.add(ruta24);
 		
 		aerolinea.setMisRutas(misRutas);
 		

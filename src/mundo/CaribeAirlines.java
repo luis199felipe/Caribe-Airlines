@@ -26,9 +26,9 @@ public class CaribeAirlines {
 		misRutas = new ArrayList<>();
 		datosRutas = new DatosRuta();
 		Origen creaciones = new Origen(this);
-		//creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		//creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		//creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE HAY NUEVA RUTA DE VUELO
+		creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE HAY NUEVA RUTA DE VUELO
 	}
 	
 	//Metodos Aeronaves
@@ -71,19 +71,40 @@ public class CaribeAirlines {
 		return tabla;
 	}
 	
-	
-	public int encontrarPosiciontipoAeronave(String idTipoAeronave){
-		int pos = -1;
-		for (int i = 0; i < misAeronaves.size(); i++) {
-			if(misAeronaves.get(i).getAtributos().get("idTipoAeronave").equals(idTipoAeronave)) {
-				pos = i;
+	public String[][] llenarTablaDeMasDetalles (Ruta miRuta){
+		int row = miRuta.getAtributos().size() + miRuta.getMiTripulacion().getAuxiliares().size() + 2;
+		String[][] datos = new String[row][2];
+		int i = 0;
+		for (Iterator it = miRuta.getAtributos().keySet().iterator(); it.hasNext();) {
+			datos[i][0] = (String)it.next();//key
+			datos[i][1] = (String)miRuta.getAtributos().get(datos[i][0]);//value
+			i++;
+		}
+		String auxiliares = miRuta.getMiTripulacion().getMiTripulacion().get("Auxiliares");
+		List<String> mostrar = new ArrayList<>();
+		String palabra = "";
+		for (int j = 0; j < auxiliares.length(); j++) {
+			if (auxiliares.charAt(j) == ',') {
+				mostrar.add(palabra);
+				palabra = "";
+			}else {
+				palabra += auxiliares.charAt(j);
 			}
 		}
-			
-		return pos;
+		datos[miRuta.getAtributos().size()][0] = "Piloto";
+		datos[miRuta.getAtributos().size()][1] = miRuta.getMiTripulacion().getMiTripulacion().get("Piloto");
+		datos[miRuta.getAtributos().size()+1][0] = "Copiloto";
+		datos[miRuta.getAtributos().size()+1][1] = miRuta.getMiTripulacion().getMiTripulacion().get("Copiloto");
+		
+		i = 1;
+		for (int j = miRuta.getAtributos().size()+2; j < datos.length; j++) {
+			datos[j][0] = "auxiliar " + i;
+			datos[j][1] = mostrar.get(i-1);
+			i++;
+		}
+		
+		return datos;
 	}
-	
-	
 	
 	//Getter & Setter
 	public List<TipoAeronave> getMisAeronaves() {

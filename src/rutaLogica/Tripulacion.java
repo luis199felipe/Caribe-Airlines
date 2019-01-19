@@ -16,8 +16,8 @@ public class Tripulacion implements Serializable{
 		this.copiloto = copiloto;
 		this.auxiliares = auxiliares;
 		miTripulacion = new HashMap<>();
-		miTripulacion.put("piloto", piloto.getAtributos().get("Nombre") + piloto.getAtributos().get("Identificacion"));
-		miTripulacion.put("copiloto", copiloto.getAtributos().get("Nombre") + copiloto.getAtributos().get("Identificacion"));
+		miTripulacion.put("Piloto", "" + piloto.getAtributos().get("Nombre") + "  " + piloto.getAtributos().get("Identificacion"));
+		miTripulacion.put("Copiloto", "" + copiloto.getAtributos().get("Nombre") + "  " + copiloto.getAtributos().get("Identificacion"));
 		miTripulacion.put("Auxiliares", cadenaAuxiliares());
 	}
 	
@@ -25,9 +25,8 @@ public class Tripulacion implements Serializable{
 	public String cadenaAuxiliares() {
 		String mostrar = "";
 		for (int i = 0; i < auxiliares.size(); i++) {
-			mostrar += auxiliares.get(i).getAtributos().get("Nombre") + auxiliares.get(i).getAtributos().get("Identificacion") + ",";
+			mostrar += auxiliares.get(i).getAtributos().get("Nombre") + "  " + auxiliares.get(i).getAtributos().get("Identificacion") + ",";
 		}
-		mostrar = mostrar.substring(0, mostrar.length()-1);
 		return mostrar;
 	}
 	//Getters & Setters

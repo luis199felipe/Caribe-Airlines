@@ -26,7 +26,7 @@ public class Ruta implements Serializable{
 		atributos.put("Duracion", duracion);
 		atributos.put("HoraSalida", horaSalida);
 		atributos.put("HoraLLegada", horaLlegada);
-		atributos.put("TiempoEsperaHoras", tiempoEsperaHoras);
+		atributos.put("TiempoEspera(H)", tiempoEsperaHoras);
 	}
 	
 	//Getters & Setters
