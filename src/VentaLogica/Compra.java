@@ -40,18 +40,17 @@ public class Compra {
 		return ciudades;	
 	}
 	
-	public HashSet<String> getFechasDeCiudad(String Ciudad) {
-		HashSet<String> fechas = new HashSet();
-		System.out.println("Va a empezar buscando fechas");
+	public List<String> getFechasDeCiudad(String ciudad) {
+		List<String> fechas = new ArrayList();
+		
 		for (int i = 0; i < misRutas.size(); i++) {
-			if (misRutas.get(i).getAtributos().get("Destino").equals(Ciudad)) {
-				fechas.add(misRutas.get(i).getAtributos().get("Fecha"));
-			}			
-		}
-		
+			if (misRutas.get(i).getAtributos().get("Destino").equals(ciudad)) {
+				fechas.add(misRutas.get(i).getAtributos().get("Fecha")+"//"+misRutas.get(i).getAtributos().get("HoraSalida")+"//"+misRutas.get(i).getAtributos().get("HoraLLegada"));
+			}
+		}		
 		return fechas;
-		
 	}
+
 
 	
 
@@ -113,6 +112,8 @@ public class Compra {
 		this.fechaIngreso = fechaIngreso;
 	}
 
+
+	
 
 
 }

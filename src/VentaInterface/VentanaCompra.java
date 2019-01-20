@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -19,6 +20,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JSpinner;
 import VentaLogica.Compra;
+import javax.swing.JTextPane;
 
 
 public class VentanaCompra implements ActionListener{
@@ -64,12 +66,12 @@ public class VentanaCompra implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 430, 315);
+		frame.setBounds(100, 100, 339, 282);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 395, 258);
+		tabbedPane.setBounds(10, 11, 301, 221);
 		frame.getContentPane().add(tabbedPane);
 		
 		miCompra = new Compra();		
@@ -86,16 +88,20 @@ public class VentanaCompra implements ActionListener{
 		BGModalidad = new ButtonGroup();
 		
 		RadioButtonIdaYRegreso = new JRadioButton("Ida y regreso");
-		RadioButtonIdaYRegreso.setBounds(6, 87, 109, 23);
+		RadioButtonIdaYRegreso.setBounds(6, 32, 109, 23);
 		BGModalidad.add(RadioButtonIdaYRegreso);
 		RadioButtonIdaYRegreso.addActionListener(this);
 		panelMod.add(RadioButtonIdaYRegreso);
 				
 		RadioButtonSoloIda = new JRadioButton("Solo ida");
-		RadioButtonSoloIda.setBounds(6, 130, 109, 23);
+		RadioButtonSoloIda.setBounds(6, 58, 109, 23);
 		BGModalidad.add(RadioButtonSoloIda);
 		RadioButtonSoloIda.addActionListener(this);
 		panelMod.add(RadioButtonSoloIda);
+		
+		JLabel lblEscojaSuModalidad = new JLabel("Escoja su modalidad de viaje:");
+		lblEscojaSuModalidad.setBounds(10, 11, 289, 14);
+		panelMod.add(lblEscojaSuModalidad);
 		
 		
 		
@@ -106,20 +112,20 @@ public class VentanaCompra implements ActionListener{
 		panelCiudad.setLayout(null);
 		
 		JLabel lblCiudadOrigen = new JLabel("Ciudad Origen");
-		lblCiudadOrigen.setBounds(10, 82, 97, 17);
+		lblCiudadOrigen.setBounds(10, 36, 97, 17);
 		panelCiudad.add(lblCiudadOrigen);
 		
 		comboBoxCiudadOrigen = new JComboBox();
-		comboBoxCiudadOrigen.setBounds(144, 80, 169, 20);
+		comboBoxCiudadOrigen.setBounds(110, 34, 169, 20);
 		panelCiudad.add(comboBoxCiudadOrigen);
 		
 		
 		JLabel lblCiudadDestino = new JLabel("Ciudad Destino");
-		lblCiudadDestino.setBounds(10, 138, 97, 14);
+		lblCiudadDestino.setBounds(10, 83, 97, 14);
 		panelCiudad.add(lblCiudadDestino);
 		
 		comboBoxCiudadDestino = new JComboBox();
-		comboBoxCiudadDestino.setBounds(144, 135, 169, 20);
+		comboBoxCiudadDestino.setBounds(110, 80, 169, 20);
 		Iterator<String> it = ciudades.iterator();
 		
 		while (it.hasNext()) {
@@ -132,6 +138,15 @@ public class VentanaCompra implements ActionListener{
 		comboBoxCiudadOrigen.addActionListener(this);
 		panelCiudad.add(comboBoxCiudadDestino);
 		
+		JLabel lblEscojaLaCiudad = new JLabel("Escoja la ciudad de origen y para donde se dirige.");
+		lblEscojaLaCiudad.setBounds(10, 11, 281, 14);
+		panelCiudad.add(lblEscojaLaCiudad);
+		
+		JTextPane txtpnTengaEnCuenta = new JTextPane();
+		txtpnTengaEnCuenta.setText("Tenga en cuenta de que para vuelos nacionales tendr\u00E1 un coste adicional del 0.8% e internacional del 0.97%");
+		txtpnTengaEnCuenta.setBounds(10, 121, 269, 60);
+		panelCiudad.add(txtpnTengaEnCuenta);
+		
 		
 		
 		//PANEL CLASE y CANTIDAD DE PERSONAS********************************************************************************************
@@ -142,22 +157,18 @@ public class VentanaCompra implements ActionListener{
 		BGClase =new ButtonGroup();
 		
 		rdbtnEconomica = new JRadioButton("Economica");
-		rdbtnEconomica.setBounds(25, 30, 109, 23);
+		rdbtnEconomica.setBounds(10, 35, 109, 23);
 		BGClase.add(rdbtnEconomica);
 		panelClase.add(rdbtnEconomica);
 		
 		rdbtnEjecutiva = new JRadioButton("Ejecutiva");
-		rdbtnEjecutiva.setBounds(25, 68, 109, 23);
+		rdbtnEjecutiva.setBounds(10, 61, 109, 23);
 		BGClase.add(rdbtnEjecutiva);
 		panelClase.add(rdbtnEjecutiva);
 		
-		JLabel lblCantidadDePersonas = new JLabel("Cantidad de personas");
-		lblCantidadDePersonas.setBounds(25, 128, 109, 14);
-		panelClase.add(lblCantidadDePersonas);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(144, 125, 29, 20);
-		panelClase.add(spinner);
+		JLabel lblEscojaLaClase = new JLabel("Escoja la clase preferente del viaje.");
+		lblEscojaLaClase.setBounds(10, 11, 241, 14);
+		panelClase.add(lblEscojaLaClase);
 		
 		
 		
@@ -166,21 +177,29 @@ public class VentanaCompra implements ActionListener{
 		tabbedPane.addTab("Fechas", null, panelFechas, null);
 		panelFechas.setLayout(null);
 		
-		JLabel lblFechaDeSalida = new JLabel("Fecha de salida (DD/MM/AA)");
-		lblFechaDeSalida.setBounds(10, 60, 161, 14);
+		JLabel lblFechaDeSalida = new JLabel("Fecha de salida (DD/MM/AAAA)");
+		lblFechaDeSalida.setBounds(10, 11, 161, 14);
 		panelFechas.add(lblFechaDeSalida);
 		
-		lblFechaDeRegreso = new JLabel("Fecha de regreso (DD/MM/AA)");
-		lblFechaDeRegreso.setBounds(10, 133, 147, 14);
+		lblFechaDeRegreso = new JLabel("Fecha de regreso (DD/MM/AAAA)");
+		lblFechaDeRegreso.setBounds(10, 67, 161, 14);
 		panelFechas.add(lblFechaDeRegreso);
 		
 		comboBoxFechaSalida = new JComboBox();
-		comboBoxFechaSalida.setBounds(213, 57, 147, 20);
+		comboBoxFechaSalida.setBounds(10, 36, 147, 20);
 		panelFechas.add(comboBoxFechaSalida);
 		
 		comboBoxFechaRegreso = new JComboBox();
-		comboBoxFechaRegreso.setBounds(213, 130, 147, 20);
+		comboBoxFechaRegreso.setBounds(10, 92, 147, 20);
 		panelFechas.add(comboBoxFechaRegreso);
+		
+		JLabel label = new JLabel("Cantidad de personas");
+		label.setBounds(10, 136, 109, 14);
+		panelFechas.add(label);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(142, 133, 29, 20);
+		panelFechas.add(spinner);
 	}
 
 
@@ -207,20 +226,11 @@ public class VentanaCompra implements ActionListener{
 		
 		if (e.getSource()==comboBoxCiudadDestino) {
 			
-			System.out.println("Se actualizo la ciudad destino "+String.valueOf(comboBoxCiudadDestino.getSelectedItem()));
-			HashSet<String> fechasSalida = miCompra.getFechasDeCiudad(String.valueOf(comboBoxCiudadDestino.getSelectedItem()));
-			
+			List<String> fechasSalida = miCompra.getFechasDeCiudad(String.valueOf(comboBoxCiudadDestino.getSelectedItem()));			
 			Iterator<String> it = fechasSalida.iterator();
 			while (it.hasNext()) {
 				String f = it.next();
 				comboBoxFechaSalida.addItem(f);
-			}
-			
-			HashSet<String> fechasRegreso = miCompra.getFechasDeCiudad("CDMX");
-			System.out.println(fechasRegreso);
-			Iterator<String> it2 = fechasRegreso.iterator();
-			while (it2.hasNext()) {
-				String f = it2.next();
 				comboBoxFechaRegreso.addItem(f);
 			}
 		}
