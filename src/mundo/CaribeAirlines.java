@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import aeronaveData.DatosAeronave;
+import aeronaveInterface.VentanaAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
-import aeronavesData.DatosAeronave;
-import aeronavesInterface.VentanaAeronave;
 import rutaData.DatosRuta;
 import rutaLogica.Ruta;
 import tripulacionData.DatosTripulacion;

@@ -1,4 +1,4 @@
-package aeronavesInterface;
+package aeronaveInterface;
 
 import java.awt.EventQueue;
 

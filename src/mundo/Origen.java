@@ -3,10 +3,10 @@ package mundo;
 import java.util.ArrayList;
 import java.util.List;
 
+import aeronaveData.DatosAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
-import aeronavesData.DatosAeronave;
 import rutaData.DatosRuta;
 import rutaLogica.Ruta;
 import tripulacionLogica.Tripulacion;
