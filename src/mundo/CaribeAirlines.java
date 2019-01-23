@@ -12,12 +12,20 @@ import aeronavesData.DatosAeronave;
 import aeronavesInterface.VentanaAeronave;
 import rutaData.DatosRuta;
 import rutaLogica.Ruta;
+import tripulacionData.DatosTripulacion;
+import tripulacionData.DatosTripulante;
+import tripulacionLogica.Tripulacion;
+import tripulacionLogica.Tripulante;
 
 public class CaribeAirlines {
 	private List<TipoAeronave> misAeronaves;
 	private DatosAeronave datosAeronaves;
 	private List<Ruta> misRutas;
 	private DatosRuta datosRutas;
+	private List<Tripulacion> misTripulaciones;
+	private DatosTripulacion datosTripulaciones;
+	private List<Tripulante> misTripulantes;
+	private DatosTripulante datosTripulantes;
 	
 	//Constructor
 	public CaribeAirlines() {
@@ -25,8 +33,14 @@ public class CaribeAirlines {
 		datosAeronaves = new DatosAeronave();
 		misRutas = new ArrayList<>();
 		datosRutas = new DatosRuta();
+		misTripulantes = new ArrayList<>();
+		datosTripulantes = new DatosTripulante();
+		misTripulaciones = new ArrayList<>();
+		datosTripulaciones = new DatosTripulacion();
 		Origen creaciones = new Origen(this);
 		creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		creaciones.crearMisTripulantes();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		creaciones.crearTripulaciones();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE HAY NUEVA RUTA DE VUELO
 	}
@@ -124,4 +138,25 @@ public class CaribeAirlines {
 		this.misRutas = misRutas;
 		datosRutas.serializacionOut(misRutas);
 	}
+
+	public List<Tripulacion> getMisTripulaciones() {
+		misTripulaciones = datosTripulaciones.serializacionIn();
+		return misTripulaciones;
+	}
+
+	public void setMisTripulaciones(List<Tripulacion> misTripulaciones) {
+		this.misTripulaciones = misTripulaciones;
+		datosTripulaciones.serializacionOut(misTripulaciones);
+	}
+
+	public List<Tripulante> getMisTripulantes() {
+		misTripulantes = datosTripulantes.serializacionIn();
+		return misTripulantes;
+	}
+
+	public void setMisTripulantes(List<Tripulante> misTripulantes) {
+		this.misTripulantes = misTripulantes;
+		datosTripulantes.serializacionOut(misTripulantes);
+	}
+	
 }

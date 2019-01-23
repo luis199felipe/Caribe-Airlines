@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import aeronaveLogica.Aeronave;
+import tripulacionLogica.Tripulacion;
 
 public class Ruta implements Serializable{
 	private HashMap<String, String> atributos;
@@ -12,7 +13,7 @@ public class Ruta implements Serializable{
 	
 	//Constructor
 	public Ruta(String fecha, String origen, String destino, String idaRegreso, String duracion, String horaSalida,
-			String horaLlegada,String tiempoEsperaHoras, Tripulacion miTripulacion,
+			String horaLlegada,String tiempoEsperaHoras, String tipo, Tripulacion miTripulacion,
 			Aeronave miAeronave) {
 		
 		this.miTripulacion = miTripulacion;
@@ -22,6 +23,7 @@ public class Ruta implements Serializable{
 		atributos.put("Fecha", fecha);
 		atributos.put("Origen", origen);
 		atributos.put("Destino", destino);
+		atributos.put("Tipo",tipo);
 		atributos.put("Ida o Regreso", idaRegreso);
 		atributos.put("Duracion", duracion);
 		atributos.put("HoraSalida", horaSalida);

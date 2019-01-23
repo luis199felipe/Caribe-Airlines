@@ -11,44 +11,8 @@
 	(object Attribute
 	    tool       	"Java"
 	    name       	"IDE"
-	    value      	"Internal Editor")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagName1"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagText1"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagApply1"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagName2"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagText2"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagApply2"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagName3"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagText3"
-	    value      	"")
-	(object Attribute
-	    tool       	"Java"
-	    name       	"UserDefineTagApply3"
-	    value      	""))
-    quid       	"5BB4DB0F0095"
+	    value      	"Internal Editor"))
+    quid       	"5C4771C8005B"
     enforceClosureAutoLoad 	FALSE
     defaults   	(object defaults
 	rightMargin 	0.250000
@@ -74,13 +38,13 @@
 	showClassOfObject 	TRUE
 	notation   	"Unified")
     root_usecase_package 	(object Class_Category "Use Case View"
-	quid       	"5BB4DB0F0097"
+	quid       	"5C4771C8005D"
 	exportControl 	"Public"
 	global     	TRUE
 	logical_models 	(list unit_reference_list)
 	logical_presentations 	(list unit_reference_list
 	    (object UseCaseDiagram "Main"
-		quid       	"5BB4DB160191"
+		quid       	"5C4771C8006D"
 		title      	"Main"
 		zoom       	100
 		max_height 	28350
@@ -89,503 +53,290 @@
 		origin_y   	0
 		items      	(list diagram_item_list))))
     root_category 	(object Class_Category "Logical View"
-	quid       	"5BB4DB0F0096"
+	quid       	"5C4771C8005C"
 	exportControl 	"Public"
 	global     	TRUE
 	subsystem  	"Component View"
-	quidu      	"5BB4DB0F0098"
+	quidu      	"5C4771C8005E"
 	logical_models 	(list unit_reference_list
-	    (object Class_Category "aerolineaCaribeAirlines"
-		quid       	"5BB4DB4401D6"
+	    (object Class_Category "aerolinea"
+		quid       	"5C477536008C"
 		exportControl 	"Public"
 		logical_models 	(list unit_reference_list
-		    (object Class "Principal"
-			quid       	"5BB4DBE00056")
-		    (object Class "Sede"
-			quid       	"5BB4DC4F01B1"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "ciudad"
-				quid       	"5BB4DC5C0310"
-				type       	"String")))
-		    (object Class "Transporte"
-			quid       	"5BB4DCAD02FD")
-		    (object Class "Pasajero"
-			quid       	"5BB4DCD00322"
-			superclasses 	(list inheritance_relationship_list
-			    (object Inheritance_Relationship
-				quid       	"5BB4DD1B01F9"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Transporte"
-				quidu      	"5BB4DCAD02FD")
-			    (object Inheritance_Relationship
-				quid       	"5BB55DF3037A"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Persona"
-				quidu      	"5BB554EE01AD")))
-		    (object Class "Carga"
-			quid       	"5BB4DCDD02E4"
-			superclasses 	(list inheritance_relationship_list
-			    (object Inheritance_Relationship
-				quid       	"5BB4DD2903AD"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Transporte"
-				quidu      	"5BB4DCAD02FD")))
-		    (object Class "Ruta"
-			quid       	"5BB4DDEE032F"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "duracion"
-				quid       	"5BB4DEA0003A"
-				type       	"int")
-			    (object ClassAttribute "salida"
-				quid       	"5BB4DF260066"
-				type       	"int")
-			    (object ClassAttribute "llegada"
-				quid       	"5BB4DF4E0170"
-				type       	"int")
-			    (object ClassAttribute "espera"
-				quid       	"5BB4DFF60368"
-				type       	"int")))
-		    (object Class "Areonave"
-			quid       	"5BB4E14F024C"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "nombre"
-				quid       	"5BB4E1E7001B"
-				type       	"String")
-			    (object ClassAttribute "tipo"
-				quid       	"5BB4E1F70334"
-				type       	"String")
-			    (object ClassAttribute "capacidadAsientos"
-				quid       	"5BB4E2010126"
-				type       	"int")
-			    (object ClassAttribute "capacidadCarga"
-				quid       	"5BB4E21000E6"
-				type       	"int")))
-		    (object Class "ClaseEjecutiva"
-			quid       	"5BB4E2D30159"
-			superclasses 	(list inheritance_relationship_list
-			    (object Inheritance_Relationship
-				quid       	"5BB55AC301B9"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Silla"
-				quidu      	"5BB55A6400F1")))
-		    (object Class "ClaseEconomica"
-			quid       	"5BB4E2E9015F"
-			superclasses 	(list inheritance_relationship_list
-			    (object Inheritance_Relationship
-				quid       	"5BB55ACA027D"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Silla"
-				quidu      	"5BB55A6400F1")))
-		    (object Class "Tripulacion"
-			quid       	"5BB4E464007A")
-		    (object Class "Tripulante"
-			quid       	"5BB4E54F0010"
-			superclasses 	(list inheritance_relationship_list
-			    (object Inheritance_Relationship
-				quid       	"5BB5571A02E0"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Persona"
-				quidu      	"5BB554EE01AD"))
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "estudios"
-				quid       	"5BB4E59B0153"
-				type       	"String")
-			    (object ClassAttribute "tipo"
-				quid       	"5BB4E83D0071"
-				type       	"String")))
-		    (object Class "Tiquete"
-			quid       	"5BB4E8AA02E7"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "categoria"
-				quid       	"5BB55C370154"
-				type       	"String")
-			    (object ClassAttribute "valor"
-				quid       	"5BB55C5302A4"
-				type       	"double")))
-		    (object Class "Compra"
-			quid       	"5BB4E9340168"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "tipoClase"
-				quid       	"5BB5579D0225"
-				type       	"String")
-			    (object ClassAttribute "valor"
-				quid       	"5BB5581B03CC"
-				type       	"double")
-			    (object ClassAttribute "fechaSalida"
-				quid       	"5BB5582002EB"
-				type       	"Calendar")
-			    (object ClassAttribute "fechaRegreso"
-				quid       	"5BB55839036C"
-				type       	"Calendar")
-			    (object ClassAttribute "subtotal"
-				quid       	"5BB55C72012D"
-				type       	"double")
-			    (object ClassAttribute "total"
-				quid       	"5BB55C790168"
-				type       	"double")))
-		    (object Class "Viaje"
-			quid       	"5BB4E96502A3"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "tipo"
-				quid       	"5BB4E9740264"
-				type       	"String")
-			    (object ClassAttribute "origen"
-				quid       	"5BB4E99E015C"
-				type       	"String")
-			    (object ClassAttribute "destino"
-				quid       	"5BB4E9BA038E"
-				type       	"String")
-			    (object ClassAttribute "fechaSalida . Calendar"
-				quid       	"5BB55B820317")))
-		    (object Class "Persona"
-			quid       	"5BB554EE01AD"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "nombre"
-				quid       	"5BB554FC025A"
-				type       	"String")
-			    (object ClassAttribute "identificacion"
-				quid       	"5BB5550C0335"
-				type       	"String")
-			    (object ClassAttribute "fechaDeNacimiento"
-				quid       	"5BB555230291"
-				type       	"Calendar")
-			    (object ClassAttribute "correoElectronico"
-				quid       	"5BB5557E00C1"
-				type       	"String")
-			    (object ClassAttribute "direccion"
-				quid       	"5BB5603F024B"
-				type       	"String")))
-		    (object Class "Silla"
-			quid       	"5BB55A6400F1"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "fila"
-				quid       	"5BB55AD90323"
-				type       	"String")
-			    (object ClassAttribute "numeracion"
-				quid       	"5BB55AE503A0"
-				type       	"String")))
-		    (object Class "Cliente"
-			quid       	"5BB55D6B02F9"
-			superclasses 	(list inheritance_relationship_list
-			    (object Inheritance_Relationship
-				quid       	"5BB55D7901AE"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Persona"
-				quidu      	"5BB554EE01AD")))
-		    (object Class "Tarjeta"
-			quid       	"5BB563410232"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "tipo"
-				quid       	"5BB5634D02D8"
-				type       	"String")
-			    (object ClassAttribute "cupo"
-				quid       	"5BB563530362"
-				type       	"double")))
-		    (object Class "Equipaje"
-			quid       	"5BB56664012F")
-		    (object Class "Maleta"
-			quid       	"5BB5670100B8"
-			class_attributes 	(list class_attribute_list
-			    (object ClassAttribute "dimensiones"
-				quid       	"5BB567090117"
-				type       	"String")
-			    (object ClassAttribute "peso"
-				quid       	"5BB56710029E"
-				type       	"double")))
+		    (object Class "Aerolinea"
+			quid       	"5C47759303CA")
 		    (object Association "$UNNAMED$0"
-			quid       	"5BB4DD72005C"
+			quid       	"5C477702020D"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$1"
-				quid       	"5BB4DD730147"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Transporte"
-				quidu      	"5BB4DCAD02FD"
+				quid       	"5C4777030065"
+				supplier   	"Logical View::aerolinea::gestionRuta::Ruta"
+				quidu      	"5C4775B60005"
+				client_cardinality 	(value cardinality "0..*")
+				Containment 	"By Value"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$2"
-				quid       	"5BB4DD730149"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
+				quid       	"5C477703006D"
+				supplier   	"Logical View::aerolinea::Aerolinea"
+				quidu      	"5C47759303CA"
+				client_cardinality 	(value cardinality "1")
 				Containment 	"By Value"
 				is_navigable 	TRUE
 				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$3"
-			quid       	"5BB4DDAF000D"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$4"
-				quid       	"5BB4DDB00118"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Sede"
-				quidu      	"5BB4DC4F01B1"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$5"
-				quid       	"5BB4DDB0011A"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
-				Containment 	"By Value"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$6"
-			quid       	"5BB4DF740192"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$7"
-				quid       	"5BB4DF7502BB"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Ruta"
-				quidu      	"5BB4DDEE032F"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$8"
-				quid       	"5BB4DF7502BD"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
-				Containment 	"By Value"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$9"
-			quid       	"5BB4E15B00C6"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$10"
-				quid       	"5BB4E15C0156"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Areonave"
-				quidu      	"5BB4E14F024C"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$11"
-				quid       	"5BB4E15C0158"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$12"
-			quid       	"5BB4E47300CA"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$13"
-				quid       	"5BB4E4740108"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tripulacion"
-				quidu      	"5BB4E464007A"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$14"
-				quid       	"5BB4E474010A"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$15"
-			quid       	"5BB4E85C003A"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$16"
-				quid       	"5BB4E85C02B0"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tripulante"
-				quidu      	"5BB4E54F0010"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$17"
-				quid       	"5BB4E85C02B3"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tripulacion"
-				quidu      	"5BB4E464007A"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$18"
-			quid       	"5BB4E9F70247"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$19"
-				quid       	"5BB4E9F80385"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Viaje"
-				quidu      	"5BB4E96502A3"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$20"
-				quid       	"5BB4E9F80387"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$21"
-			quid       	"5BB4EAB00151"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$22"
-				quid       	"5BB4EAB1010D"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Areonave"
-				quidu      	"5BB4E14F024C"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$23"
-				quid       	"5BB4EAB10110"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Ruta"
-				quidu      	"5BB4DDEE032F"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$24"
-			quid       	"5BB4ED0500FB"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$25"
-				quid       	"5BB4ED06024A"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Areonave"
-				quidu      	"5BB4E14F024C"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$26"
-				quid       	"5BB4ED06024C"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tripulacion"
-				quidu      	"5BB4E464007A"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$27"
-			quid       	"5BB557CF02FD"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$28"
-				quid       	"5BB557D002E7"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Compra"
-				quidu      	"5BB4E9340168"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$29"
-				quid       	"5BB557D002EA"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Viaje"
-				quidu      	"5BB4E96502A3"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$30"
-			quid       	"5BB557DC0368"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$31"
-				quid       	"5BB557DD030C"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Compra"
-				quidu      	"5BB4E9340168"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$32"
-				quid       	"5BB557DD030E"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Principal"
-				quidu      	"5BB4DBE00056"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$33"
-			quid       	"5BB558A402D4"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$34"
-				quid       	"5BB558A501A2"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tiquete"
-				quidu      	"5BB4E8AA02E7"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$35"
-				quid       	"5BB558A501A5"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Compra"
-				quidu      	"5BB4E9340168"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$36"
-			quid       	"5BB559830316"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$37"
-				quid       	"5BB559850157"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Ruta"
-				quidu      	"5BB4DDEE032F"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$38"
-				quid       	"5BB55985015A"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Viaje"
-				quidu      	"5BB4E96502A3"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$39"
-			quid       	"5BB55AA80200"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$40"
-				quid       	"5BB55AA9008B"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Silla"
-				quidu      	"5BB55A6400F1"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$41"
-				quid       	"5BB55AA9008E"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Areonave"
-				quidu      	"5BB4E14F024C"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$42"
-			quid       	"5BB55C600108"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$43"
-				quid       	"5BB55C6100B9"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tiquete"
-				quidu      	"5BB4E8AA02E7"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$44"
-				quid       	"5BB55C6100BC"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Viaje"
-				quidu      	"5BB4E96502A3"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$45"
-			quid       	"5BB55F0902D2"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$46"
-				quid       	"5BB55F0A037D"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Compra"
-				quidu      	"5BB4E9340168"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$47"
-				quid       	"5BB55F0A0380"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Cliente"
-				quidu      	"5BB55D6B02F9"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$48"
-			quid       	"5BB55F3A01CF"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$49"
-				quid       	"5BB55F3B024D"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tiquete"
-				quidu      	"5BB4E8AA02E7"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$50"
-				quid       	"5BB55F3B0250"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Transporte"
-				quidu      	"5BB4DCAD02FD"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$51"
-			quid       	"5BB55FB201D2"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$52"
-				quid       	"5BB55FB30344"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Cliente"
-				quidu      	"5BB55D6B02F9"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$53"
-				quid       	"5BB55FB30346"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Carga"
-				quidu      	"5BB4DCDD02E4"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$54"
-			quid       	"5BB563890133"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$55"
-				quid       	"5BB5638A0001"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Tarjeta"
-				quidu      	"5BB563410232"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$56"
-				quid       	"5BB5638A0004"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Cliente"
-				quidu      	"5BB55D6B02F9"
-				is_navigable 	TRUE
-				is_aggregate 	TRUE)))
-		    (object Association "$UNNAMED$57"
-			quid       	"5BB56734030C"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$58"
-				quid       	"5BB56735025A"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Maleta"
-				quidu      	"5BB5670100B8"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$59"
-				quid       	"5BB56735025C"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Equipaje"
-				quidu      	"5BB56664012F"
-				is_navigable 	TRUE)))
-		    (object Association "$UNNAMED$60"
-			quid       	"5BB567460103"
-			roles      	(list role_list
-			    (object Role "$UNNAMED$61"
-				quid       	"5BB5674603AF"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Pasajero"
-				quidu      	"5BB4DCD00322"
-				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$62"
-				quid       	"5BB5674603B2"
-				supplier   	"Logical View::aerolineaCaribeAirlines::Equipaje"
-				quidu      	"5BB56664012F"
-				is_navigable 	TRUE))))
+		    (object Class_Category "gestionEquipaje"
+			quid       	"5C47791D0339"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list)
+			logical_presentations 	(list unit_reference_list
+			    (object ClassDiagram "Containment"
+				quid       	"5C4779FA02C5"
+				title      	"Containment"
+				zoom       	100
+				max_height 	28350
+				max_width  	21600
+				origin_x   	0
+				origin_y   	0
+				items      	(list diagram_item_list))))
+		    (object Class_Category "gestionFlota"
+			quid       	"5C4775530091"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list)
+			logical_presentations 	(list unit_reference_list))
+		    (object Class_Category "gestionRuta"
+			quid       	"5C4775420217"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class "Ruta"
+				quid       	"5C4775B60005"))
+			logical_presentations 	(list unit_reference_list
+			    (object ClassDiagram "Main"
+				quid       	"5C4775AD0090"
+				title      	"Main"
+				zoom       	100
+				max_height 	28350
+				max_width  	21600
+				origin_x   	0
+				origin_y   	0
+				items      	(list diagram_item_list
+				    (object ClassView "Class" "Logical View::aerolinea::gestionRuta::Ruta" @1
+					ShowCompartmentStereotypes 	TRUE
+					IncludeAttribute 	TRUE
+					IncludeOperation 	TRUE
+					location   	(1790, 700)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@1
+					    location   	(1709, 649)
+					    fill_color 	13434879
+					    nlines     	1
+					    max_width  	162
+					    justify    	0
+					    label      	"Ruta")
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"5C4775B60005"
+					height     	126
+					annotation 	8
+					autoResize 	TRUE)
+				    (object ClassView "Class" "Logical View::aerolinea::Aerolinea" @2
+					ShowCompartmentStereotypes 	TRUE
+					IncludeAttribute 	TRUE
+					IncludeOperation 	TRUE
+					location   	(1225, 256)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@2
+					    location   	(1111, 182)
+					    fill_color 	13434879
+					    nlines     	1
+					    max_width  	228
+					    justify    	0
+					    label      	"Aerolinea")
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"5C47759303CA"
+					width      	246
+					height     	172
+					annotation 	8
+					autoResize 	TRUE)
+				    (object AssociationViewNew "$UNNAMED$0" @3
+					location   	(1726, 256)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"5C477702020D"
+					roleview_list 	(list RoleViews
+					    (object RoleView "$UNNAMED$2" @4
+						Parent_View 	@3
+						location   	(298, -238)
+						font       	(object Font
+						    size       	10
+						    face       	"Arial"
+						    bold       	FALSE
+						    italics    	FALSE
+						    underline  	FALSE
+						    strike     	FALSE
+						    color      	0
+						    default_color 	TRUE)
+						label      	(object SegLabel @5
+						    Parent_View 	@4
+						    location   	(1425, 298)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    hidden     	TRUE
+						    anchor     	1
+						    anchor_loc 	1
+						    nlines     	1
+						    max_width  	450
+						    justify    	0
+						    label      	""
+						    pctDist    	0.800000
+						    height     	42
+						    orientation 	0)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5C477703006D"
+						client     	@3
+						supplier   	@2
+						vertices   	(list Points
+						    (1726, 256)
+						    (1348, 256))
+						line_style 	0
+						label      	(object SegLabel @6
+						    Parent_View 	@4
+						    location   	(1386, 203)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    anchor     	2
+						    anchor_loc 	1
+						    nlines     	1
+						    max_width  	15
+						    justify    	0
+						    label      	"1"
+						    pctDist    	0.900000
+						    height     	54
+						    orientation 	1))
+					    (object RoleView "$UNNAMED$1" @7
+						Parent_View 	@3
+						location   	(298, -238)
+						font       	(object Font
+						    size       	10
+						    face       	"Arial"
+						    bold       	FALSE
+						    italics    	FALSE
+						    underline  	FALSE
+						    strike     	FALSE
+						    color      	0
+						    default_color 	TRUE)
+						label      	(object SegLabel @8
+						    Parent_View 	@7
+						    location   	(1747, 548)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    hidden     	TRUE
+						    anchor     	1
+						    anchor_loc 	1
+						    nlines     	1
+						    max_width  	450
+						    justify    	0
+						    label      	""
+						    pctDist    	0.800000
+						    height     	42
+						    orientation 	1)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5C4777030065"
+						client     	@3
+						supplier   	@1
+						vertices   	(list Points
+						    (1726, 256)
+						    (1786, 256)
+						    (1789, 636))
+						line_style 	0
+						label      	(object SegLabel @9
+						    Parent_View 	@7
+						    location   	(1843, 592)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    anchor     	2
+						    anchor_loc 	1
+						    nlines     	1
+						    max_width  	15
+						    justify    	0
+						    label      	"0..*"
+						    pctDist    	0.900000
+						    height     	54
+						    orientation 	0))))))))
+		    (object Class_Category "gestionTiquetes"
+			quid       	"5C4778F20288"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list)
+			logical_presentations 	(list unit_reference_list))
+		    (object Class_Category "gestionTripulacion"
+			quid       	"5C4778D301CB"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list)
+			logical_presentations 	(list unit_reference_list)))
 		logical_presentations 	(list unit_reference_list
 		    (object ClassDiagram "Main"
-			quid       	"5BB4DB7E015C"
+			quid       	"5C4775860154"
 			title      	"Main"
-			zoom       	90
+			zoom       	100
 			max_height 	28350
 			max_width  	21600
 			origin_x   	0
 			origin_y   	0
 			items      	(list diagram_item_list
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::ClaseEjecutiva" @1
+			    (object ClassView "Class" "Logical View::aerolinea::Aerolinea" @10
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
-				location   	(926, 1657)
+				location   	(900, 231)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -596,1758 +347,24 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@1
-				    location   	(772, 1605)
+				    Parent_View 	@10
+				    location   	(793, 181)
 				    fill_color 	13434879
 				    nlines     	1
-				    max_width  	308
+				    max_width  	214
 				    justify    	0
-				    label      	"ClaseEjecutiva")
+				    label      	"Aerolinea")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
-				quidu      	"5BB4E2D30159"
-				width      	326
-				height     	128
+				quidu      	"5C47759303CA"
+				width      	232
+				height     	124
 				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::ClaseEconomica" @2
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1555, 1666)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@2
-				    location   	(1388, 1614)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	334
-				    justify    	0
-				    label      	"ClaseEconomica")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E2E9015F"
-				width      	352
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Tripulante" @3
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(301, 1269)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@3
-				    location   	(132, 1163)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	338
-				    justify    	0
-				    label      	"Tripulante")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E54F0010"
-				compartment 	(object Compartment
-				    Parent_View 	@3
-				    location   	(132, 1226)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	3
-				    max_width  	358
-				    justify    	1)
-				width      	356
-				height     	236
-				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Persona" @4
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1179, 1957)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@4
-				    location   	(889, 1776)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	580
-				    justify    	0
-				    label      	"Persona")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB554EE01AD"
-				compartment 	(object Compartment
-				    Parent_View 	@4
-				    location   	(889, 1839)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	6
-				    max_width  	633
-				    justify    	1)
-				width      	598
-				height     	386
-				annotation 	8
-				autoResize 	TRUE)
-			    (object InheritView "" @5
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB5571A02E0"
-				client     	@3
-				supplier   	@4
-				vertices   	(list Points
-				    (341, 1387)
-				    (341, 1961)
-				    (880, 1961))
-				line_style 	3
-				origin_attachment 	(341, 1387)
-				terminal_attachment 	(880, 1961))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Sede" @6
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(337, 147)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@6
-				    location   	(184, 66)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	306
-				    justify    	0
-				    label      	"Sede")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4DC4F01B1"
-				compartment 	(object Compartment
-				    Parent_View 	@6
-				    location   	(184, 129)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	2
-				    max_width  	321
-				    justify    	1)
-				width      	324
-				height     	186
-				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Tripulacion" @7
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(540, 714)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@7
-				    location   	(425, 662)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	230
-				    justify    	0
-				    label      	"Tripulacion")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E464007A"
-				width      	248
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$15" @8
-				location   	(246, 853)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4E85C003A"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$16" @9
-					Parent_View 	@8
-					location   	(-292, 209)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E85C02B0"
-					client     	@8
-					supplier   	@3
-					vertices   	(list Points
-					    (246, 853)
-					    (246, 1151))
-					line_style 	3
-					origin_attachment 	(246, 853)
-					terminal_attachment 	(246, 1151))
-				    (object RoleView "$UNNAMED$17" @10
-					Parent_View 	@8
-					location   	(-292, 209)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E85C02B3"
-					client     	@8
-					supplier   	@7
-					vertices   	(list Points
-					    (246, 853)
-					    (246, 724)
-					    (416, 724))
-					line_style 	3
-					origin_attachment 	(246, 853)
-					terminal_attachment 	(416, 724))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Silla" @11
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1256, 1427)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@11
-				    location   	(1059, 1321)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	394
-				    justify    	0
-				    label      	"Silla")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB55A6400F1"
-				compartment 	(object Compartment
-				    Parent_View 	@11
-				    location   	(1059, 1384)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	3
-				    max_width  	421
-				    justify    	1)
-				width      	412
-				height     	236
-				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Areonave" @12
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1268, 991)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@12
-				    location   	(1037, 835)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	462
-				    justify    	0
-				    label      	"Areonave")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E14F024C"
-				compartment 	(object Compartment
-				    Parent_View 	@12
-				    location   	(1037, 898)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	5
-				    max_width  	487
-				    justify    	1)
-				width      	480
-				height     	336
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$24" @13
-				location   	(750, 908)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4ED0500FB"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$25" @14
-					Parent_View 	@13
-					location   	(212, 264)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4ED06024A"
-					client     	@13
-					supplier   	@12
-					vertices   	(list Points
-					    (750, 908)
-					    (750, 968)
-					    (1028, 968))
-					line_style 	3
-					origin_attachment 	(750, 908)
-					terminal_attachment 	(1028, 968))
-				    (object RoleView "$UNNAMED$26" @15
-					Parent_View 	@13
-					location   	(212, 264)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4ED06024C"
-					client     	@13
-					supplier   	@7
-					vertices   	(list Points
-					    (750, 908)
-					    (750, 735)
-					    (664, 735))
-					line_style 	3
-					origin_attachment 	(750, 908)
-					terminal_attachment 	(664, 735))))
-			    (object AssociationViewNew "$UNNAMED$39" @16
-				location   	(1262, 1233)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55AA80200"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$40" @17
-					Parent_View 	@16
-					location   	(-6, 242)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55AA9008B"
-					client     	@16
-					supplier   	@11
-					vertices   	(list Points
-					    (1262, 1233)
-					    (1262, 1308))
-					line_style 	3
-					origin_attachment 	(1262, 1233)
-					terminal_attachment 	(1262, 1308))
-				    (object RoleView "$UNNAMED$41" @18
-					Parent_View 	@16
-					location   	(-6, 242)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55AA9008E"
-					client     	@16
-					supplier   	@12
-					vertices   	(list Points
-					    (1262, 1233)
-					    (1262, 1159))
-					line_style 	3
-					origin_attachment 	(1262, 1233)
-					terminal_attachment 	(1262, 1159))))
-			    (object InheritView "" @19
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55ACA027D"
-				client     	@2
-				supplier   	@11
-				vertices   	(list Points
-				    (1553, 1602)
-				    (1553, 1427)
-				    (1462, 1427))
-				line_style 	3
-				origin_attachment 	(1553, 1602)
-				terminal_attachment 	(1462, 1427))
-			    (object InheritView "" @20
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55AC301B9"
-				client     	@1
-				supplier   	@11
-				vertices   	(list Points
-				    (975, 1593)
-				    (975, 1427)
-				    (1050, 1427))
-				line_style 	3
-				origin_attachment 	(975, 1593)
-				terminal_attachment 	(1050, 1427))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Ruta" @21
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(966, 594)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@21
-				    location   	(827, 438)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	278
-				    justify    	0
-				    label      	"Ruta")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4DDEE032F"
-				compartment 	(object Compartment
-				    Parent_View 	@21
-				    location   	(827, 501)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	5
-				    max_width  	293
-				    justify    	1)
-				width      	296
-				height     	336
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$21" @22
-				location   	(984, 867)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4EAB00151"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$22" @23
-					Parent_View 	@22
-					location   	(18, 273)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4EAB1010D"
-					client     	@22
-					supplier   	@12
-					vertices   	(list Points
-					    (984, 867)
-					    (984, 928)
-					    (1028, 928))
-					line_style 	3
-					origin_attachment 	(984, 867)
-					terminal_attachment 	(1028, 928))
-				    (object RoleView "$UNNAMED$23" @24
-					Parent_View 	@22
-					location   	(18, 273)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4EAB10110"
-					client     	@22
-					supplier   	@21
-					vertices   	(list Points
-					    (984, 867)
-					    (984, 762))
-					line_style 	3
-					origin_attachment 	(984, 867)
-					terminal_attachment 	(984, 762))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Principal" @25
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1302, 162)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@25
-				    location   	(1206, 110)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	192
-				    justify    	0
-				    label      	"Principal")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4DBE00056"
-				width      	210
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$3" @26
-				location   	(848, 138)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4DDAF000D"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$5" @27
-					Parent_View 	@26
-					location   	(489, -165)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					label      	(object SegLabel @28
-					    Parent_View 	@27
-					    location   	(1126, 97)
-					    font       	(object Font
-						size       	10
-						face       	"Arial"
-						bold       	FALSE
-						italics    	FALSE
-						underline  	FALSE
-						strike     	FALSE
-						color      	0
-						default_color 	TRUE)
-					    hidden     	TRUE
-					    anchor     	1
-					    anchor_loc 	1
-					    nlines     	1
-					    max_width  	450
-					    justify    	0
-					    label      	""
-					    pctDist    	0.800000
-					    height     	42
-					    orientation 	0)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4DDB0011A"
-					client     	@26
-					supplier   	@25
-					vertices   	(list Points
-					    (848, 138)
-					    (1197, 138))
-					line_style 	3
-					origin_attachment 	(848, 138)
-					terminal_attachment 	(1197, 138))
-				    (object RoleView "$UNNAMED$4" @29
-					Parent_View 	@26
-					location   	(489, -165)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					label      	(object SegLabel @30
-					    Parent_View 	@29
-					    location   	(570, 97)
-					    font       	(object Font
-						size       	10
-						face       	"Arial"
-						bold       	FALSE
-						italics    	FALSE
-						underline  	FALSE
-						strike     	FALSE
-						color      	0
-						default_color 	TRUE)
-					    hidden     	TRUE
-					    anchor     	1
-					    anchor_loc 	1
-					    nlines     	1
-					    max_width  	450
-					    justify    	0
-					    label      	""
-					    pctDist    	0.800000
-					    height     	42
-					    orientation 	1)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4DDB00118"
-					client     	@26
-					supplier   	@6
-					vertices   	(list Points
-					    (848, 138)
-					    (499, 138))
-					line_style 	3
-					origin_attachment 	(848, 138)
-					terminal_attachment 	(499, 138))))
-			    (object AssociationViewNew "$UNNAMED$12" @31
-				location   	(664, 191)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4E47300CA"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$13" @32
-					Parent_View 	@31
-					location   	(-638, 29)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E4740108"
-					client     	@31
-					supplier   	@7
-					vertices   	(list Points
-					    (664, 191)
-					    (591, 191)
-					    (591, 650))
-					line_style 	3
-					origin_attachment 	(664, 191)
-					terminal_attachment 	(591, 650))
-				    (object RoleView "$UNNAMED$14" @33
-					Parent_View 	@31
-					location   	(-638, 29)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E474010A"
-					client     	@31
-					supplier   	@25
-					vertices   	(list Points
-					    (664, 191)
-					    (1197, 191))
-					line_style 	3
-					origin_attachment 	(664, 191)
-					terminal_attachment 	(1197, 191))))
-			    (object AssociationViewNew "$UNNAMED$6" @34
-				location   	(1012, 284)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4DF740192"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$7" @35
-					Parent_View 	@34
-					location   	(-294, 25)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4DF7502BB"
-					client     	@34
-					supplier   	@21
-					vertices   	(list Points
-					    (1012, 284)
-					    (1012, 426))
-					line_style 	3
-					origin_attachment 	(1012, 284)
-					terminal_attachment 	(1012, 426))
-				    (object RoleView "$UNNAMED$8" @36
-					Parent_View 	@34
-					location   	(-294, 25)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4DF7502BD"
-					client     	@34
-					supplier   	@25
-					vertices   	(list Points
-					    (1012, 284)
-					    (1012, 224)
-					    (1197, 224))
-					line_style 	3
-					origin_attachment 	(1012, 284)
-					terminal_attachment 	(1197, 224))))
-			    (object AssociationViewNew "$UNNAMED$9" @37
-				location   	(1262, 524)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4E15B00C6"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$10" @38
-					Parent_View 	@37
-					location   	(-40, 362)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E15C0156"
-					client     	@37
-					supplier   	@12
-					vertices   	(list Points
-					    (1262, 524)
-					    (1262, 823))
-					line_style 	3
-					origin_attachment 	(1262, 524)
-					terminal_attachment 	(1262, 823))
-				    (object RoleView "$UNNAMED$11" @39
-					Parent_View 	@37
-					location   	(-40, 362)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E15C0158"
-					client     	@37
-					supplier   	@25
-					vertices   	(list Points
-					    (1262, 524)
-					    (1262, 225))
-					line_style 	3
-					origin_attachment 	(1262, 524)
-					terminal_attachment 	(1262, 225))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Viaje" @40
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2837, 168)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@40
-				    location   	(2615, 12)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	444
-				    justify    	0
-				    label      	"Viaje")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E96502A3"
-				compartment 	(object Compartment
-				    Parent_View 	@40
-				    location   	(2615, 75)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	5
-				    max_width  	480
-				    justify    	1)
-				width      	462
-				height     	336
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$18" @41
-				location   	(1920, 0)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4E9F70247"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$19" @42
-					Parent_View 	@41
-					location   	(618, -162)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E9F80385"
-					client     	@41
-					supplier   	@40
-					vertices   	(list Points
-					    (1920, 0)
-					    (2606, 0))
-					line_style 	3
-					origin_attachment 	(1920, 0)
-					terminal_attachment 	(2606, 0))
-				    (object RoleView "$UNNAMED$20" @43
-					Parent_View 	@41
-					location   	(618, -162)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4E9F80387"
-					client     	@41
-					supplier   	@25
-					vertices   	(list Points
-					    (1920, 0)
-					    (1331, 0)
-					    (1331, 98))
-					line_style 	3
-					origin_attachment 	(1920, 0)
-					terminal_attachment 	(1331, 98))))
-			    (object AssociationViewNew "$UNNAMED$36" @44
-				location   	(2049, 599)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB559830316"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$37" @45
-					Parent_View 	@44
-					location   	(-788, 452)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB559850157"
-					client     	@44
-					supplier   	@21
-					vertices   	(list Points
-					    (2049, 599)
-					    (1114, 599))
-					line_style 	3
-					origin_attachment 	(2049, 599)
-					terminal_attachment 	(1114, 599))
-				    (object RoleView "$UNNAMED$38" @46
-					Parent_View 	@44
-					location   	(-788, 452)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55985015A"
-					client     	@44
-					supplier   	@40
-					vertices   	(list Points
-					    (2049, 599)
-					    (2278, 599)
-					    (2278, 221)
-					    (2606, 221))
-					line_style 	3
-					origin_attachment 	(2049, 599)
-					terminal_attachment 	(2606, 221))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Tiquete" @47
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2872, 1031)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@47
-				    location   	(2697, 925)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	350
-				    justify    	0
-				    label      	"Tiquete")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E8AA02E7"
-				compartment 	(object Compartment
-				    Parent_View 	@47
-				    location   	(2697, 988)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	3
-				    max_width  	369
-				    justify    	1)
-				width      	368
-				height     	236
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$42" @48
-				location   	(3310, 592)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55C600108"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$43" @49
-					Parent_View 	@48
-					location   	(473, 424)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55C6100B9"
-					client     	@48
-					supplier   	@47
-					vertices   	(list Points
-					    (3310, 592)
-					    (3310, 941)
-					    (3056, 941))
-					line_style 	3
-					origin_attachment 	(3310, 592)
-					terminal_attachment 	(3056, 941))
-				    (object RoleView "$UNNAMED$44" @50
-					Parent_View 	@48
-					location   	(473, 424)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55C6100BC"
-					client     	@48
-					supplier   	@40
-					vertices   	(list Points
-					    (3310, 592)
-					    (3310, 231)
-					    (3068, 231))
-					line_style 	3
-					origin_attachment 	(3310, 592)
-					terminal_attachment 	(3068, 231))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Transporte" @51
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2166, 1073)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@51
-				    location   	(2053, 1021)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	226
-				    justify    	0
-				    label      	"Transporte")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4DCAD02FD"
-				width      	244
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$0" @52
-				location   	(1842, 522)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4DD72005C"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$1" @53
-					Parent_View 	@52
-					location   	(436, 204)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4DD730147"
-					client     	@52
-					supplier   	@51
-					vertices   	(list Points
-					    (1842, 522)
-					    (2140, 522)
-					    (2140, 1009))
-					line_style 	3
-					origin_attachment 	(1842, 522)
-					terminal_attachment 	(2140, 1009))
-				    (object RoleView "$UNNAMED$2" @54
-					Parent_View 	@52
-					location   	(436, 204)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB4DD730149"
-					client     	@52
-					supplier   	@25
-					vertices   	(list Points
-					    (1842, 522)
-					    (1628, 522)
-					    (1628, 173)
-					    (1407, 173))
-					line_style 	3
-					origin_attachment 	(1842, 522)
-					terminal_attachment 	(1407, 173))))
-			    (object AssociationViewNew "$UNNAMED$48" @55
-				location   	(2463, 947)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55F3A01CF"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$49" @56
-					Parent_View 	@55
-					location   	(297, -126)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55F3B024D"
-					client     	@55
-					supplier   	@47
-					vertices   	(list Points
-					    (2463, 947)
-					    (2688, 947))
-					line_style 	3
-					origin_attachment 	(2463, 947)
-					terminal_attachment 	(2688, 947))
-				    (object RoleView "$UNNAMED$50" @57
-					Parent_View 	@55
-					location   	(297, -126)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55F3B0250"
-					client     	@55
-					supplier   	@51
-					vertices   	(list Points
-					    (2463, 947)
-					    (2403, 947)
-					    (2403, 1038)
-					    (2288, 1038))
-					line_style 	3
-					origin_attachment 	(2463, 947)
-					terminal_attachment 	(2288, 1038))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Compra" @58
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2858, 615)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@58
-				    location   	(2618, 409)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	480
-				    justify    	0
-				    label      	"Compra")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4E9340168"
-				compartment 	(object Compartment
-				    Parent_View 	@58
-				    location   	(2618, 472)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	7
-				    max_width  	525
-				    justify    	1)
-				width      	498
-				height     	436
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$27" @59
-				location   	(2807, 366)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB557CF02FD"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$28" @60
-					Parent_View 	@59
-					location   	(547, 219)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB557D002E7"
-					client     	@59
-					supplier   	@58
-					vertices   	(list Points
-					    (2807, 366)
-					    (2807, 397))
-					line_style 	3
-					origin_attachment 	(2807, 366)
-					terminal_attachment 	(2807, 397))
-				    (object RoleView "$UNNAMED$29" @61
-					Parent_View 	@59
-					location   	(547, 219)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB557D002EA"
-					client     	@59
-					supplier   	@40
-					vertices   	(list Points
-					    (2807, 366)
-					    (2807, 336))
-					line_style 	3
-					origin_attachment 	(2807, 366)
-					terminal_attachment 	(2807, 336))))
-			    (object AssociationViewNew "$UNNAMED$30" @62
-				location   	(1919, 396)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB557DC0368"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$31" @63
-					Parent_View 	@62
-					location   	(617, 234)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB557DD030C"
-					client     	@62
-					supplier   	@58
-					vertices   	(list Points
-					    (1919, 396)
-					    (1919, 474)
-					    (2609, 474))
-					line_style 	3
-					origin_attachment 	(1919, 396)
-					terminal_attachment 	(2609, 474))
-				    (object RoleView "$UNNAMED$32" @64
-					Parent_View 	@62
-					location   	(617, 234)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB557DD030E"
-					client     	@62
-					supplier   	@25
-					vertices   	(list Points
-					    (1919, 396)
-					    (1919, 140)
-					    (1407, 140))
-					line_style 	3
-					origin_attachment 	(1919, 396)
-					terminal_attachment 	(1407, 140))))
-			    (object AssociationViewNew "$UNNAMED$33" @65
-				location   	(2853, 873)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB558A402D4"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$34" @66
-					Parent_View 	@65
-					location   	(7, 359)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB558A501A2"
-					client     	@65
-					supplier   	@47
-					vertices   	(list Points
-					    (2853, 873)
-					    (2853, 913))
-					line_style 	3
-					origin_attachment 	(2853, 873)
-					terminal_attachment 	(2853, 913))
-				    (object RoleView "$UNNAMED$35" @67
-					Parent_View 	@65
-					location   	(7, 359)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB558A501A5"
-					client     	@65
-					supplier   	@58
-					vertices   	(list Points
-					    (2853, 873)
-					    (2853, 833))
-					line_style 	3
-					origin_attachment 	(2853, 873)
-					terminal_attachment 	(2853, 833))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Carga" @68
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2565, 1330)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@68
-				    location   	(2484, 1278)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	162
-				    justify    	0
-				    label      	"Carga")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4DCDD02E4"
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object InheritView "" @69
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4DD2903AD"
-				client     	@68
-				supplier   	@51
-				vertices   	(list Points
-				    (2570, 1266)
-				    (2570, 1096)
-				    (2288, 1096))
-				line_style 	3
-				origin_attachment 	(2570, 1266)
-				terminal_attachment 	(2288, 1096))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Tarjeta" @70
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(3920, 581)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@70
-				    location   	(3777, 475)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	286
-				    justify    	0
-				    label      	"Tarjeta")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB563410232"
-				compartment 	(object Compartment
-				    Parent_View 	@70
-				    location   	(3777, 538)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	3
-				    max_width  	310
-				    justify    	1)
-				width      	304
-				height     	236
-				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Cliente" @71
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(3525, 613)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@71
-				    location   	(3444, 562)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	162
-				    justify    	0
-				    label      	"Cliente")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB55D6B02F9"
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object InheritView "" @72
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55D7901AE"
-				client     	@71
-				supplier   	@4
-				vertices   	(list Points
-				    (3519, 677)
-				    (3519, 2044)
-				    (1478, 2044))
-				line_style 	3
-				origin_attachment 	(3519, 677)
-				terminal_attachment 	(1478, 2044))
-			    (object AssociationViewNew "$UNNAMED$45" @73
-				location   	(3271, 611)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55F0902D2"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$46" @74
-					Parent_View 	@73
-					location   	(-370, -48)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55F0A037D"
-					client     	@73
-					supplier   	@58
-					vertices   	(list Points
-					    (3271, 611)
-					    (3107, 611))
-					line_style 	3
-					origin_attachment 	(3271, 611)
-					terminal_attachment 	(3107, 611))
-				    (object RoleView "$UNNAMED$47" @75
-					Parent_View 	@73
-					location   	(-370, -48)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55F0A0380"
-					client     	@73
-					supplier   	@71
-					vertices   	(list Points
-					    (3271, 611)
-					    (3435, 611))
-					line_style 	3
-					origin_attachment 	(3271, 611)
-					terminal_attachment 	(3435, 611))))
-			    (object AssociationViewNew "$UNNAMED$51" @76
-				location   	(3373, 1285)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55FB201D2"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$52" @77
-					Parent_View 	@76
-					location   	(909, -19)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55FB30344"
-					client     	@76
-					supplier   	@71
-					vertices   	(list Points
-					    (3373, 1285)
-					    (3484, 1285)
-					    (3484, 677))
-					line_style 	3
-					origin_attachment 	(3373, 1285)
-					terminal_attachment 	(3484, 677))
-				    (object RoleView "$UNNAMED$53" @78
-					Parent_View 	@76
-					location   	(909, -19)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB55FB30346"
-					client     	@76
-					supplier   	@68
-					vertices   	(list Points
-					    (3373, 1285)
-					    (2655, 1285))
-					line_style 	3
-					origin_attachment 	(3373, 1285)
-					terminal_attachment 	(2655, 1285))))
-			    (object AssociationViewNew "$UNNAMED$54" @79
-				location   	(3691, 615)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB563890133"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$55" @80
-					Parent_View 	@79
-					location   	(158, 1)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB5638A0001"
-					client     	@79
-					supplier   	@70
-					vertices   	(list Points
-					    (3691, 615)
-					    (3768, 615))
-					line_style 	3
-					origin_attachment 	(3691, 615)
-					terminal_attachment 	(3768, 615))
-				    (object RoleView "$UNNAMED$56" @81
-					Parent_View 	@79
-					location   	(158, 1)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB5638A0004"
-					client     	@79
-					supplier   	@71
-					vertices   	(list Points
-					    (3691, 615)
-					    (3615, 615))
-					line_style 	3
-					origin_attachment 	(3691, 615)
-					terminal_attachment 	(3615, 615))))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Maleta" @82
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2351, 1911)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@82
-				    location   	(2127, 1801)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	448
-				    justify    	0
-				    label      	"Maleta")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB5670100B8"
-				compartment 	(object Compartment
-				    Parent_View 	@82
-				    location   	(2127, 1864)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	3
-				    max_width  	445
-				    justify    	1)
-				width      	466
-				height     	246
-				annotation 	8
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Pasajero" @83
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1896, 1319)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@83
-				    location   	(1796, 1267)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	200
-				    justify    	0
-				    label      	"Pasajero")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB4DCD00322"
-				width      	218
-				height     	128
-				annotation 	8
-				autoResize 	TRUE)
-			    (object InheritView "" @84
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB4DD1B01F9"
-				client     	@83
-				supplier   	@51
-				vertices   	(list Points
-				    (1890, 1255)
-				    (1890, 1092)
-				    (2044, 1092))
-				line_style 	3
-				origin_attachment 	(1890, 1255)
-				terminal_attachment 	(2044, 1092))
-			    (object InheritView "" @85
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB55DF3037A"
-				client     	@83
-				supplier   	@4
-				vertices   	(list Points
-				    (1888, 1383)
-				    (1888, 1966)
-				    (1478, 1966))
-				line_style 	3
-				origin_attachment 	(1888, 1383)
-				terminal_attachment 	(1478, 1966))
-			    (object ClassView "Class" "Logical View::aerolineaCaribeAirlines::Equipaje" @86
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2279, 1574)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				label      	(object ItemLabel
-				    Parent_View 	@86
-				    location   	(2178, 1521)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	202
-				    justify    	0
-				    label      	"Equipaje")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"5BB56664012F"
-				width      	220
-				height     	130
-				annotation 	8
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$57" @87
-				location   	(2279, 1713)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB56734030C"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$58" @88
-					Parent_View 	@87
-					location   	(-1528, 490)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB56735025A"
-					client     	@87
-					supplier   	@82
-					vertices   	(list Points
-					    (2279, 1713)
-					    (2279, 1788))
-					line_style 	3
-					origin_attachment 	(2279, 1713)
-					terminal_attachment 	(2279, 1788))
-				    (object RoleView "$UNNAMED$59" @89
-					Parent_View 	@87
-					location   	(-1528, 490)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB56735025C"
-					client     	@87
-					supplier   	@86
-					vertices   	(list Points
-					    (2279, 1713)
-					    (2279, 1639))
-					line_style 	3
-					origin_attachment 	(2279, 1713)
-					terminal_attachment 	(2279, 1639))))
-			    (object AssociationViewNew "$UNNAMED$60" @90
-				location   	(2229, 1332)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5BB567460103"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$61" @91
-					Parent_View 	@90
-					location   	(-50, -242)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB5674603AF"
-					client     	@90
-					supplier   	@83
-					vertices   	(list Points
-					    (2229, 1332)
-					    (2005, 1332))
-					line_style 	3
-					origin_attachment 	(2229, 1332)
-					terminal_attachment 	(2005, 1332))
-				    (object RoleView "$UNNAMED$62" @92
-					Parent_View 	@90
-					location   	(-50, -242)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"5BB5674603B2"
-					client     	@90
-					supplier   	@86
-					vertices   	(list Points
-					    (2229, 1332)
-					    (2289, 1332)
-					    (2289, 1509))
-					line_style 	3
-					origin_attachment 	(2229, 1332)
-					terminal_attachment 	(2289, 1509)))))))))
+				autoResize 	TRUE))))))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
-		quid       	"5BB4DB1601A0"
+		quid       	"5C4771C80062"
 		title      	"Main"
 		zoom       	100
 		max_height 	28350
@@ -2355,8 +372,8 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object CategoryView "Logical View::aerolineaCaribeAirlines" @93
-			location   	(925, 384)
+		    (object CategoryView "Logical View::aerolinea" @11
+			location   	(488, 206)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -2367,25 +384,75 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@93
-			    location   	(781, 300)
+			    Parent_View 	@11
+			    location   	(344, 122)
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	288
 			    justify    	0
-			    label      	"aerolineaCaribeAirlines")
+			    label      	"aerolinea")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"5BB4DB4401D6"
+			quidu      	"5C477536008C"
+			width      	300
+			height     	180)
+		    (object CategoryView "Logical View::aerolinea::gestionRuta" @12
+			location   	(816, 209)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@12
+			    location   	(672, 125)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"gestionRuta")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5C4775420217"
+			width      	300
+			height     	180)
+		    (object CategoryView "Logical View::aerolinea::gestionFlota" @13
+			location   	(1150, 209)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@13
+			    location   	(1006, 125)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"gestionFlota")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5C4775530091"
 			width      	300
 			height     	180)))))
     root_subsystem 	(object SubSystem "Component View"
-	quid       	"5BB4DB0F0098"
+	quid       	"5C4771C8005E"
 	physical_models 	(list unit_reference_list)
 	physical_presentations 	(list unit_reference_list
 	    (object Module_Diagram "Main"
-		quid       	"5BB4DB160190"
+		quid       	"5C4771C8006C"
 		title      	"Main"
 		zoom       	100
 		max_height 	28350
@@ -2394,12 +461,12 @@
 		origin_y   	0
 		items      	(list diagram_item_list)))
 	category   	"Logical View"
-	quidu      	"5BB4DB0F0096")
+	quidu      	"5C4771C8005C")
     process_structure 	(object Processes
-	quid       	"5BB4DB0F0099"
+	quid       	"5C4771C8005F"
 	ProcsNDevs 	(list
 	    (object Process_Diagram "Deployment View"
-		quid       	"5BB4DB0F009B"
+		quid       	"5C4771C80061"
 		title      	"Deployment View"
 		zoom       	100
 		max_height 	28350
@@ -6076,4 +4143,4 @@
 		tool       	"XML_DTD"
 		name       	"HiddenTool"
 		value      	FALSE))
-	quid       	"5BB4DB0F009A"))
+	quid       	"5C4771C80060"))

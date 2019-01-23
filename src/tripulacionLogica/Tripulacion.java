@@ -1,27 +1,36 @@
-package rutaLogica;
+package tripulacionLogica;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+
+import rutaLogica.Ruta;
 
 public class Tripulacion implements Serializable{
 	private HashMap<String, String> miTripulacion;
 	private Tripulante piloto;
 	private Tripulante copiloto;
 	private List<Tripulante> auxiliares;
+	private Ruta miRuta;
 	
 	//Constructor
-	public Tripulacion(Tripulante piloto,Tripulante copiloto, List<Tripulante> auxiliares) {
+	public Tripulacion(Tripulante piloto,Tripulante copiloto, List<Tripulante> auxiliares, Ruta miRuta) {
 		this.piloto = piloto;
 		this.copiloto = copiloto;
 		this.auxiliares = auxiliares;
+		this.miRuta = miRuta;
 		miTripulacion = new HashMap<>();
 		miTripulacion.put("Piloto", "" + piloto.getAtributos().get("Nombre") + "  " + piloto.getAtributos().get("Identificacion"));
 		miTripulacion.put("Copiloto", "" + copiloto.getAtributos().get("Nombre") + "  " + copiloto.getAtributos().get("Identificacion"));
 		miTripulacion.put("Auxiliares", cadenaAuxiliares());
 	}
 	
-	//Getters & Setters
+	//Methods
+	public String tipoRuta() {
+		String tipoRuta = miRuta.getAtributos().get("Tipo");
+		return tipoRuta;
+	}
+	
 	public String cadenaAuxiliares() {
 		String mostrar = "";
 		for (int i = 0; i < auxiliares.size(); i++) {
@@ -53,5 +62,11 @@ public class Tripulacion implements Serializable{
 	}
 	public void setAuxiliares(List<Tripulante> auxiliares) {
 		this.auxiliares = auxiliares;
+	}
+	public Ruta getMiRuta() {
+		return miRuta;
+	}
+	public void setMiRuta(Ruta miRuta) {
+		this.miRuta = miRuta;
 	}
 }
