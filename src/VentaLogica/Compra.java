@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import mundo.CaribeAirlines;
-import rutaLogica.Ruta;
+import vueloLogica.Ruta;
 
 
 public class Compra {

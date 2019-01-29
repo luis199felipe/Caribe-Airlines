@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import rutaLogica.Ruta;
 import tripulacionLogica.Tripulante;
+import vueloLogica.Ruta;
 
 public class DatosTripulante {
 	private String archivo;

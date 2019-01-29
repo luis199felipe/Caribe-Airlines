@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-import rutaLogica.Ruta;
+import vueloLogica.Ruta;
 
 public class Tripulacion implements Serializable{
 	private HashMap<String, String> miTripulacion;

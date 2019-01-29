@@ -1,9 +1,9 @@
-package rutaData;
+package vueloData;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import rutaLogica.Ruta;
+import vueloLogica.Ruta;
 
 public class DatosRuta {
 	private String archivo;

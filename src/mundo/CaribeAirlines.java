@@ -10,12 +10,12 @@ import aeronaveInterface.VentanaAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
-import rutaData.DatosRuta;
-import rutaLogica.Ruta;
 import tripulacionData.DatosTripulacion;
 import tripulacionData.DatosTripulante;
 import tripulacionLogica.Tripulacion;
 import tripulacionLogica.Tripulante;
+import vueloData.DatosRuta;
+import vueloLogica.Ruta;
 
 public class CaribeAirlines {
 	private List<Aeronave> misAeronaves;

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import mundo.CaribeAirlines;
-import rutaLogica.Ruta;
+import vueloLogica.Ruta;
 
 import javax.swing.JTable;
 import javax.swing.JButton;

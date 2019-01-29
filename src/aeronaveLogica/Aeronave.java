@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import rutaLogica.Ruta;
+import vueloLogica.Ruta;
 
 public class Aeronave implements Serializable{
 	private String ubicacion;
