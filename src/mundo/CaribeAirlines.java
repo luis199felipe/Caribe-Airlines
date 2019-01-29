@@ -16,10 +16,12 @@ import tripulacionLogica.Tripulacion;
 import tripulacionLogica.Tripulante;
 import vueloData.DatosRuta;
 import vueloLogica.Ruta;
+import vueloLogica.Vuelo;
 
 public class CaribeAirlines {
 	private List<Aeronave> misAeronaves;
 	private List<TipoAeronave> misTipoAeronave;
+	private List<Vuelo> misVuelos;
 	private List<Ruta> misRutas;
 	private List<Tripulacion> misTripulaciones;
 	private List<Tripulante> misTripulantes;
@@ -28,16 +30,20 @@ public class CaribeAirlines {
 	public CaribeAirlines() {
 		misAeronaves = new ArrayList<>();
 		misTipoAeronave = new ArrayList<>();
-		misRutas = new ArrayList<>();
 		misTripulantes = new ArrayList<>();
 		misTripulaciones = new ArrayList<>();
+		misVuelos = new ArrayList<>();
+		misRutas = new ArrayList<>();
 		Origen creaciones = new Origen(this);
-		creaciones.crearMisTipoAeronave();
-		creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		creaciones.crearMisTripulantes();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		creaciones.crearTripulaciones();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
-		creaciones.RegistroRutas();//SE DEBE DE EJECUTAR CADA VEZ QUE HAY NUEVA RUTA DE VUELO
+		
+		creaciones.crearMisTipoAeronave();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		
+		creaciones.crearMisTripulantes();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		creaciones.crearMisTripulaciones();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
+		
+		creaciones.crearMisVuelos();
 	}
 	
 	//Metodos Aeronaves
@@ -101,16 +107,16 @@ public class CaribeAirlines {
 		return tabla;
 	}
 	
-	public String[][] llenarTablaDeMasDetalles (Ruta miRuta){
-		int row = miRuta.getAtributos().size() + miRuta.getMiTripulacion().getAuxiliares().size() + 2;
+	public String[][] llenarTablaDeMasDetalles (Vuelo miVuelo){
+		int row = miVuelo.getAtributos().size() + miVuelo.getMiTripulacion().getAuxiliares().size() + 2;
 		String[][] datos = new String[row][2];
 		int i = 0;
-		for (Iterator it = miRuta.getAtributos().keySet().iterator(); it.hasNext();) {
+		for (Iterator it = miVuelo.getAtributos().keySet().iterator(); it.hasNext();) {
 			datos[i][0] = (String)it.next();//key
-			datos[i][1] = (String)miRuta.getAtributos().get(datos[i][0]);//value
+			datos[i][1] = (String)miVuelo.getAtributos().get(datos[i][0]);//value
 			i++;
 		}
-		String auxiliares = miRuta.getMiTripulacion().getMiTripulacion().get("Auxiliares");
+		String auxiliares = miVuelo.getMiTripulacion().getMiTripulacion().get("Auxiliares");
 		List<String> mostrar = new ArrayList<>();
 		String palabra = "";
 		for (int j = 0; j < auxiliares.length(); j++) {
@@ -121,13 +127,13 @@ public class CaribeAirlines {
 				palabra += auxiliares.charAt(j);
 			}
 		}
-		datos[miRuta.getAtributos().size()][0] = "Piloto";
-		datos[miRuta.getAtributos().size()][1] = miRuta.getMiTripulacion().getMiTripulacion().get("Piloto");
-		datos[miRuta.getAtributos().size()+1][0] = "Copiloto";
-		datos[miRuta.getAtributos().size()+1][1] = miRuta.getMiTripulacion().getMiTripulacion().get("Copiloto");
+		datos[miVuelo.getAtributos().size()][0] = "Piloto";
+		datos[miVuelo.getAtributos().size()][1] = miVuelo.getMiTripulacion().getMiTripulacion().get("Piloto");
+		datos[miVuelo.getAtributos().size()+1][0] = "Copiloto";
+		datos[miVuelo.getAtributos().size()+1][1] = miVuelo.getMiTripulacion().getMiTripulacion().get("Copiloto");
 		
 		i = 1;
-		for (int j = miRuta.getAtributos().size()+2; j < datos.length; j++) {
+		for (int j = miVuelo.getAtributos().size()+2; j < datos.length; j++) {
 			datos[j][0] = "auxiliar " + i;
 			datos[j][1] = mostrar.get(i-1);
 			i++;
@@ -166,5 +172,11 @@ public class CaribeAirlines {
 	}
 	public void setMisTipoAeronave(List<TipoAeronave> misTipoAeronave) {
 		this.misTipoAeronave = misTipoAeronave;
+	}
+	public List<Vuelo> getMisVuelos() {
+		return misVuelos;
+	}
+	public void setMisVuelos(List<Vuelo> misVuelos) {
+		this.misVuelos = misVuelos;
 	}
 }

@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import vueloLogica.Ruta;
+import vueloLogica.Vuelo;
 
 public class Aeronave implements Serializable{
 	private String ubicacion;
 	private TipoAeronave tipoAeronave;
 	private String matricula;
 	private boolean disponible;
-	private List<Ruta> registro;
+	private List<Vuelo> registro;
 
 	//Constructor
 	public Aeronave(String ubicacion, TipoAeronave tipoAeronave, String matricula, boolean disponible) {
@@ -49,10 +49,10 @@ public class Aeronave implements Serializable{
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	public List<Ruta> getRegistro() {
+	public List<Vuelo> getRegistro() {
 		return registro;
 	}
-	public void setRegistro(List<Ruta> registro) {
+	public void setRegistro(List<Vuelo> registro) {
 		this.registro = registro;
 	}
 }

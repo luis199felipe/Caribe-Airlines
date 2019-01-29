@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import mundo.CaribeAirlines;
 import vueloLogica.Ruta;
+import vueloLogica.Vuelo;
 
 import javax.swing.JTable;
 import javax.swing.JButton;
@@ -42,7 +43,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 	private JButton btnSillas, btnFlota, btnMasDetalles;
 	private JLabel lblTitulo, lblRegistro ;
 	private boolean verSillas, verFlota, verMasDetalles;
-	private int posTipoAerolinea, posAeronave, posRuta;
+	private int posTipoAerolinea, posAeronave, posVuelo;
 	private CaribeAirlines miAerolinea;
 	
 	private static final int X = 10;
@@ -73,7 +74,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		verSillas = false;
 		verFlota = false;
 		verMasDetalles = false;
-		posRuta = -1;
+		posVuelo = -1;
 		
 		setTitle("Aeronaves");
 		setBounds(100, 100, 350, 550);
@@ -104,7 +105,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 							btnMasDetalles.setVisible(false);
 						}
 						if(verMasDetalles == true) {
-							posRuta = -1;
+							posVuelo = -1;
 							tableMasDetalles.setVisible(false);
 							scrollPaneMasDetalles.setVisible(false);
 						}
@@ -183,15 +184,15 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 	}
 	
 	public void verMasDetalles() {
-		if(posRuta != -1) {
+		if(posVuelo != -1) {
 			if(verFlota == true) {
 				tableRegistro.setVisible(false);
 				scrollPaneRegistro.setVisible(false);
 				btnMasDetalles.setVisible(false);
 			}
 			
-			Ruta miRuta = miAerolinea.getMisAeronaves().get(posAeronave).getRegistro().get(posRuta);
-			String[][] datos = miAerolinea.llenarTablaDeMasDetalles(miRuta);
+			Vuelo miVuelo = miAerolinea.getMisAeronaves().get(posAeronave).getRegistro().get(posVuelo);
+			String[][] datos = miAerolinea.llenarTablaDeMasDetalles(miVuelo);
 			
 			tableMasDetalles = new JTable();
 			tableMasDetalles.setModel(new DefaultTableModel(new Object[datos.length][2],new String[] {"Detalles","Informacion"}));
@@ -228,7 +229,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 			tableSillasEjecutiva.setVisible(false);
 		}
 		if(verMasDetalles == true) {
-			posRuta = -1;
+			posVuelo = -1;
 			tableMasDetalles.setVisible(false);
 			scrollPaneMasDetalles.setVisible(false);
 		}
@@ -268,6 +269,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 						obtenerPosRuta(row);
 					}
 				});
+		
 		scrollPaneRegistro = new JScrollPane();
 		scrollPaneRegistro.setBounds(X, Y+50, WIDTH, HEIGHT-50-30);
 		scrollPaneRegistro.setViewportView(tableRegistro);
@@ -289,7 +291,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 					public void mouseClicked(MouseEvent e) {
 						
 						if(verMasDetalles == true) {
-							posRuta = -1;
+							posVuelo = -1;
 							tableMasDetalles.setVisible(false);
 							scrollPaneMasDetalles.setVisible(false);
 						}
@@ -302,9 +304,9 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 						scrollPaneRegistro.setVisible(true);
 						btnMasDetalles.setVisible(true);
 						
-						List<Ruta> miRegistro = miFlota.get(posAeronave).getRegistro();
+						List<Vuelo> miRegistro = miFlota.get(posAeronave).getRegistro();
 						
-						tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Fecha", "Origen", "Destino", "HoraSalida"}));
+						tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Fecha", "Origen", "Destino", "Duracion"}));
 						
 						DefaultTableModel modeloRegistro = (DefaultTableModel)tableRegistro.getModel(); 
 						modeloRegistro.setRowCount(miRegistro.size());
@@ -313,10 +315,11 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 						
 						for (int i = 0; i < miRegistro.size(); i++) {
 							List<String> elemento = new ArrayList<>();
+							
 							elemento.add(miRegistro.get(i).getAtributos().get("Fecha"));
-							elemento.add(miRegistro.get(i).getAtributos().get("Origen"));
-							elemento.add(miRegistro.get(i).getAtributos().get("Destino"));
 							elemento.add(miRegistro.get(i).getAtributos().get("HoraSalida"));
+							elemento.add(miRegistro.get(i).getAtributos().get("HoraLLegada"));
+							elemento.add(miRegistro.get(i).getAtributos().get("TiempoAlistamiento(H)"));
 							datosMostrar.add(elemento);
 						}
 						
@@ -350,7 +353,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 			btnMasDetalles.setVisible(false);
 		}
 		if(verMasDetalles == true) {
-			posRuta = -1;
+			posVuelo = -1;
 			tableMasDetalles.setVisible(false);
 			scrollPaneMasDetalles.setVisible(false);
 		}
@@ -449,7 +452,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 	}
 	
 	public void obtenerPosRuta(int pos) {
-		posRuta = pos;
+		posVuelo = pos;
 	}
 	
 	public void obtenerPosAveronave(int pos) {
