@@ -18,26 +18,21 @@ import tripulacionLogica.Tripulacion;
 import tripulacionLogica.Tripulante;
 
 public class CaribeAirlines {
-	private List<TipoAeronave> misAeronaves;
-	private DatosAeronave datosAeronaves;
+	private List<Aeronave> misAeronaves;
+	private List<TipoAeronave> misTipoAeronave;
 	private List<Ruta> misRutas;
-	private DatosRuta datosRutas;
 	private List<Tripulacion> misTripulaciones;
-	private DatosTripulacion datosTripulaciones;
 	private List<Tripulante> misTripulantes;
-	private DatosTripulante datosTripulantes;
 	
 	//Constructor
 	public CaribeAirlines() {
 		misAeronaves = new ArrayList<>();
-		datosAeronaves = new DatosAeronave();
+		misTipoAeronave = new ArrayList<>();
 		misRutas = new ArrayList<>();
-		datosRutas = new DatosRuta();
 		misTripulantes = new ArrayList<>();
-		datosTripulantes = new DatosTripulante();
 		misTripulaciones = new ArrayList<>();
-		datosTripulaciones = new DatosTripulacion();
 		Origen creaciones = new Origen(this);
+		creaciones.crearMisTipoAeronave();
 		creaciones.crearMisAviones(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		creaciones.crearMisTripulantes();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		creaciones.crearTripulaciones();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
@@ -46,13 +41,34 @@ public class CaribeAirlines {
 	}
 	
 	//Metodos Aeronaves
+	
+	public List<Aeronave> ordenarFlotaPorTipoAeronave(int tipoAeronave){
+		List<Aeronave> flota = new ArrayList<>();
+		String idTipoAeronave = "";
+		if(tipoAeronave == 0) {
+			idTipoAeronave = "air001";
+		}else if(tipoAeronave == 1) {
+			idTipoAeronave = "air002";
+		}else if(tipoAeronave == 2){
+			idTipoAeronave = "air003";
+		}else {
+			System.out.println("ERROR, metodo ordenar flota por tipo aeronave");
+		}
+		for (int i = 0; i < misAeronaves.size(); i++) {
+			if(misAeronaves.get(i).getTipoAeronave().getAtributos().get("idTipoAeronave").equals(idTipoAeronave)) {
+				flota.add(misAeronaves.get(i));
+			}
+		}
+		return flota;
+	}
+	
 	public String[][] llenarTablaDeDatosAeronave(int opcion) {
-		int filas = misAeronaves.get(0).getAtributos().size();
+		int filas = misAeronaves.get(0).getTipoAeronave().getAtributos().size();
 		String[][] tabla = new String[filas][2];
 		
 		switch (opcion) {
 		case 0:
-			HashMap<String, Object> airbus_A320 = misAeronaves.get(0).getAtributos();
+			HashMap<String, Object> airbus_A320 = misTipoAeronave.get(0).getAtributos();
 			int i = 0;
 			for (Iterator it = airbus_A320.keySet().iterator(); it.hasNext();) {
 				tabla[i][0] = (String)it.next();//key
@@ -61,7 +77,7 @@ public class CaribeAirlines {
 			}
 			break;
 		case 1:
-			HashMap<String, Object> airbus_A330 = misAeronaves.get(1).getAtributos();
+			HashMap<String, Object> airbus_A330 = misTipoAeronave.get(1).getAtributos();
 			int j = 0;
 			for (Iterator it = airbus_A330.keySet().iterator(); it.hasNext();) {
 				tabla[j][0] = (String)it.next();//key
@@ -70,7 +86,7 @@ public class CaribeAirlines {
 			}
 			break;
 		case 2:
-			HashMap<String, Object> boeing_787 = misAeronaves.get(2).getAtributos();
+			HashMap<String, Object> boeing_787 = misTipoAeronave.get(2).getAtributos();
 			int k = 0;
 			for (Iterator it = boeing_787.keySet().iterator(); it.hasNext();) {
 				tabla[k][0] = (String)it.next();//key
@@ -119,44 +135,36 @@ public class CaribeAirlines {
 		
 		return datos;
 	}
-	
+
 	//Getter & Setter
-	public List<TipoAeronave> getMisAeronaves() {
-		misAeronaves = datosAeronaves.serializacionIn();
+	public List<Aeronave> getMisAeronaves() {
 		return misAeronaves;
 	}
-	public void setMisAeronaves(List<TipoAeronave> misAeronaves) {
+	public void setMisAeronaves(List<Aeronave> misAeronaves) {
 		this.misAeronaves = misAeronaves;
-		datosAeronaves.serializacionOut(misAeronaves);
 	}
 	public List<Ruta> getMisRutas() {
-		misRutas = datosRutas.serializacionIn();
 		return misRutas;
 	}
-
 	public void setMisRutas(List<Ruta> misRutas) {
 		this.misRutas = misRutas;
-		datosRutas.serializacionOut(misRutas);
 	}
-
 	public List<Tripulacion> getMisTripulaciones() {
-		misTripulaciones = datosTripulaciones.serializacionIn();
 		return misTripulaciones;
 	}
-
 	public void setMisTripulaciones(List<Tripulacion> misTripulaciones) {
 		this.misTripulaciones = misTripulaciones;
-		datosTripulaciones.serializacionOut(misTripulaciones);
 	}
-
 	public List<Tripulante> getMisTripulantes() {
-		misTripulantes = datosTripulantes.serializacionIn();
 		return misTripulantes;
 	}
-
 	public void setMisTripulantes(List<Tripulante> misTripulantes) {
 		this.misTripulantes = misTripulantes;
-		datosTripulantes.serializacionOut(misTripulantes);
 	}
-	
+	public List<TipoAeronave> getMisTipoAeronave() {
+		return misTipoAeronave;
+	}
+	public void setMisTipoAeronave(List<TipoAeronave> misTipoAeronave) {
+		this.misTipoAeronave = misTipoAeronave;
+	}
 }

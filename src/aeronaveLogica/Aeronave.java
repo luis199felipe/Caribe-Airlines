@@ -8,30 +8,32 @@ import rutaLogica.Ruta;
 
 public class Aeronave implements Serializable{
 	private String ubicacion;
-	private String idTipoAeronave;
+	private TipoAeronave tipoAeronave;
 	private String matricula;
 	private boolean disponible;
 	private List<Ruta> registro;
 
 	//Constructor
-	public Aeronave(String ubicacion, String idTipoAeronave, String matricula, boolean disponible) {
+	public Aeronave(String ubicacion, TipoAeronave tipoAeronave, String matricula, boolean disponible) {
 		this.ubicacion = ubicacion;
-		this.idTipoAeronave = idTipoAeronave;
+		this.tipoAeronave = tipoAeronave;
 		this.matricula = matricula;
 		this.disponible = disponible;
 		registro = new ArrayList<>();
 	}
 	
 	//Getter & Setter
-	public String getIdTipoAeronave() {
-		return idTipoAeronave;
-	}
-	public void setIdTipoAeronave(String idTipoAeronave) {
-		this.idTipoAeronave = idTipoAeronave;
-	}
 	public String getUbicacion() {
 		return ubicacion;
 	}
+	public TipoAeronave getTipoAeronave() {
+		return tipoAeronave;
+	}
+
+	public void setTipoAeronave(TipoAeronave tipoAeronave) {
+		this.tipoAeronave = tipoAeronave;
+	}
+
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}

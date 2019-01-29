@@ -21,20 +21,16 @@ public class Origen {
 	
 	public void RegistroRutas () {
 		
-		List<TipoAeronave> misAeronaves = aerolinea.getMisAeronaves();
+		List<Aeronave> misAeronaves = aerolinea.getMisAeronaves();
 		List<Ruta> misRutas = aerolinea.getMisRutas();
 		
 		for (int i = 0; i < misAeronaves.size(); i++) {
-			for (int j = 0; j < misAeronaves.get(i).getFlotaDeAeronaves().size(); j++) {
-				
-				String matriculaAeronave = misAeronaves.get(i).getFlotaDeAeronaves().get(j).getMatricula();
-				for (int k = 0; k < misRutas.size(); k++) {
-					String matriculaRutaAeronave = misRutas.get(k).getMiAeronave().getMatricula();
-					if(matriculaAeronave.equals(matriculaRutaAeronave)) {
-						misAeronaves.get(i).getFlotaDeAeronaves().get(j).getRegistro().add(misRutas.get(k));
-					}
+			String matriculaAeronave = misAeronaves.get(i).getMatricula();
+			for (int k = 0; k < misRutas.size(); k++) {
+				String matriculaRutaAeronave = misRutas.get(k).getMiAeronave().getMatricula();
+				if(matriculaAeronave.equals(matriculaRutaAeronave)) {
+					misAeronaves.get(i).getRegistro().add(misRutas.get(k));
 				}
-				
 			}
 		}
 			
@@ -44,13 +40,7 @@ public class Origen {
 	
 	public void crearMisRutas() {
 		
-		List<Aeronave> misAeronaves = new ArrayList<>();
-		
-		for (int i = 0; i < aerolinea.getMisAeronaves().size(); i++) {
-			for (int j = 0; j < aerolinea.getMisAeronaves().get(i).getFlotaDeAeronaves().size(); j++) {
-				misAeronaves.add(aerolinea.getMisAeronaves().get(i).getFlotaDeAeronaves().get(j));
-			}
-		}
+		List<Aeronave> misAeronaves = aerolinea.getMisAeronaves();
 		
 		List<Tripulacion> misTripulaciones = aerolinea.getMisTripulaciones();
 		
@@ -218,58 +208,50 @@ public class Origen {
 		aerolinea.setMisTripulaciones(misTripulaciones);
 		
 	}
-
-	public void crearMisAviones() {
-		
-		Aeronave uno = new Aeronave("CMDX", "air001", "Av001", true);
-		Aeronave dos = new Aeronave("CMDX", "air001", "Av002", true);
-		
-		List<Aeronave> flotaDeAeronavesAirbus_A320 = new ArrayList<>();
-		flotaDeAeronavesAirbus_A320.add(uno);
-		flotaDeAeronavesAirbus_A320.add(dos);
-		
+	
+	public void crearMisTipoAeronave() {
 		DistribucionSillas ubicacionSillasAirbus_A320 = new DistribucionSillas(0, 12, 138);
-		
-		TipoAeronave Airbus_A320 = new TipoAeronave("air001", "Nacional", "Airbus", "A320",
-				"19000 kg", "<html>150 asientos: 12 Ejecutivos" + "<br>" + "138 Economicos</html>",
-				flotaDeAeronavesAirbus_A320, ubicacionSillasAirbus_A320);
-	
-		/////////////////////////////////////////////////////////////////////////////////////////////
-		
-		Aeronave tres = new Aeronave("CMDX", "air002", "Av003", true);
-		Aeronave cuatro = new Aeronave("CMDX", "air002", "Av004", true);
-		
-		List<Aeronave> flotaDeAeronavesAirbus_A330 = new ArrayList<>();
-		flotaDeAeronavesAirbus_A330.add(tres);
-		flotaDeAeronavesAirbus_A330.add(cuatro);
-		
 		DistribucionSillas ubicacionSillasAirbus_A330 = new DistribucionSillas(1, 30, 222);
-		
-		TipoAeronave Airbus_A330 = new TipoAeronave("air002", "Internacional", "Airbus", "A330",
-				"52000 kg", "<html>252 asientos: 30 Ejecutivos" + "<br>" + "222 Economicos</html>",
-				flotaDeAeronavesAirbus_A330, ubicacionSillasAirbus_A330);
-		
-		/////////////////////////////////////////////////////////////////////////////////////////////
-	
-		Aeronave cinco = new Aeronave("CMDX", "air003", "Av005", true);	
-		Aeronave seis = new Aeronave("CMDX", "air003", "Av006", true);
-		
-		List<Aeronave> flotaDeAeronavesBoeing_787 = new ArrayList<>();
-		flotaDeAeronavesBoeing_787.add(cinco);
-		flotaDeAeronavesBoeing_787.add(seis);
-		
 		DistribucionSillas ubicacionSillasBoeing_787 = new DistribucionSillas(2, 28, 222);
 		
-		TipoAeronave Boeing_787 = new TipoAeronave("air003", "Internacional", "Boeing", "787",
-				"50000 kg", "<html>250 asientos: 28 Ejecutivos" + "<br>" + "222 Economicos</html>",
-				flotaDeAeronavesBoeing_787, ubicacionSillasBoeing_787);
-
-		/////////////////////////////////////////////////////////////////////////////////////////////
+		TipoAeronave airbus_A320 = new TipoAeronave("air001", "Nacional", "Airbus", "A320",
+				"19000 kg", "<html>150 asientos: 12 Ejecutivos" + "<br>" + "138 Economicos</html>", 
+				ubicacionSillasAirbus_A320);
 		
-		List<TipoAeronave> misAeronaves = new ArrayList<>();
-		misAeronaves.add(Airbus_A320);
-		misAeronaves.add(Airbus_A330);
-		misAeronaves.add(Boeing_787);
+		TipoAeronave airbus_A330 = new TipoAeronave("air002", "Internacional", "Airbus", "A330",
+				"52000 kg", "<html>252 asientos: 30 Ejecutivos" + "<br>" + "222 Economicos</html>",
+				ubicacionSillasAirbus_A330);
+		
+		TipoAeronave boeing_787 = new TipoAeronave("air003", "Internacional", "Boeing", "787",
+				"50000 kg", "<html>250 asientos: 28 Ejecutivos" + "<br>" + "222 Economicos</html>",
+				ubicacionSillasBoeing_787);
+		
+		List<TipoAeronave> misTipoAeronave = new ArrayList<>();
+		misTipoAeronave.add(airbus_A320);
+		misTipoAeronave.add(airbus_A330);
+		misTipoAeronave.add(boeing_787);
+		
+		aerolinea.setMisTipoAeronave(misTipoAeronave);
+		
+	}
+	public void crearMisAviones() {
+		
+		List<TipoAeronave> tipoAeronave = aerolinea.getMisTipoAeronave();
+		Aeronave uno = new Aeronave("CMDX", tipoAeronave.get(0), "Av001", true);
+		Aeronave dos = new Aeronave("CMDX", tipoAeronave.get(0), "Av002", true);
+		Aeronave tres = new Aeronave("CMDX", tipoAeronave.get(1), "Av003", true);
+		Aeronave cuatro = new Aeronave("CMDX", tipoAeronave.get(1), "Av004", true);
+		Aeronave cinco = new Aeronave("CMDX",  tipoAeronave.get(2), "Av005", true);	
+		Aeronave seis = new Aeronave("CMDX", tipoAeronave.get(2), "Av006", true);
+		
+		List<Aeronave> misAeronaves = new ArrayList<>();
+		misAeronaves.add(uno);
+		misAeronaves.add(dos);
+		misAeronaves.add(tres);
+		misAeronaves.add(cuatro);
+		misAeronaves.add(cinco);
+		misAeronaves.add(seis);
+		
 		
 		aerolinea.setMisAeronaves(misAeronaves);
 	

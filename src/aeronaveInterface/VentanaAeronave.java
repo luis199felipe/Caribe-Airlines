@@ -67,7 +67,8 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 
 	public VentanaAeronave() {
 		miAerolinea = new CaribeAirlines();
-		List<TipoAeronave> misAeronaves = miAerolinea.getMisAeronaves();
+		List<Aeronave> misAeronaves = miAerolinea.getMisAeronaves();
+		List<TipoAeronave> misTipoAeronaves = miAerolinea.getMisTipoAeronave();
 		
 		verSillas = false;
 		verFlota = false;
@@ -81,7 +82,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		tableAeronaves = new JTable(1, misAeronaves.size());
+		tableAeronaves = new JTable(1, misTipoAeronaves.size());
 		tableAeronaves.setEnabled(false);
 		tableAeronaves.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tableAeronaves.setFont(new Font("Tahoma", Font.BOLD, LETRA));
@@ -122,7 +123,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 							}
 						}
 						
-						lblTitulo.setText(datos[4][1] + " " + datos[6][1]);
+						lblTitulo.setText(datos[3][1] + " " + datos[5][1]);
 					
 					}
 				});
@@ -136,7 +137,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 				alinear.setHorizontalAlignment(SwingConstants.CENTER);//.LEFT .RIGHT .CENTER
 				tableAeronaves.getColumnModel().getColumn(j).setCellRenderer(alinear);
 				
-				String tipo = misAeronaves.get(j).getAtributos().get("Marca") + " " + misAeronaves.get(j).getAtributos().get("Linea");
+				String tipo = misTipoAeronaves.get(j).getAtributos().get("Marca") + " " + misTipoAeronaves.get(j).getAtributos().get("Linea");
 				tableAeronaves.setValueAt(tipo, i, j);
 			}
 		}
@@ -168,13 +169,13 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		contentPane.add(lblTitulo);
 		
-		tableDatos = new JTable(misAeronaves.get(0).getAtributos().size(), 2);//fila,columna
+		tableDatos = new JTable(misAeronaves.get(0).getTipoAeronave().getAtributos().size(), 2);//fila,columna
 		tableDatos.setBounds(X, Y, WIDTH, HEIGHT);
 		tableDatos.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		tableDatos.setBorder(null);
 		tableDatos.setEnabled(false);
 		tableDatos.setShowGrid(false);
-		tableDatos.setRowHeight(HEIGHT/misAeronaves.get(0).getAtributos().size());
+		tableDatos.setRowHeight(HEIGHT/misAeronaves.get(0).getTipoAeronave().getAtributos().size());
 		tableDatos.getColumnModel().getColumn(0).setPreferredWidth(120);
 		tableDatos.getColumnModel().getColumn(1).setPreferredWidth(170);
 		contentPane.add(tableDatos);
@@ -189,7 +190,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 				btnMasDetalles.setVisible(false);
 			}
 			
-			Ruta miRuta = miAerolinea.getMisAeronaves().get(posTipoAerolinea).getFlotaDeAeronaves().get(posAeronave).getRegistro().get(posRuta);
+			Ruta miRuta = miAerolinea.getMisAeronaves().get(posAeronave).getRegistro().get(posRuta);
 			String[][] datos = miAerolinea.llenarTablaDeMasDetalles(miRuta);
 			
 			tableMasDetalles = new JTable();
@@ -232,7 +233,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 			scrollPaneMasDetalles.setVisible(false);
 		}
 		
-		List<Aeronave> miFlota = miAerolinea.getMisAeronaves().get(posTipoAerolinea).getFlotaDeAeronaves();
+		List<Aeronave> miFlota = miAerolinea.ordenarFlotaPorTipoAeronave(posTipoAerolinea);
 		
 		if(verFlota == false) {
 		tableFlota = new JTable(1, miFlota.size());
@@ -354,7 +355,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 			scrollPaneMasDetalles.setVisible(false);
 		}
 		
-		DistribucionSillas ubicacionSillas = miAerolinea.getMisAeronaves().get(posTipoAerolinea).getUbicacionSillas();
+		DistribucionSillas ubicacionSillas = miAerolinea.getMisAeronaves().get(posTipoAerolinea).getTipoAeronave().getUbicacionSillas();
 		
 		String[][] sillasEjecutiva = ubicacionSillas.getDistribucionEjecutiva();
 		String[][] sillasEconomica = ubicacionSillas.getDistribucionEconomica();
