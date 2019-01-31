@@ -56,12 +56,12 @@ public class Origen {
 		
 		List<Ruta> misRutas = new ArrayList<>();
 		
-		misRutas.add(ruta01);	misRutas.add(ruta07);
-		misRutas.add(ruta02);	misRutas.add(ruta08);
-		misRutas.add(ruta03);	misRutas.add(ruta09);
-		misRutas.add(ruta04);	misRutas.add(ruta10);
-		misRutas.add(ruta05);	misRutas.add(ruta11);
-		misRutas.add(ruta06);	misRutas.add(ruta12);
+		misRutas.add(ruta01);	misRutas.add(ruta02);
+		misRutas.add(ruta03);	misRutas.add(ruta04);
+		misRutas.add(ruta05);	misRutas.add(ruta06);
+		misRutas.add(ruta07);	misRutas.add(ruta08);
+		misRutas.add(ruta09);	misRutas.add(ruta10);
+		misRutas.add(ruta10);	misRutas.add(ruta12);
 		
 		aerolinea.setMisRutas(misRutas);
 	}
@@ -71,9 +71,31 @@ public class Origen {
 		List<Aeronave> misAeronaves = aerolinea.getMisAeronaves();
 		List<Tripulacion> misTripulaciones = aerolinea.getMisTripulaciones();
 		List<Ruta> misRutas = aerolinea.getMisRutas();
+
+		Vuelo vuelo01 = new Vuelo("01/01/2019", "06:00", "3", misRutas.get(0), misTripulaciones.get(0), misAeronaves.get(0));
+		Vuelo vuelo02 = new Vuelo("02/01/2019", "08:00", "3", misRutas.get(1), misTripulaciones.get(1), misAeronaves.get(1));
+		Vuelo vuelo03 = new Vuelo("03/01/2019", "23:30", "3", misRutas.get(2), misTripulaciones.get(2), misAeronaves.get(2));
+		Vuelo vuelo04 = new Vuelo("04/01/2019", "09:45", "3", misRutas.get(3), misTripulaciones.get(3), misAeronaves.get(3));
+		Vuelo vuelo05 = new Vuelo("05/01/2019", "13:30", "3", misRutas.get(4), misTripulaciones.get(4), misAeronaves.get(4));
+		Vuelo vuelo06 = new Vuelo("06/01/2019", "14:45", "3", misRutas.get(5), misTripulaciones.get(5), misAeronaves.get(5));
+
+		Vuelo vuelo07 = new Vuelo("01/01/2019", "11:45", "3", misRutas.get(6), misTripulaciones.get(0), misAeronaves.get(0));
+		Vuelo vuelo08 = new Vuelo("02/01/2019", "14:12", "3", misRutas.get(7), misTripulaciones.get(1), misAeronaves.get(1));
+		Vuelo vuelo09 = new Vuelo("03/01/2019", "11:35", "3", misRutas.get(8), misTripulaciones.get(2), misAeronaves.get(2));
+		Vuelo vuelo10 = new Vuelo("04/01/2019", "16:10", "3", misRutas.get(9), misTripulaciones.get(3), misAeronaves.get(3));
+		Vuelo vuelo11 = new Vuelo("05/01/2019", "20:15", "3", misRutas.get(10), misTripulaciones.get(4), misAeronaves.get(4));
+		Vuelo vuelo12 = new Vuelo("06/01/2019", "20:40", "3", misRutas.get(11), misTripulaciones.get(5), misAeronaves.get(5));
 		
+		List<Vuelo> misVuelos = new ArrayList<>();
 		
-		 
+		misVuelos.add(vuelo01);		misVuelos.add(vuelo02);
+		misVuelos.add(vuelo03);		misVuelos.add(vuelo04);
+		misVuelos.add(vuelo05);		misVuelos.add(vuelo06);
+		misVuelos.add(vuelo07);		misVuelos.add(vuelo08);
+		misVuelos.add(vuelo09);		misVuelos.add(vuelo10);
+		misVuelos.add(vuelo11);		misVuelos.add(vuelo12);
+		
+		aerolinea.setMisVuelos(misVuelos);
 	}
 
 	public void crearMisTripulantes() {

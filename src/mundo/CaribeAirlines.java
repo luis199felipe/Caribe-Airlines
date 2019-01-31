@@ -44,6 +44,8 @@ public class CaribeAirlines {
 		creaciones.crearMisTripulaciones();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		
 		creaciones.crearMisVuelos();
+		
+		creaciones.RegistroVuelos();
 	}
 	
 	//Metodos Aeronaves
