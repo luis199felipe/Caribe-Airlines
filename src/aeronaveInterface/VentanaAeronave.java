@@ -317,9 +317,9 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 							List<String> elemento = new ArrayList<>();
 							
 							elemento.add(miRegistro.get(i).getAtributos().get("Fecha"));
-							elemento.add(miRegistro.get(i).getAtributos().get("HoraSalida"));
-							elemento.add(miRegistro.get(i).getAtributos().get("HoraLLegada"));
-							elemento.add(miRegistro.get(i).getAtributos().get("TiempoAlistamiento(H)"));
+							elemento.add(miRegistro.get(i).getMiRuta().getAtributos().get("Origen"));
+							elemento.add(miRegistro.get(i).getMiRuta().getAtributos().get("Destino"));
+							elemento.add(miRegistro.get(i).getMiRuta().getAtributos().get("Duracion"));
 							datosMostrar.add(elemento);
 						}
 						

@@ -61,7 +61,7 @@ public class Origen {
 		misRutas.add(ruta05);	misRutas.add(ruta06);
 		misRutas.add(ruta07);	misRutas.add(ruta08);
 		misRutas.add(ruta09);	misRutas.add(ruta10);
-		misRutas.add(ruta10);	misRutas.add(ruta12);
+		misRutas.add(ruta11);	misRutas.add(ruta12);
 		
 		aerolinea.setMisRutas(misRutas);
 	}

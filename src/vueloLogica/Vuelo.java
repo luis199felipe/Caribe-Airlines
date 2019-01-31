@@ -19,7 +19,7 @@ public class Vuelo implements Serializable{
 		atributos.put("Fecha", fecha);
 		atributos.put("HoraSalida", horaSalida);
 		atributos.put("HoraLLegada", encontrarHoraLlegada(horaSalida, miRuta.getAtributos().get("Duracion")));
-		atributos.put("TiempoAlistamiento(H)", tiempoAlistamiento);
+		atributos.put("Alistamiento(H)", tiempoAlistamiento);
 		
 		this.miRuta = miRuta;
 		this.miTripulacion = miTripulacion;
@@ -35,18 +35,20 @@ public class Vuelo implements Serializable{
 		int horaDuracion = Integer.parseInt(partesDuracion[0]);
 		int minutosSalida =  Integer.parseInt(partesSalida[1]);
 		int minutosDuracion = Integer.parseInt(partesDuracion[1]);
+		int horaAdd = 0;
 		if(minutosDuracion + minutosSalida < 60) {
 			partesLlegada[1] = String.valueOf(minutosDuracion + minutosSalida);
 		}else {
-			int horaAdd = (minutosDuracion + minutosSalida)/60;
+			horaAdd = (minutosDuracion + minutosSalida)/60;
 			partesLlegada[1] = String.valueOf((minutosDuracion + minutosSalida)%60);
-			if(horaSalida + horaDuracion + horaAdd < 24) {
-				partesLlegada[0] = String.valueOf(horaSalida + horaDuracion + horaAdd);
-			}else {
-				int hour = (horaSalida + horaDuracion + horaAdd)%24;
-				partesLlegada[0] = String.valueOf(hour);
-			}
 		}
+		int hour = 0;
+		if(horaSalida + horaDuracion + horaAdd < 24) {
+			hour = horaSalida + horaDuracion + horaAdd ;
+			partesLlegada[0] = String.valueOf(hour);
+		}else {
+			hour = (horaSalida + horaDuracion + horaAdd)%24;
+			partesLlegada[0] = String.valueOf(hour);		}
 		llegada = partesLlegada[0] + ":" + partesLlegada[1];
 		return llegada;
 	}

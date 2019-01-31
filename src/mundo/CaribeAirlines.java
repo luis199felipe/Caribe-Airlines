@@ -110,12 +110,19 @@ public class CaribeAirlines {
 	}
 	
 	public String[][] llenarTablaDeMasDetalles (Vuelo miVuelo){
-		int row = miVuelo.getAtributos().size() + miVuelo.getMiTripulacion().getAuxiliares().size() + 2;
+		int row = miVuelo.getAtributos().size() + miVuelo.getMiRuta().getAtributos().size() 
+				+ miVuelo.getMiTripulacion().getAuxiliares().size() + 2;
+		System.out.println(row);
 		String[][] datos = new String[row][2];
 		int i = 0;
 		for (Iterator it = miVuelo.getAtributos().keySet().iterator(); it.hasNext();) {
 			datos[i][0] = (String)it.next();//key
 			datos[i][1] = (String)miVuelo.getAtributos().get(datos[i][0]);//value
+			i++;
+		}
+		for (Iterator it = miVuelo.getMiRuta().getAtributos().keySet().iterator(); it.hasNext();) {
+			datos[i][0] = (String)it.next();//key
+			datos[i][1] = (String)miVuelo.getMiRuta().getAtributos().get(datos[i][0]);//value
 			i++;
 		}
 		String auxiliares = miVuelo.getMiTripulacion().getMiTripulacion().get("Auxiliares");
@@ -129,13 +136,13 @@ public class CaribeAirlines {
 				palabra += auxiliares.charAt(j);
 			}
 		}
-		datos[miVuelo.getAtributos().size()][0] = "Piloto";
-		datos[miVuelo.getAtributos().size()][1] = miVuelo.getMiTripulacion().getMiTripulacion().get("Piloto");
-		datos[miVuelo.getAtributos().size()+1][0] = "Copiloto";
-		datos[miVuelo.getAtributos().size()+1][1] = miVuelo.getMiTripulacion().getMiTripulacion().get("Copiloto");
+		datos[miVuelo.getAtributos().size()+miVuelo.getMiRuta().getAtributos().size()][0] = "Piloto";
+		datos[miVuelo.getAtributos().size()+miVuelo.getMiRuta().getAtributos().size()][1] = miVuelo.getMiTripulacion().getMiTripulacion().get("Piloto");
+		datos[miVuelo.getAtributos().size()+miVuelo.getMiRuta().getAtributos().size()+1][0] = "Copiloto";
+		datos[miVuelo.getAtributos().size()+miVuelo.getMiRuta().getAtributos().size()+1][1] = miVuelo.getMiTripulacion().getMiTripulacion().get("Copiloto");
 		
 		i = 1;
-		for (int j = miVuelo.getAtributos().size()+2; j < datos.length; j++) {
+		for (int j = miVuelo.getAtributos().size()+miVuelo.getMiRuta().getAtributos().size()+2; j < datos.length; j++) {
 			datos[j][0] = "auxiliar " + i;
 			datos[j][1] = mostrar.get(i-1);
 			i++;
