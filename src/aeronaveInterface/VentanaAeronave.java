@@ -3,6 +3,7 @@ package aeronaveInterface;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,7 +36,7 @@ import aeronaveLogica.TipoAeronave;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 
-public class VentanaAeronave extends JFrame implements ActionListener{
+public class VentanaAeronave extends JInternalFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JScrollPane scrollPaneRegistro, scrollPaneMasDetalles;
@@ -53,18 +54,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 	private static final int LETRA = 14;
 	private static final int ROW_HEIGHT = 35;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaAeronave frame = new VentanaAeronave();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	public VentanaAeronave() {
 		miAerolinea = new CaribeAirlines();
@@ -77,7 +67,7 @@ public class VentanaAeronave extends JFrame implements ActionListener{
 		posVuelo = -1;
 		
 		setTitle("Aeronaves");
-		setBounds(100, 100, 350, 550);
+		setBounds(0, 0, 350, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
