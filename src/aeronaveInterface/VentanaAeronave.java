@@ -114,7 +114,7 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 						}
 						
 						tableDatos.setVisible(true);
-						lblTitulo.setText(datos[3][1] + " " + datos[5][1]);
+						lblTitulo.setText(datos[3][1] + " " + datos[4][1]);
 					
 					}
 				});
@@ -156,7 +156,7 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 		
 		lblTitulo = new JLabel("");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(10, 38, 314, 21);
+		lblTitulo.setBounds(10, 38, WIDTH, 21);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		contentPane.add(lblTitulo);
 		

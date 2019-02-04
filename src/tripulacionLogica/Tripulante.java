@@ -16,8 +16,8 @@ public class Tripulante implements Serializable{
 		atributos.put("Nombre", nombre);
 		atributos.put("Direccion", direccion);
 		atributos.put("Correo", correo);
-		atributos.put("FechaNacimiento", fechaNacimiento);
-		atributos.put("estudios", estudios);
+		atributos.put("Fecha Nacimiento", fechaNacimiento);
+		atributos.put("Estudios", estudios);
 	}
 
 	//Getters & Setters

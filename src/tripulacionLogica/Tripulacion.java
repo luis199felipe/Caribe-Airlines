@@ -1,32 +1,38 @@
 package tripulacionLogica;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import vueloLogica.Ruta;
+import vueloLogica.Vuelo;
 
 public class Tripulacion implements Serializable{
 	private HashMap<String, String> miTripulacion;
 	private Tripulante piloto;
 	private Tripulante copiloto;
+	private String tipoTripulacion;
 	private List<Tripulante> auxiliares;
-	private Ruta miRuta;
+	private List<Vuelo> misVuelos;
 	
 	//Constructor
-	public Tripulacion(Tripulante piloto,Tripulante copiloto, List<Tripulante> auxiliares, Ruta miRuta) {
+	public Tripulacion(String idTripulacion, Tripulante piloto, Tripulante copiloto, List<Tripulante> auxiliares, String tipoTripulacion) {
+		
+		misVuelos = new ArrayList<>();
+		
 		this.piloto = piloto;
 		this.copiloto = copiloto;
 		this.auxiliares = auxiliares;
-		this.miRuta = miRuta;
+		this.tipoTripulacion = tipoTripulacion;
+		
 		miTripulacion = new HashMap<>();
+		miTripulacion.put("IdTripulacion", idTripulacion);
 		miTripulacion.put("Piloto", "" + piloto.getAtributos().get("Nombre") + "  " + piloto.getAtributos().get("Identificacion"));
 		miTripulacion.put("Copiloto", "" + copiloto.getAtributos().get("Nombre") + "  " + copiloto.getAtributos().get("Identificacion"));
 		miTripulacion.put("Auxiliares", cadenaAuxiliares());
 	}
 	
 	//Methods
-	
 	public String cadenaAuxiliares() {
 		String mostrar = "";
 		for (int i = 0; i < auxiliares.size(); i++) {
@@ -68,10 +74,16 @@ public class Tripulacion implements Serializable{
 	public void setAuxiliares(List<Tripulante> auxiliares) {
 		this.auxiliares = auxiliares;
 	}
-	public Ruta getMiRuta() {
-		return miRuta;
+	public List<Vuelo> getMisVuelos() {
+		return misVuelos;
 	}
-	public void setMiRuta(Ruta miRuta) {
-		this.miRuta = miRuta;
+	public void setMisVuelos(List<Vuelo> misVuelos) {
+		this.misVuelos = misVuelos;
+	}
+	public String getTipoTripulacion() {
+		return tipoTripulacion;
+	}
+	public void setTipoTripulacion(String tipoTripulacion) {
+		this.tipoTripulacion = tipoTripulacion;
 	}
 }

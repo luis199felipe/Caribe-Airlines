@@ -50,27 +50,85 @@ public class CaribeAirlines {
 	}
 	
 	//Metodos Aeronaves
+	public void eliminarPorIdTripulante (String identificacion){
+		List<Tripulante> misNuevosTripulantes = new ArrayList<>();
+		for (int i = 0; i < misTripulantes.size(); i++) {
+			if(misTripulantes.get(i).getAtributos().get("Identificacion").equals(identificacion)) {
+				System.out.println("encontrado");
+			}else {
+				misNuevosTripulantes.add(misTripulantes.get(i));
+			}
+		}
+		this.setMisTripulantes(misNuevosTripulantes);
+	}
+	
+	public void eliminarPorIdTripulacion (String idTripulacion){
+		List<Tripulacion> misNuevasTripulaciones = new ArrayList<>();
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			if(misTripulaciones.get(i).getMiTripulacion().get("IdTripulacion").equals(idTripulacion)) {
+				System.out.println("encontrado");
+			}else {
+				misNuevasTripulaciones.add(misTripulaciones.get(i));
+			}
+		}
+		this.setMisTripulaciones(misNuevasTripulaciones);
+	}
+	
+	public List<Tripulante> obtenerListadoFiltroTripulantes(String cargo) {
+		List<Tripulante> miTripulantesFiltrados = new ArrayList<>();
+		for (int i = 0; i < misTripulantes.size(); i++) {
+			if(misTripulantes.get(i).getAtributos().get("Cargo").equalsIgnoreCase(cargo)) {
+				miTripulantesFiltrados.add(misTripulantes.get(i));
+			}
+		}
+		return miTripulantesFiltrados;
+	}
+	
+	public List<Tripulacion> obtenerListadoFiltroTripulaciones(String tipoTripulacion) {
+		List<Tripulacion> miTripulantesFiltrados = new ArrayList<>();
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			if(misTripulaciones.get(i).getTipoTripulacion().equals(tipoTripulacion)) {
+					miTripulantesFiltrados.add(misTripulaciones.get(i));
+			}
+		}
+		return miTripulantesFiltrados;
+	}
 	
 	public String[][] filtrarTripulante(String cargo) {
-		String[][] tabla = new String [0][3];
+		int row = 0;
 		for (int i = 0; i < misTripulantes.size(); i++) {
-			if(misTripulantes.get(i).getAtributos().get("Cargo").equals(cargo)) {
-				tabla[i][0] = misTripulantes.get(i).getAtributos().get("Nombre");
-				tabla[i][1] = misTripulantes.get(i).getAtributos().get("Identificacion");
-				tabla[i][2] = misTripulantes.get(i).getAtributos().get("Cargo");
+			if(misTripulantes.get(i).getAtributos().get("Cargo").equalsIgnoreCase(cargo)) {
+				row++;
+			}
+		}
+		String[][] tabla = new String [row][3];
+		int j = 0;
+		for (int i = 0; i < misTripulantes.size(); i++) {
+			if(misTripulantes.get(i).getAtributos().get("Cargo").equalsIgnoreCase(cargo)) {
+				tabla[j][0] = misTripulantes.get(i).getAtributos().get("Nombre");
+				tabla[j][1] = misTripulantes.get(i).getAtributos().get("Identificacion");
+				tabla[j][2] = misTripulantes.get(i).getAtributos().get("Cargo");
+				j++;
 			}
 		}
 		return tabla;
 	}
 	
-	public String[][] filtrarTripulacion(String tipoVuelo) {
-		String tipo = "cc";
-		String[][] tabla = new String [misTripulaciones.size()][3];
+	public String[][] filtrarTripulacion(String tipoTripulacion) {
+		int row = 0;
 		for (int i = 0; i < misTripulaciones.size(); i++) {
-			if("Internacional".equals(tipoVuelo)) {
-				tabla[i][0] = misTripulaciones.get(i).getPiloto().getAtributos().get("Nombre");
-				tabla[i][1] = misTripulaciones.get(i).getCopiloto().getAtributos().get("Nombre");
-				tabla[i][2] = misTripulaciones.get(i).toStringAuxiliares();
+			if(misTripulaciones.get(i).getTipoTripulacion().equals(tipoTripulacion)) {
+				row++;
+			}
+		}
+		String[][] tabla = new String [row][3];
+		int j = 0;
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			if(misTripulaciones.get(i).getTipoTripulacion().equals(tipoTripulacion)) {
+				tabla[j][0] = misTripulaciones.get(i).getPiloto().getAtributos().get("Nombre");
+				tabla[j][1] = misTripulaciones.get(i).getCopiloto().getAtributos().get("Nombre");
+				tabla[j][2] = misTripulaciones.get(i).toStringAuxiliares();
+				j++;
 			}
 		}
 		return tabla;
@@ -94,6 +152,57 @@ public class CaribeAirlines {
 			}
 		}
 		return flota;
+	}
+	
+	public String[][] llenarTablaDeDatosMasDetallesTripulante(Tripulante miTripulante){
+		String[][] tabla = new String[miTripulante.getAtributos().size()][2];
+		int i = 0;
+		for (Iterator it = miTripulante.getAtributos().keySet().iterator(); it.hasNext();) {
+			tabla[i][0] = (String)it.next();//key
+			tabla[i][1] = (String)miTripulante.getAtributos().get(tabla[i][0]);//value
+			i++;
+		}
+		return tabla;
+	}
+	
+	public String[][] llenarTablaDeDatosMasDetallesTripulacion(Tripulacion miTripulacion){
+		int row = miTripulacion.getMisVuelos().size() + miTripulacion.getAuxiliares().size() + 2 + 1;
+		String[][] tabla = new String[row][2];
+		
+		tabla[0][0] = "Piloto";
+		tabla[0][1] = miTripulacion.getMisVuelos().get(1).getMiTripulacion().getMiTripulacion().get("Piloto");
+		tabla[1][0] = "Copiloto";
+		tabla[1][1] = miTripulacion.getMisVuelos().get(1).getMiTripulacion().getMiTripulacion().get("Copiloto");
+		
+		List<String> mostrar = new ArrayList<>();
+		String palabra = "";
+		for (int j = 0; j < miTripulacion.cadenaAuxiliares().length(); j++) {
+			if (miTripulacion.cadenaAuxiliares().charAt(j) == ',') {
+				mostrar.add(palabra);
+				palabra = "";
+			}else {
+				palabra += miTripulacion.cadenaAuxiliares().charAt(j);
+			}
+		}
+
+		for (int j = 2; j < miTripulacion.getAuxiliares().size()+2; j++) {
+			tabla[j][0] = "auxiliar " + (j-1);
+			tabla[j][1] = mostrar.get(j-2);
+		}
+		
+		tabla[2 + miTripulacion.getAuxiliares().size()][0] = "Tipo Tripulacion";
+		tabla[2 + miTripulacion.getAuxiliares().size()][1] = miTripulacion.getTipoTripulacion();
+		
+		
+		int i = 0;
+		
+		for (int j = 2 + miTripulacion.getAuxiliares().size() + 1; j < tabla.length; j++) {
+			tabla[j][0] = "Vuelo " + (i+1);
+			tabla[j][1] = miTripulacion.getMisVuelos().get(i).getMiRuta().getAtributos().get("Origen") + " / " + miTripulacion.getMisVuelos().get(i).getMiRuta().getAtributos().get("Destino");
+			i++;
+		}
+		
+		return tabla;
 	}
 	
 	public String[][] llenarTablaDeDatosTripulaciones() {

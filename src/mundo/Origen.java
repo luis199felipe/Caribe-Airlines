@@ -23,6 +23,7 @@ public class Origen {
 	public void RegistroVuelos () {
 		
 		List<Aeronave> misAeronaves = aerolinea.getMisAeronaves();
+		List<Tripulacion> misTripulaciones = aerolinea.getMisTripulaciones();
 		List<Vuelo> misVuelos = aerolinea.getMisVuelos();
 		
 		for (int i = 0; i < misAeronaves.size(); i++) {
@@ -31,6 +32,16 @@ public class Origen {
 				String matriculaVueloAeronave = misVuelos.get(j).getMiAeronave().getMatricula();
 				if(matriculaAeronave.equals(matriculaVueloAeronave)) {
 					misAeronaves.get(i).getRegistro().add(misVuelos.get(j));
+				}
+			}
+		}
+		
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			String idTripulacion = misTripulaciones.get(i).getMiTripulacion().get("IdTripulacion");
+			for (int j = 0; j < misVuelos.size(); j++) {
+				String idVueloTripulacion = misVuelos.get(j).getMiTripulacion().getMiTripulacion().get("IdTripulacion");
+				if(idTripulacion.equals(idVueloTripulacion)) {
+					misTripulaciones.get(i).getMisVuelos().add(misVuelos.get(j));
 				}
 			}
 		}
@@ -102,24 +113,24 @@ public class Origen {
 		
 		List<Tripulante> misTripulantes = new ArrayList<>();
 		
-		Tripulante tripulante01 = new Tripulante("piloto", "41897", "Carlos Trejos", "Barrio Bosques calle 02 casa 05", "carlost@gmail.com", "03/10/1975", "Curso de aviación");
-		Tripulante tripulante02 = new Tripulante("piloto", "51567", "Jhon Castañeda", "Barrio Paz calle 04 casa 51", "jhonc@gmail.com", "13/06/1973", "Curso de aviación");
-		Tripulante tripulante03 = new Tripulante("copiloto", "78499", "Jorge Montes", "Barrio Real calle 08 casa 21", "jorgem@gmail.com", "24/06/1984", "Curso de aviación");
-		Tripulante tripulante04 = new Tripulante("copiloto", "82355", "Luis Jimenez", "Barrio Rojas calle 05 casa 03", "luisj@gmail.com", "09/04/1985", "Curso de aviación");
-		Tripulante tripulante05 = new Tripulante("auxiliar", "26707", "Luisa Belen", "Barrio Randal calle 01 casa 12", "luisab@gmail.com", "22/02/1990", "Curso de azafata");
-		Tripulante tripulante06 = new Tripulante("auxiliar", "90131", "Maria Rosales", "Barrio Proveer calle 08 casa 01", "mariar@gmail.com", "12/05/1993", "Curso de azafata");
-		Tripulante tripulante07 = new Tripulante("auxiliar", "82336", "Veronica Ruiz", "Barrio Pinos calle 02 casa 10", "veronicar@gmail.com", "01/08/1987", "Curso de azafata");
-		Tripulante tripulante08 = new Tripulante("auxiliar", "63247", "Valeria Mendoza", "Barrio Prado calle 23 casa 15", "valentinam@gmail.com", "10/11/1991", "Curso de azafata");
-		Tripulante tripulante09 = new Tripulante("auxiliar", "10945", "Ana Maria Lopez", "Barrio Calera calle 23 casa 02", "anamarial@gmail.com", "30/01/1989", "Curso de azafata");
-		Tripulante tripulante10 = new Tripulante("auxiliar", "86578", "Alejandra Viera", "Barrio Renacer calle 11 casa 14", "alejandrav@gmail.com", "20/03/1982", "Curso de azafata");
-		Tripulante tripulante11 = new Tripulante("auxiliar", "13456", "Esperanza Loaiza", "Barrio Cruzada calle 20 casa 17", "esperanzal@gmail.com", "29/07/1991", "Curso de azafata");
-		Tripulante tripulante12 = new Tripulante("auxiliar", "19832", "Amalia Vera", "Barrio Primavera calle 02 casa 12", "amaliav@gmail.com", "15/07/1992", "Curso de azafata");
-		Tripulante tripulante13 = new Tripulante("auxiliar", "80931", "Mariana Ross", "Barrio Sol calle 08 casa 03", "marianar@gmail.com", "01/06/1993", "Curso de azafata");
-		Tripulante tripulante14 = new Tripulante("auxiliar", "81498", "Linda Rojas", "Barrio Boreal calle 02 casa 18", "lindar@gmail.com", "11/04/1987", "Curso de azafata");
-		Tripulante tripulante15 = new Tripulante("auxiliar", "63125", "Valery Espitia", "Barrio Cocora calle 12 casa 15", "valerye@gmail.com", "16/01/1991", "Curso de azafata");
-		Tripulante tripulante16 = new Tripulante("auxiliar", "19868", "Ana Marcela Luz", "Barrio Canada calle 32 casa 12", "anamarcelal@gmail.com", "08/09/1989", "Curso de azafata");
-		Tripulante tripulante17 = new Tripulante("auxiliar", "88653", "Alejandra Cortes", "Barrio Villa calle 15 casa 43", "alejandrac@gmail.com", "02/07/1982", "Curso de azafata");
-		Tripulante tripulante18 = new Tripulante("auxiliar", "13646", "Lucia Tejada", "Barrio Hore calle 25 casa 66", "luciat@gmail.com", "30/12/1991", "Curso de azafata");
+		Tripulante tripulante01 = new Tripulante("piloto", "41897", "Carlos Trejos", "<html>Barrio Bosques<br>calle 02 casa 05</html>", "carlost@gmail.com", "03/10/1975", "Curso de aviación");
+		Tripulante tripulante02 = new Tripulante("piloto", "51567", "Jhon Castañeda", "<html>Barrio Paz<br>calle 04 casa 51</html>", "jhonc@gmail.com", "13/06/1973", "Curso de aviación");
+		Tripulante tripulante03 = new Tripulante("copiloto", "78499", "Jorge Montes", "<html>Barrio Real<br>calle 08 casa 21</html>", "jorgem@gmail.com", "24/06/1984", "Curso de aviación");
+		Tripulante tripulante04 = new Tripulante("copiloto", "82355", "Luis Jimenez", "<html>Barrio Rojas<br>calle 05 casa 03</html>", "luisj@gmail.com", "09/04/1985", "Curso de aviación");
+		Tripulante tripulante05 = new Tripulante("auxiliar", "26707", "Luisa Belen", "<html>Barrio Randal<br>calle 01 casa 12</html>", "luisab@gmail.com", "22/02/1990", "Curso de azafata");
+		Tripulante tripulante06 = new Tripulante("auxiliar", "90131", "Maria Rosales", "<html>Barrio Proveer<br>calle 08 casa 01</html>", "mariar@gmail.com", "12/05/1993", "Curso de azafata");
+		Tripulante tripulante07 = new Tripulante("auxiliar", "82336", "Veronica Ruiz", "<html>Barrio Pinos<br>calle 02 casa 10</html>", "veronicar@gmail.com", "01/08/1987", "Curso de azafata");
+		Tripulante tripulante08 = new Tripulante("auxiliar", "63247", "Valeria Mendoza", "<html>Barrio Prado<br>calle 23 casa 15</html>", "valentinam@gmail.com", "10/11/1991", "Curso de azafata");
+		Tripulante tripulante09 = new Tripulante("auxiliar", "10945", "Ana Maria Lopez", "<html>Barrio Calera<br>calle 23 casa 02</html>", "anamarial@gmail.com", "30/01/1989", "Curso de azafata");
+		Tripulante tripulante10 = new Tripulante("auxiliar", "86578", "Alejandra Viera", "<html>Barrio Renacer<br>calle 11 casa 14</html>", "alejandrav@gmail.com", "20/03/1982", "Curso de azafata");
+		Tripulante tripulante11 = new Tripulante("auxiliar", "13456", "Esperanza Loaiza", "<html>Barrio Cruzada<br>calle 20 casa 17</html>", "esperanzal@gmail.com", "29/07/1991", "Curso de azafata");
+		Tripulante tripulante12 = new Tripulante("auxiliar", "19832", "Amalia Vera", "<html>Barrio Primavera<br>calle 02 casa 12</html>", "amaliav@gmail.com", "15/07/1992", "Curso de azafata");
+		Tripulante tripulante13 = new Tripulante("auxiliar", "80931", "Mariana Ross", "<html>Barrio Sol<br>calle 08 casa 03</html>", "marianar@gmail.com", "01/06/1993", "Curso de azafata");
+		Tripulante tripulante14 = new Tripulante("auxiliar", "81498", "Linda Rojas", "<html>Barrio Boreal<br>calle 02 casa 18</html>", "lindar@gmail.com", "11/04/1987", "Curso de azafata");
+		Tripulante tripulante15 = new Tripulante("auxiliar", "63125", "Valery Espitia", "<html>Barrio Cocora<br>calle 12 casa 15</html>", "valerye@gmail.com", "16/01/1991", "Curso de azafata");
+		Tripulante tripulante16 = new Tripulante("auxiliar", "19868", "Ana Marcela Luz", "<html>Barrio Canada<br>calle 32 casa 12</html>", "anamarcelal@gmail.com", "08/09/1989", "Curso de azafata");
+		Tripulante tripulante17 = new Tripulante("auxiliar", "88653", "Alejandra Cortes", "<html>Barrio Villa<br>calle 15 casa 43</html>", "alejandrac@gmail.com", "02/07/1982", "Curso de azafata");
+		Tripulante tripulante18 = new Tripulante("auxiliar", "13646", "Lucia Tejada", "<html>Barrio Hore calle<br>25 casa 66</html>", "luciat@gmail.com", "30/12/1991", "Curso de azafata");
 
 		misTripulantes.add(tripulante01);	misTripulantes.add(tripulante02);
 		misTripulantes.add(tripulante03);	misTripulantes.add(tripulante04);
@@ -181,12 +192,12 @@ public class Origen {
 		internacional2.add(auxiliares.get(12));
 		internacional2.add(auxiliares.get(13));
 		
-		Tripulacion tripulacion1 = new Tripulacion(pilotos.get(0), copilotos.get(0), nacional1, null);
-		Tripulacion tripulacion2 = new Tripulacion(pilotos.get(1), copilotos.get(1), nacional2, null);
-		Tripulacion tripulacion3 = new Tripulacion(pilotos.get(0), copilotos.get(1), internacional1, null);
-		Tripulacion tripulacion4 = new Tripulacion(pilotos.get(1), copilotos.get(0), internacional2, null);
-		Tripulacion tripulacion5 = new Tripulacion(pilotos.get(0), copilotos.get(0), internacional1, null);
-		Tripulacion tripulacion6 = new Tripulacion(pilotos.get(1), copilotos.get(1), internacional2, null);
+		Tripulacion tripulacion1 = new Tripulacion("001", pilotos.get(0), copilotos.get(0), nacional1, "Nacional");
+		Tripulacion tripulacion2 = new Tripulacion("002", pilotos.get(1), copilotos.get(1), nacional2, "Nacional");
+		Tripulacion tripulacion3 = new Tripulacion("003", pilotos.get(0), copilotos.get(1), internacional1, "Internacional");
+		Tripulacion tripulacion4 = new Tripulacion("004", pilotos.get(1), copilotos.get(0), internacional2, "Internacional");
+		Tripulacion tripulacion5 = new Tripulacion("005", pilotos.get(0), copilotos.get(0), internacional1, "Internacional");
+		Tripulacion tripulacion6 = new Tripulacion("006", pilotos.get(1), copilotos.get(1), internacional2, "Internacional");
 		
 		List<Tripulacion> misTripulaciones = new ArrayList<>();
 		

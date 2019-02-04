@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -17,11 +18,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import mundo.CaribeAirlines;
+import tripulacionLogica.Tripulacion;
+import tripulacionLogica.Tripulante;
+
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -32,7 +37,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	private JComboBox comboBox;
 	private JScrollPane scrollPaneRegistro;
 	private JTable tableTripulaciones, tableRegistro;
-	private JButton btnCrear, btnEliminar;
+	private JButton btnCrear, btnEliminar, btnMasDetalles, btnVolver;
 	private JLabel lblTitulo;
 	private String filtro;
 	private int posOpcion, posRegistro;
@@ -50,6 +55,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		miAerolinea = new CaribeAirlines();
 		
 		filtro = "Todo";
+		posRegistro = -1;
 		
 		setTitle("Tripulaciones");
 		setBounds(390, 0, 390, 550);
@@ -72,6 +78,11 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 						
 						btnCrear.setVisible(true);
 						btnEliminar.setVisible(true);
+						btnMasDetalles.setVisible(true);
+						
+						posRegistro = -1;
+						
+						filtro = "Todo";
 						
 						String[][] datos = new String[3][0];
 						
@@ -80,7 +91,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 							tableRegistro.getColumnModel().getColumn(0).setPreferredWidth(118);
 							tableRegistro.getColumnModel().getColumn(1).setPreferredWidth(118);
 							tableRegistro.getColumnModel().getColumn(2).setPreferredWidth(118);
-							tableRegistro.setRowHeight(150);
+							tableRegistro.setRowHeight(130);
 							
 							comboBox.setModel(new DefaultComboBoxModel(new String[] {"Todo", "Nacional", "Internacional"}));
 							
@@ -111,7 +122,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 						
 						comboBox.setVisible(true);
 						scrollPaneRegistro.setVisible(true);
-						lblTitulo.setText(""+tableTripulaciones.getValueAt(0, column));
+						lblTitulo.setText("Registro de "+tableTripulaciones.getValueAt(0, column));
 					}
 				});
 		
@@ -127,8 +138,8 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		contentPane.add(tableTripulaciones);
 		
 		lblTitulo = new JLabel("");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(X, 38, WIDTH, 21);
+		lblTitulo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTitulo.setBounds(10, 38, 247, 21);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		contentPane.add(lblTitulo);
 		
@@ -136,16 +147,30 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnCrear.addActionListener(this);
 		btnCrear.setVisible(false);
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
-		btnCrear.setBounds(250, 477, 114, 23);
+		btnCrear.setBounds(131, 477, 113, 23);
 		contentPane.add(btnCrear);
 		
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(this);
 		btnEliminar.setVisible(false);
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
-		btnEliminar.setBounds(10, 477, 114, 23);
+		btnEliminar.setBounds(10, 477, 113, 23);
 		contentPane.add(btnEliminar);
 		
+		btnMasDetalles = new JButton("mas Detalles");
+		btnMasDetalles.addActionListener(this);
+		btnMasDetalles.setVisible(false);
+		btnMasDetalles.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnMasDetalles.setBounds(251, 477, 113, 23);
+		contentPane.add(btnMasDetalles);
+		
+		btnVolver = new JButton("volver");
+		btnVolver.addActionListener(this);
+		btnVolver.setVisible(false);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnVolver.setBounds(251, 477, 113, 23);
+		contentPane.add(btnVolver);
+
 		tableRegistro = new JTable(0,3);
 		tableRegistro.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		tableRegistro.setBorder(null);
@@ -165,34 +190,45 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		scrollPaneRegistro.setViewportView(tableRegistro);
 		scrollPaneRegistro.setVisible(false);
 		contentPane.add(scrollPaneRegistro);
-
 		
 		comboBox = new JComboBox();
 		comboBox.addActionListener(this);
 		comboBox.setVisible(false);
 		comboBox.setBounds(267, 38, 97, 21);
 		contentPane.add(comboBox);
+		
 	}
 	
 	public void verRegistroFiltrado() {
+		btnMasDetalles.setVisible(true);
+		btnVolver.setVisible(false);
+		
 		String[][] datos = new String[0][0];
 		if(posOpcion == 0) {
+			tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Piloto", "Copiloto", "Auxiliares"}));
+			tableRegistro.setRowHeight(130);
+			
 			if(filtro.equals("Todo")) {
+			
 				datos = miAerolinea.llenarTablaDeDatosTripulaciones();
 			}else {
-				datos = miAerolinea.filtrarTripulacion("Nacional");
+				datos = miAerolinea.filtrarTripulacion(""+comboBox.getSelectedItem());
 			}
 		}
 		if(posOpcion == 1) {
+			tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Nombre", "Id", "Cargo"}));
+			tableRegistro.setRowHeight(ROW_HEIGHT);
+			
 			if(filtro.equals("Todo")) {
 				datos = miAerolinea.llenarTablaDeDatosTripulantes();
 			}else {
-				datos = new String[10][10];
+				datos = miAerolinea.filtrarTripulante(""+comboBox.getSelectedItem());
 			}
 		}
 		
 		DefaultTableModel modeloRegistro = (DefaultTableModel)tableRegistro.getModel(); 
 		modeloRegistro.setRowCount(datos.length);
+		modeloRegistro.setColumnCount(datos[0].length);
 		
 		for (int i = 0; i < tableRegistro.getRowCount(); i++) {
 			for (int j = 0; j < tableRegistro.getColumnCount(); j++) {
@@ -201,10 +237,110 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	public void verMasDetalles() {
+		if(posRegistro != -1) {
+			comboBox.setVisible(false);
+			btnMasDetalles.setVisible(false);
+			btnVolver.setVisible(true);
+			
+			tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Detalles", "Informacion"}));
+			tableRegistro.setRowHeight(ROW_HEIGHT);
+			
+			String[][] datos = new String[0][0];
+			if(posOpcion == 0) {
+				Tripulacion miTripulacion = null;
+				
+				if(filtro.equals("Todo")) {
+					miTripulacion = miAerolinea.getMisTripulaciones().get(posRegistro);
+					datos = miAerolinea.llenarTablaDeDatosMasDetallesTripulacion(miTripulacion);
+				}else {
+					List<Tripulacion> misTripulaciones = miAerolinea.obtenerListadoFiltroTripulaciones(""+comboBox.getSelectedItem());
+					miTripulacion = misTripulaciones.get(posRegistro);
+					datos = miAerolinea.llenarTablaDeDatosMasDetallesTripulacion(miTripulacion);
+				}
+			}
+			if(posOpcion == 1) {
+				Tripulante miTripulante = null;
+				
+				if(filtro.equals("Todo")) {
+					miTripulante = miAerolinea.getMisTripulantes().get(posRegistro);
+					datos = miAerolinea.llenarTablaDeDatosMasDetallesTripulante(miTripulante);
+				}else {
+					List<Tripulante> misTripulantes = miAerolinea.obtenerListadoFiltroTripulantes(""+comboBox.getSelectedItem());
+					miTripulante = misTripulantes.get(posRegistro);
+					datos = miAerolinea.llenarTablaDeDatosMasDetallesTripulante(miTripulante);
+				}
+			}
+			
+			DefaultTableModel modeloRegistro = (DefaultTableModel)tableRegistro.getModel();
+			modeloRegistro.setColumnCount(datos[0].length);
+			modeloRegistro.setRowCount(datos.length);
+			
+			for (int i = 0; i < tableRegistro.getRowCount(); i++) {
+				for (int j = 0; j < tableRegistro.getColumnCount(); j++) {
+					tableRegistro.setValueAt(datos[i][j], i, j);
+				}
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "seleccione un registro");
+		}
+	}
+	public void eliminar() {
+		if(posRegistro != -1) {
+			
+			if(posOpcion == 0) {
+				Tripulacion miTripulacion = null;
+				
+				if(filtro.equals("Todo")) {
+					miTripulacion = miAerolinea.getMisTripulaciones().get(posRegistro);
+				}else {
+					List<Tripulacion> misTripulaciones = miAerolinea.obtenerListadoFiltroTripulaciones(""+comboBox.getSelectedItem());
+					miTripulacion = misTripulaciones.get(posRegistro);
+				}
+				
+				miAerolinea.eliminarPorIdTripulacion(miTripulacion.getMiTripulacion().get("IdTripulacion"));
+				JOptionPane.showMessageDialog(null, "Tripulacion Correctamente Eliminada");
+			}
+			if(posOpcion == 1) {
+				Tripulante miTripulante = null;
+				
+				if(filtro.equals("Todo")) {
+					miTripulante = miAerolinea.getMisTripulantes().get(posRegistro);
+				}else {
+					List<Tripulante> misTripulantes = miAerolinea.obtenerListadoFiltroTripulantes(""+comboBox.getSelectedItem());
+					miTripulante = misTripulantes.get(posRegistro);	
+				}
+				
+				miAerolinea.eliminarPorIdTripulante(miTripulante.getAtributos().get("Identificacion"));
+				JOptionPane.showMessageDialog(null, "Tripulante Correctamente Eliminado");
+			}
+			
+			verRegistroFiltrado();
+			
+			posRegistro = -1;
+		}else {
+			JOptionPane.showMessageDialog(null, "seleccione un registro");
+		}
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == comboBox) {
 			filtro = String.valueOf(comboBox.getSelectedItem());
 			verRegistroFiltrado();
+		}
+		if(e.getSource() == btnEliminar) {
+			eliminar();
+		}
+		if(e.getSource() == btnCrear) {
+			System.out.println("En construccion");
+		}
+		if(e.getSource() == btnVolver) {
+			posRegistro = -1;
+			comboBox.setVisible(true);
+			verRegistroFiltrado();
+		}
+		if(e.getSource() == btnMasDetalles) {
+			verMasDetalles();
 		}
 	}
 	
