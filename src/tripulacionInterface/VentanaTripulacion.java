@@ -50,6 +50,11 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	private static final int LETRA = 14;
 	private static final int LETRA_BUTTON = 10;
 	private static final int ROW_HEIGHT = 35;
+	private JLabel lblPiloto;
+	private JLabel lblCopiloto;
+	private JLabel lblTipotripulacion;
+	private JLabel lblAuxiliar;
+	private JTable tablaTripulantesAgregados;
 	
 	public VentanaTripulacion() {
 		miAerolinea = new CaribeAirlines();
@@ -186,10 +191,11 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 				});
 		
 		scrollPaneRegistro = new JScrollPane();
-		scrollPaneRegistro.setBounds(X, Y, WIDTH, HEIGHT);
+		scrollPaneRegistro.setBounds(X, 65, WIDTH, HEIGHT);
 		scrollPaneRegistro.setViewportView(tableRegistro);
 		scrollPaneRegistro.setVisible(false);
 		contentPane.add(scrollPaneRegistro);
+		
 		
 		comboBox = new JComboBox();
 		comboBox.addActionListener(this);
@@ -200,6 +206,8 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	}
 	
 	public void verRegistroFiltrado() {
+		btnCrear.setVisible(true);
+		btnEliminar.setVisible(true);
 		btnMasDetalles.setVisible(true);
 		btnVolver.setVisible(false);
 		
@@ -226,9 +234,14 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			}
 		}
 		
-		DefaultTableModel modeloRegistro = (DefaultTableModel)tableRegistro.getModel(); 
-		modeloRegistro.setRowCount(datos.length);
-		modeloRegistro.setColumnCount(datos[0].length);
+		try {
+			DefaultTableModel modeloRegistro = (DefaultTableModel)tableRegistro.getModel(); 
+			modeloRegistro.setRowCount(datos.length);
+			modeloRegistro.setColumnCount(datos[0].length);
+		} catch (Exception e) {
+			System.out.println("Tabla vacia");
+		}
+		
 		
 		for (int i = 0; i < tableRegistro.getRowCount(); i++) {
 			for (int j = 0; j < tableRegistro.getColumnCount(); j++) {
@@ -241,6 +254,8 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		if(posRegistro != -1) {
 			comboBox.setVisible(false);
 			btnMasDetalles.setVisible(false);
+			btnEliminar.setVisible(false);
+			btnCrear.setVisible(false);
 			btnVolver.setVisible(true);
 			
 			tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Detalles", "Informacion"}));
@@ -285,6 +300,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			JOptionPane.showMessageDialog(null, "seleccione un registro");
 		}
 	}
+	
 	public void eliminar() {
 		if(posRegistro != -1) {
 			
@@ -323,6 +339,88 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	public void crearTripulacion() {
+		btnEliminar.setVisible(false);
+		btnMasDetalles.setVisible(false);
+		comboBox.setVisible(false);
+		scrollPaneRegistro.setVisible(false);
+
+		lblTipotripulacion = new JLabel("TipoTripulacion");
+		lblTipotripulacion.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblTipotripulacion.setBounds(10, 105, 120, 21);
+		contentPane.add(lblTipotripulacion);
+
+		lblPiloto = new JLabel("Piloto");
+		lblPiloto.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblPiloto.setBounds(10, 137, 120, 21);
+		contentPane.add(lblPiloto);
+		
+		lblCopiloto = new JLabel("Copiloto");
+		lblCopiloto.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblCopiloto.setBounds(10, 169, 120, 21);
+		contentPane.add(lblCopiloto);
+		
+		lblAuxiliar = new JLabel("Auxiliar");
+		lblAuxiliar.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblAuxiliar.setBounds(10, 201, 120, 21);
+		contentPane.add(lblAuxiliar);
+		
+		JButton btnTipoTripulacion = new JButton("Agg");
+		btnTipoTripulacion.addActionListener(this);
+		btnTipoTripulacion.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnTipoTripulacion.setBounds(313, 104, 51, 23);
+		contentPane.add(btnTipoTripulacion);
+		
+		JButton btnPiloto = new JButton("Agg");
+		btnPiloto.addActionListener(this);
+		btnPiloto.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnPiloto.setBounds(313, 139, 51, 23);
+		contentPane.add(btnPiloto);
+		
+		JButton btnCopiloto = new JButton("Agg");
+		btnCopiloto.addActionListener(this);
+		btnCopiloto.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnCopiloto.setBounds(313, 168, 51, 23);
+		contentPane.add(btnCopiloto);
+		
+		JButton btnAuxiliar = new JButton("Agg");
+		btnAuxiliar.addActionListener(this);
+		btnAuxiliar.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnAuxiliar.setBounds(313, 200, 51, 23);
+		contentPane.add(btnAuxiliar);
+		
+		JComboBox comboBoxTipoTripulacion = new JComboBox();
+		comboBoxTipoTripulacion.addActionListener(this);
+		comboBoxTipoTripulacion.setBounds(131, 105, 172, 21);
+		contentPane.add(comboBoxTipoTripulacion);
+		
+		JComboBox comboBoxPiloto = new JComboBox();
+		comboBoxPiloto.addActionListener(this);
+		comboBoxPiloto.setBounds(131, 139, 172, 21);
+		contentPane.add(comboBoxPiloto);
+		
+		JComboBox comboBoxCopiloto = new JComboBox();
+		comboBoxCopiloto.addActionListener(this);
+		comboBoxCopiloto.setBounds(131, 171, 172, 20);
+		contentPane.add(comboBoxCopiloto);
+		
+		JComboBox comboBoxAuxiliar = new JComboBox();
+		comboBoxAuxiliar.addActionListener(this);
+		comboBoxAuxiliar.setBounds(131, 203, 172, 20);
+		contentPane.add(comboBoxAuxiliar);
+		
+		tablaTripulantesAgregados = new JTable();
+		tablaTripulantesAgregados.setBounds(10, 234, 354, 235);
+		contentPane.add(tablaTripulantesAgregados);
+	}
+	
+	public void crearTripulante() {
+		btnEliminar.setVisible(false);
+		btnMasDetalles.setVisible(false);
+		comboBox.setVisible(false);
+		scrollPaneRegistro.setVisible(false);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == comboBox) {
 			filtro = String.valueOf(comboBox.getSelectedItem());
@@ -332,18 +430,21 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			eliminar();
 		}
 		if(e.getSource() == btnCrear) {
-			System.out.println("En construccion");
+			if(posOpcion == 0) {
+				crearTripulacion();
+			}else {
+				crearTripulante();
+			}
+		}
+		if(e.getSource() == btnMasDetalles) {
+			verMasDetalles();
 		}
 		if(e.getSource() == btnVolver) {
 			posRegistro = -1;
 			comboBox.setVisible(true);
 			verRegistroFiltrado();
 		}
-		if(e.getSource() == btnMasDetalles) {
-			verMasDetalles();
-		}
 	}
-	
 	
 	public void obtenerPosOpcion(int pos) {
 		posOpcion = pos;
