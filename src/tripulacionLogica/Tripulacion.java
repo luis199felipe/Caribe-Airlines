@@ -26,10 +26,6 @@ public class Tripulacion implements Serializable{
 	}
 	
 	//Methods
-	public String tipoRuta() {
-		String tipoRuta = miRuta.getAtributos().get("Tipo");
-		return tipoRuta;
-	}
 	
 	public String cadenaAuxiliares() {
 		String mostrar = "";
@@ -38,6 +34,15 @@ public class Tripulacion implements Serializable{
 		}
 		return mostrar;
 	}
+	public String toStringAuxiliares() {
+		String cadena = "<html>";
+		for (int i = 0; i < auxiliares.size(); i++) {
+			cadena += auxiliares.get(i).getAtributos().get("Nombre")+"<br>";
+		}
+		cadena += "</html>";
+		return cadena;
+	}
+
 	//Getters & Setters
 	public HashMap<String, String> getMiTripulacion() {
 		return miTripulacion;

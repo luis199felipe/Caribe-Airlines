@@ -35,6 +35,7 @@ public class CaribeAirlines {
 		misVuelos = new ArrayList<>();
 		misRutas = new ArrayList<>();
 		Origen creaciones = new Origen(this);
+		
 		creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
 		
 		creaciones.crearMisTipoAeronave();//SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
@@ -50,6 +51,31 @@ public class CaribeAirlines {
 	
 	//Metodos Aeronaves
 	
+	public String[][] filtrarTripulante(String cargo) {
+		String[][] tabla = new String [0][3];
+		for (int i = 0; i < misTripulantes.size(); i++) {
+			if(misTripulantes.get(i).getAtributos().get("Cargo").equals(cargo)) {
+				tabla[i][0] = misTripulantes.get(i).getAtributos().get("Nombre");
+				tabla[i][1] = misTripulantes.get(i).getAtributos().get("Identificacion");
+				tabla[i][2] = misTripulantes.get(i).getAtributos().get("Cargo");
+			}
+		}
+		return tabla;
+	}
+	
+	public String[][] filtrarTripulacion(String tipoVuelo) {
+		String tipo = "cc";
+		String[][] tabla = new String [misTripulaciones.size()][3];
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			if("Internacional".equals(tipoVuelo)) {
+				tabla[i][0] = misTripulaciones.get(i).getPiloto().getAtributos().get("Nombre");
+				tabla[i][1] = misTripulaciones.get(i).getCopiloto().getAtributos().get("Nombre");
+				tabla[i][2] = misTripulaciones.get(i).toStringAuxiliares();
+			}
+		}
+		return tabla;
+	}
+	
 	public List<Aeronave> ordenarFlotaPorTipoAeronave(int tipoAeronave){
 		List<Aeronave> flota = new ArrayList<>();
 		String idTipoAeronave = "";
@@ -63,56 +89,49 @@ public class CaribeAirlines {
 			System.out.println("ERROR, metodo ordenar flota por tipo aeronave");
 		}
 		for (int i = 0; i < misAeronaves.size(); i++) {
-			if(misAeronaves.get(i).getTipoAeronave().getAtributos().get("idTipoAeronave").equals(idTipoAeronave)) {
+			if(misAeronaves.get(i).getTipoAeronave().getAtributos().get("IdTipoAeronave").equals(idTipoAeronave)) {
 				flota.add(misAeronaves.get(i));
 			}
 		}
 		return flota;
 	}
 	
+	public String[][] llenarTablaDeDatosTripulaciones() {
+		String[][] tabla = new String [misTripulaciones.size()][3];
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			tabla[i][0] = misTripulaciones.get(i).getPiloto().getAtributos().get("Nombre");
+			tabla[i][1] = misTripulaciones.get(i).getCopiloto().getAtributos().get("Nombre");
+			tabla[i][2] = misTripulaciones.get(i).toStringAuxiliares();
+			}
+		return tabla;
+	}
+	
+	public String[][] llenarTablaDeDatosTripulantes() {
+		String[][] tabla = new String [misTripulantes.size()][3];
+		for (int i = 0; i < misTripulantes.size(); i++) {
+			tabla[i][0] = misTripulantes.get(i).getAtributos().get("Nombre");
+			tabla[i][1] = misTripulantes.get(i).getAtributos().get("Identificacion");
+			tabla[i][2] = misTripulantes.get(i).getAtributos().get("Cargo");
+			}
+		return tabla;
+	}
+	
 	public String[][] llenarTablaDeDatosAeronave(int opcion) {
-		int filas = misAeronaves.get(0).getTipoAeronave().getAtributos().size();
+		HashMap<String, Object> datos = misTipoAeronave.get(opcion).getAtributos();
+		int filas = datos.size();
 		String[][] tabla = new String[filas][2];
-		
-		switch (opcion) {
-		case 0:
-			HashMap<String, Object> airbus_A320 = misTipoAeronave.get(0).getAtributos();
-			int i = 0;
-			for (Iterator it = airbus_A320.keySet().iterator(); it.hasNext();) {
-				tabla[i][0] = (String)it.next();//key
-				tabla[i][1] = (String)airbus_A320.get(tabla[i][0]);//value
-				i++;
+		int i = 0;
+		for (Iterator it = datos.keySet().iterator(); it.hasNext();) {
+			tabla[i][0] = (String)it.next();//key
+			tabla[i][1] = (String)datos.get(tabla[i][0]);//value
+			i++;
 			}
-			break;
-		case 1:
-			HashMap<String, Object> airbus_A330 = misTipoAeronave.get(1).getAtributos();
-			int j = 0;
-			for (Iterator it = airbus_A330.keySet().iterator(); it.hasNext();) {
-				tabla[j][0] = (String)it.next();//key
-				tabla[j][1] = (String)airbus_A330.get(tabla[j][0]);//value
-				j++;
-			}
-			break;
-		case 2:
-			HashMap<String, Object> boeing_787 = misTipoAeronave.get(2).getAtributos();
-			int k = 0;
-			for (Iterator it = boeing_787.keySet().iterator(); it.hasNext();) {
-				tabla[k][0] = (String)it.next();//key
-				tabla[k][1] = (String)boeing_787.get(tabla[k][0]);//value
-				k++;
-			}
-			break;
-
-		default:
-			break;
-		}
 		return tabla;
 	}
 	
 	public String[][] llenarTablaDeMasDetalles (Vuelo miVuelo){
 		int row = miVuelo.getAtributos().size() + miVuelo.getMiRuta().getAtributos().size() 
 				+ miVuelo.getMiTripulacion().getAuxiliares().size() + 2;
-		System.out.println(row);
 		String[][] datos = new String[row][2];
 		int i = 0;
 		for (Iterator it = miVuelo.getAtributos().keySet().iterator(); it.hasNext();) {

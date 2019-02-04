@@ -49,12 +49,11 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 	
 	private static final int X = 10;
 	private static final int Y = 65;
-	private static final int WIDTH = 314;
+	private static final int WIDTH = 354;
 	private static final int HEIGHT = 405;
 	private static final int LETRA = 14;
+	private static final int LETRA_BUTTON = 10;
 	private static final int ROW_HEIGHT = 35;
-
-	
 
 	public VentanaAeronave() {
 		miAerolinea = new CaribeAirlines();
@@ -67,7 +66,7 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 		posVuelo = -1;
 		
 		setTitle("Aeronaves");
-		setBounds(0, 0, 350, 550);
+		setBounds(0, 0, 390, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -78,7 +77,7 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 		tableAeronaves.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tableAeronaves.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		tableAeronaves.setRowHeight(23);
-		tableAeronaves.setBounds(10, 11, 314, 21);
+		tableAeronaves.setBounds(X, 11, WIDTH, 21);
 		tableAeronaves.addMouseListener(
 				new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {
@@ -114,6 +113,7 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 							}
 						}
 						
+						tableDatos.setVisible(true);
 						lblTitulo.setText(datos[3][1] + " " + datos[5][1]);
 					
 					}
@@ -136,22 +136,22 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 		btnSillas = new JButton("Ver Sillas");
 		btnSillas.addActionListener(this);
 		btnSillas.setVisible(false);
-		btnSillas.setFont(new Font("Tahoma", Font.BOLD, 9));
-		btnSillas.setBounds(210, 477, 114, 23);
+		btnSillas.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnSillas.setBounds(250, 477, 114, 23);
 		contentPane.add(btnSillas);
 		
 		btnFlota = new JButton("Ver Flota");
 		btnFlota.addActionListener(this);
 		btnFlota.setVisible(false);
-		btnFlota.setFont(new Font("Tahoma", Font.BOLD, 9));
+		btnFlota.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
 		btnFlota.setBounds(10, 477, 114, 23);
 		contentPane.add(btnFlota);
 
 		btnMasDetalles = new JButton("mas Detalles");
 		btnMasDetalles.addActionListener(this);
 		btnMasDetalles.setVisible(false);
-		btnMasDetalles.setBounds(210, 443, 114, 23);
-		btnMasDetalles.setFont(new Font("Tahoma", Font.BOLD, 9));
+		btnMasDetalles.setBounds(250, 443, 114, 23);
+		btnMasDetalles.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
 		contentPane.add(btnMasDetalles);
 		
 		lblTitulo = new JLabel("");
@@ -164,11 +164,12 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 		tableDatos.setBounds(X, Y, WIDTH, HEIGHT);
 		tableDatos.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		tableDatos.setBorder(null);
+		tableDatos.setVisible(false);
 		tableDatos.setEnabled(false);
 		tableDatos.setShowGrid(false);
 		tableDatos.setRowHeight(HEIGHT/misAeronaves.get(0).getTipoAeronave().getAtributos().size());
-		tableDatos.getColumnModel().getColumn(0).setPreferredWidth(120);
-		tableDatos.getColumnModel().getColumn(1).setPreferredWidth(170);
+		tableDatos.getColumnModel().getColumn(0).setPreferredWidth(130);
+		tableDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
 		contentPane.add(tableDatos);
 		
 	}
@@ -181,7 +182,8 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 				btnMasDetalles.setVisible(false);
 			}
 			
-			Vuelo miVuelo = miAerolinea.getMisAeronaves().get(posAeronave).getRegistro().get(posVuelo);
+			List<Aeronave> miFlota = miAerolinea.ordenarFlotaPorTipoAeronave(posTipoAerolinea);
+			Vuelo miVuelo = miFlota.get(posAeronave).getRegistro().get(posVuelo);
 			String[][] datos = miAerolinea.llenarTablaDeMasDetalles(miVuelo);
 			
 			tableMasDetalles = new JTable();
@@ -191,8 +193,6 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 			tableMasDetalles.setEnabled(false);
 			tableMasDetalles.setShowGrid(true);
 			tableMasDetalles.setRowHeight(ROW_HEIGHT);
-			tableMasDetalles.getColumnModel().getColumn(0).setPreferredWidth(120);
-			tableMasDetalles.getColumnModel().getColumn(1).setPreferredWidth(170);
 			
 			for (int i = 0; i < tableMasDetalles.getRowCount(); i++) {
 				for (int j = 0; j < tableMasDetalles.getColumnCount(); j++) {
@@ -448,4 +448,5 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 	public void obtenerPosAveronave(int pos) {
 		posAeronave = pos;
 	}
+
 }

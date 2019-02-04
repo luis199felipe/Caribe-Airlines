@@ -13,7 +13,7 @@ public class TipoAeronave implements Serializable{
 			String capacidadAsientos, DistribucionSillas ubicacionSillas) {
 		
 		atributos = new HashMap<>();
-		atributos.put("idTipoAeronave", idTipoAeronave);
+		atributos.put("IdTipoAeronave", idTipoAeronave);
 		atributos.put("TipoVuelo", tipoVuelo);
 		atributos.put("Marca", marca);
 		atributos.put("Linea", linea);

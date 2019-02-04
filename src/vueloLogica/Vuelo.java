@@ -19,7 +19,7 @@ public class Vuelo implements Serializable{
 		atributos.put("Fecha", fecha);
 		atributos.put("HoraSalida", horaSalida);
 		atributos.put("HoraLLegada", encontrarHoraLlegada(horaSalida, miRuta.getAtributos().get("Duracion")));
-		atributos.put("Alistamiento(H)", tiempoAlistamiento);
+		atributos.put("Alistamiento(Horas)", tiempoAlistamiento);
 		
 		this.miRuta = miRuta;
 		this.miTripulacion = miTripulacion;

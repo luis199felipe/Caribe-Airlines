@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import aeronaveInterface.VentanaAeronave;
 import mundo.CaribeAirlines;
+import tripulacionInterface.VentanaTripulacion;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -29,17 +30,20 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public VentanaPrincipal() {
+		setTitle("Caribe Airlines");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 589);
+		setBounds(0, 0, 800, 589);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JInternalFrame aeronave= new VentanaAeronave();
-		aeronave.setVisible(true);
-		JPanel panel = new JPanel();
-		panel.setBounds(35, 11, 231, 239);
-		contentPane.add(aeronave);
+		JInternalFrame ventanaAeronave = new VentanaAeronave();
+		ventanaAeronave.setVisible(true);
+		contentPane.add(ventanaAeronave);
+		
+		JInternalFrame ventanaTripulacion = new VentanaTripulacion();
+		ventanaTripulacion.setVisible(true);
+		contentPane.add(ventanaTripulacion);
 	}
 }
