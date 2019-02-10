@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import VentaLogica.Cliente;
 import aeronaveData.DatosAeronave;
 import aeronaveInterface.VentanaAeronave;
 import aeronaveLogica.Aeronave;
@@ -25,6 +26,7 @@ public class CaribeAirlines {
 	private List<Ruta> misRutas;
 	private List<Tripulacion> misTripulaciones;
 	private List<Tripulante> misTripulantes;
+	private List<Cliente> misClientes;
 	
 	//Constructor
 	public CaribeAirlines() {
@@ -34,6 +36,7 @@ public class CaribeAirlines {
 		misTripulaciones = new ArrayList<>();
 		misVuelos = new ArrayList<>();
 		misRutas = new ArrayList<>();
+		misClientes = new ArrayList<>();
 		Origen creaciones = new Origen(this);
 		
 		creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
@@ -47,8 +50,18 @@ public class CaribeAirlines {
 		creaciones.crearMisVuelos();
 		
 		creaciones.RegistroVuelos();
+		
+		creaciones.crearMisClientes();
 	}
 	
+	public List<Cliente> getMisClientes() {
+		return misClientes;
+	}
+
+	public void setMisClientes(List<Cliente> misClientes) {
+		this.misClientes = misClientes;
+	}
+
 	//Metodos Aeronaves
 	public void eliminarPorIdTripulante (String identificacion){
 		List<Tripulante> misNuevosTripulantes = new ArrayList<>();
@@ -315,5 +328,23 @@ public class CaribeAirlines {
 	}
 	public void setMisVuelos(List<Vuelo> misVuelos) {
 		this.misVuelos = misVuelos;
+	}
+
+	public Cliente getClienteID(String text) {
+		Iterator it = misClientes.iterator();
+		
+		while (it.hasNext()) {
+			Cliente c =  (Cliente) it.next();
+			if (c.getIdentificacion().equals(text)) {
+				return c;
+			}
+		}		
+		return null;
+	}
+
+	public void agregarCliente(Cliente c) {
+		System.out.println("Lo agrego"+misClientes.size());
+		System.out.println(c.getIdentificacion());
+		misClientes.add(c);		
 	}
 }

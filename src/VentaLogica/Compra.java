@@ -14,18 +14,23 @@ public class Compra {
 
 	private double idCompra;
 	private String tipoClase;
-	private double valor;
-	private double subtotal;
 	private double total;
-	private Calendar fechaSalida;
-	private Calendar fechaIngreso;
-	
+	private String fechaSalida;
+	private String fechaIngreso;
+	private CaribeAirlines aerolinea;
+	private String idMiCliente;
 	private List<Ruta> misRutas;
 	
 	
 	public Compra() {//Aqui la aerolinea se recibe por parametro. Por ahora creo uno para no entrar a editar la interfaz principal.
-		CaribeAirlines aerolinea = new CaribeAirlines();
+		aerolinea = new CaribeAirlines();
 		misRutas = aerolinea.getMisRutas();
+	}
+	
+	
+	public Cliente getCliente(String text) {
+		return aerolinea.getClienteID(text);
+		
 	}
 	
 	
@@ -54,11 +59,9 @@ public class Compra {
 
 	
 
-	public Compra(String tipoClase, double valor, double subtotal, double total, Calendar fechaSalida,
-			Calendar fechaIngreso) {
+	public Compra(String tipoClase, double total, String fechaSalida,
+			String fechaIngreso) {
 		this.tipoClase = tipoClase;
-		this.valor = valor;
-		this.subtotal = subtotal;
 		this.total = total;
 		this.fechaSalida = fechaSalida;
 		this.fechaIngreso = fechaIngreso;
@@ -71,23 +74,7 @@ public class Compra {
 	public void setTipoClase(String tipoClase) {
 		this.tipoClase = tipoClase;
 	}
-
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
-	public double getSubtotal() {
-		return subtotal;
-	}
-
-	public void setSubtotal(double subtotal) {
-		this.subtotal = subtotal;
-	}
-
+	
 	public double getTotal() {
 		return total;
 	}
@@ -96,24 +83,25 @@ public class Compra {
 		this.total = total;
 	}
 
-	public Calendar getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Calendar fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
-	public Calendar getFechaIngreso() {
+	public String getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(Calendar fechaIngreso) {
+	public void setFechaIngreso(String fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
-
-
 	
+	public void agregraCliente(Cliente c) {
+		aerolinea.agregarCliente(c);
+	}
 
 
 }

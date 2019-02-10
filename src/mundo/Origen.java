@@ -3,6 +3,7 @@ package mundo;
 import java.util.ArrayList;
 import java.util.List;
 
+import VentaLogica.Cliente;
 import aeronaveData.DatosAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
@@ -113,10 +114,10 @@ public class Origen {
 		
 		List<Tripulante> misTripulantes = new ArrayList<>();
 		
-		Tripulante tripulante01 = new Tripulante("piloto", "41897", "Carlos Trejos", "<html>Barrio Bosques<br>calle 02 casa 05</html>", "carlost@gmail.com", "03/10/1975", "Curso de aviación");
-		Tripulante tripulante02 = new Tripulante("piloto", "51567", "Jhon Castañeda", "<html>Barrio Paz<br>calle 04 casa 51</html>", "jhonc@gmail.com", "13/06/1973", "Curso de aviación");
-		Tripulante tripulante03 = new Tripulante("copiloto", "78499", "Jorge Montes", "<html>Barrio Real<br>calle 08 casa 21</html>", "jorgem@gmail.com", "24/06/1984", "Curso de aviación");
-		Tripulante tripulante04 = new Tripulante("copiloto", "82355", "Luis Jimenez", "<html>Barrio Rojas<br>calle 05 casa 03</html>", "luisj@gmail.com", "09/04/1985", "Curso de aviación");
+		Tripulante tripulante01 = new Tripulante("piloto", "41897", "Carlos Trejos", "<html>Barrio Bosques<br>calle 02 casa 05</html>", "carlost@gmail.com", "03/10/1975", "Curso de aviaciï¿½n");
+		Tripulante tripulante02 = new Tripulante("piloto", "51567", "Jhon Castaï¿½eda", "<html>Barrio Paz<br>calle 04 casa 51</html>", "jhonc@gmail.com", "13/06/1973", "Curso de aviaciï¿½n");
+		Tripulante tripulante03 = new Tripulante("copiloto", "78499", "Jorge Montes", "<html>Barrio Real<br>calle 08 casa 21</html>", "jorgem@gmail.com", "24/06/1984", "Curso de aviaciï¿½n");
+		Tripulante tripulante04 = new Tripulante("copiloto", "82355", "Luis Jimenez", "<html>Barrio Rojas<br>calle 05 casa 03</html>", "luisj@gmail.com", "09/04/1985", "Curso de aviaciï¿½n");
 		Tripulante tripulante05 = new Tripulante("auxiliar", "26707", "Luisa Belen", "<html>Barrio Randal<br>calle 01 casa 12</html>", "luisab@gmail.com", "22/02/1990", "Curso de azafata");
 		Tripulante tripulante06 = new Tripulante("auxiliar", "90131", "Maria Rosales", "<html>Barrio Proveer<br>calle 08 casa 01</html>", "mariar@gmail.com", "12/05/1993", "Curso de azafata");
 		Tripulante tripulante07 = new Tripulante("auxiliar", "82336", "Veronica Ruiz", "<html>Barrio Pinos<br>calle 02 casa 10</html>", "veronicar@gmail.com", "01/08/1987", "Curso de azafata");
@@ -253,6 +254,31 @@ public class Origen {
 		
 		
 		aerolinea.setMisAeronaves(misAeronaves);
-	
 	}
+	
+	public void crearMisClientes() {
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		Cliente c1 = new Cliente("12345678", "Andres", "Garcia", "Mz 20 # 10", "andres@gmail.com", "14/12/1990");
+		Cliente c2 = new Cliente("1234132342", "Julio", "Padilla", "Torre Alhambra", "julio@gmail.com", "10/10/1989");
+		Cliente c3 = new Cliente("679567956", "Juan", "Ariza", "Armenia", "ja@gmail.com", "29/11/1993");
+		Cliente c4 = new Cliente("568456755", "Fernando", "Cortazar", "Cali", "fercor@gmail.com", "01/09/1970");
+		Cliente c5 = new Cliente("434566342", "Angela", "Rios", "BogotÃ¡", "angela@gmail.com", "12/12/1976");
+		Cliente c6 = new Cliente("345645684", "Luis", "Ramirez", "Cra 25 # 2 1", "luis@gmail.com", "16/10/1999");
+		Cliente c7 = new Cliente("547563468", "Santiago", "Gonzales", "Tolima", "santi@gmail.com", "13/05/1990");
+		Cliente c8 = new Cliente("54763425", "Jorge", "Arias", "BogotÃ¡", "jorAr@gmail.com", "04/02/1960");
+		Cliente c9 = new Cliente("87654321", "Jhon", "Perez", "Pereira", "jperez@gmail.com", "17/12/1950");
+		
+		clientes.add(c1);
+		clientes.add(c2);
+		clientes.add(c3);
+		clientes.add(c4);
+		clientes.add(c5);
+		clientes.add(c6);
+		clientes.add(c7);
+		clientes.add(c8);
+		clientes.add(c9);
+		
+		aerolinea.setMisClientes(clientes);
+	}
+	
 }
