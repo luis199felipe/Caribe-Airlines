@@ -255,11 +255,21 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 		tableRegistro.addMouseListener(
 				new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {
+						for(int i = 0; i < tableRegistro.getRowCount(); i++) {
+							tableRegistro.setValueAt("", i, 0);
+						}
+						
 						int row = tableRegistro.rowAtPoint(e.getPoint());
 						obtenerPosRuta(row);
+						
+						DefaultTableCellRenderer alinear = new DefaultTableCellRenderer();
+						alinear.setHorizontalAlignment(SwingConstants.CENTER);//.LEFT .RIGHT .CENTER
+						
+						tableRegistro.getColumnModel().getColumn(0).setCellRenderer(alinear);
+						
+						tableRegistro.setValueAt("*", row, 0);
 					}
 				});
-		
 		scrollPaneRegistro = new JScrollPane();
 		scrollPaneRegistro.setBounds(X, Y+50, WIDTH, HEIGHT-50-30);
 		scrollPaneRegistro.setViewportView(tableRegistro);
@@ -296,7 +306,7 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 						
 						List<Vuelo> miRegistro = miFlota.get(posAeronave).getRegistro();
 						
-						tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"Fecha", "Origen", "Destino", "Duracion"}));
+						tableRegistro.setModel(new DefaultTableModel(new Object[][] {},new String[] {"","Fecha", "Origen", "Destino", "Duracion"}));
 						
 						DefaultTableModel modeloRegistro = (DefaultTableModel)tableRegistro.getModel(); 
 						modeloRegistro.setRowCount(miRegistro.size());
@@ -314,10 +324,12 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 						}
 						
 						for (int i = 0; i < tableRegistro.getRowCount(); i++) {
-							for (int j = 0; j < tableRegistro.getColumnCount(); j++) {
-								tableRegistro.setValueAt(datosMostrar.get(i).get(j), i, j);
+							for (int j = 1; j < tableRegistro.getColumnCount(); j++) {
+								tableRegistro.setValueAt(datosMostrar.get(i).get(j-1), i, j);
 							}
 						}
+						
+						tableRegistro.getColumnModel().getColumn(0).setPreferredWidth(18);
 						
 						lblRegistro.setText("Registro Rutas Aeronave " + miFlota.get(column).getMatricula());
 						
@@ -348,8 +360,8 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 			scrollPaneMasDetalles.setVisible(false);
 		}
 		
-		DistribucionSillas ubicacionSillas = miAerolinea.getMisAeronaves().get(posTipoAerolinea).getTipoAeronave().getUbicacionSillas();
-		
+		DistribucionSillas ubicacionSillas = miAerolinea.getMisTipoAeronave().get(posTipoAerolinea).getUbicacionSillas();
+		System.out.println(posTipoAerolinea);
 		String[][] sillasEjecutiva = ubicacionSillas.getDistribucionEjecutiva();
 		String[][] sillasEconomica = ubicacionSillas.getDistribucionEconomica();
 		
