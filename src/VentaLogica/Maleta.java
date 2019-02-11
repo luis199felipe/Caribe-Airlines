@@ -1,6 +1,7 @@
 package VentaLogica;
 
 public class Maleta {
+	private String miCompra;	
 	private String dimenciones;
 	private double peso;
 
