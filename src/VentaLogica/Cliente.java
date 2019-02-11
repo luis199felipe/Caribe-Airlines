@@ -7,7 +7,6 @@ public class Cliente {
 	private String direccion;
 	private String email;
 	private String fechaNacimiento;
-	private String dirección;
 	
 	
 	
@@ -57,11 +56,4 @@ public class Cliente {
 	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public String getDirección() {
-		return dirección;
-	}
-	public void setDirección(String dirección) {
-		this.dirección = dirección;
-	}
-	
 }
