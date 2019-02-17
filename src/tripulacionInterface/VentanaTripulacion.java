@@ -177,6 +177,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 				btnVolverTripulacion.setVisible(false);
 				
 				tablaTripulantesAgregados.setVisible(false);
+				scrollPaneTripulantesAgregados.setVisible(false);
 
 			}
 		});
@@ -296,25 +297,25 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnTipoTripulacion = new JButton("+");
 		btnTipoTripulacion.addActionListener(this);
 		btnTipoTripulacion.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
-		btnTipoTripulacion.setBounds(313, 65, 51, 23);
+		btnTipoTripulacion.setBounds(313, 65, 51, 21);
 		contentPane.add(btnTipoTripulacion);
 
 		btnPiloto = new JButton("+");
 		btnPiloto.addActionListener(this);
 		btnPiloto.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
-		btnPiloto.setBounds(313, 97, 51, 23);
+		btnPiloto.setBounds(313, 97, 51, 21);
 		contentPane.add(btnPiloto);
 
 		btnCopiloto = new JButton("+");
 		btnCopiloto.addActionListener(this);
 		btnCopiloto.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
-		btnCopiloto.setBounds(313, 129, 51, 23);
+		btnCopiloto.setBounds(313, 129, 51, 21);
 		contentPane.add(btnCopiloto);
 
 		btnAuxiliar = new JButton("+");
 		btnAuxiliar.addActionListener(this);
 		btnAuxiliar.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
-		btnAuxiliar.setBounds(313, 161, 51, 23);
+		btnAuxiliar.setBounds(313, 161, 51, 21);
 		contentPane.add(btnAuxiliar);
 
 		btnVolverTripulacion = new JButton("Volver");
@@ -356,10 +357,14 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		tablaTripulantesAgregados.setShowGrid(true);
 		tablaTripulantesAgregados.setRowHeight(ROW_HEIGHT);
 		
+		tablaTripulantesAgregados.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] {"Nombre", "Identificacion", "Cargo" }));
+		
+		
 		scrollPaneTripulantesAgregados = new JScrollPane();
-		scrollPaneTripulantesAgregados.setBounds(X, 65, WIDTH, 275);
+		scrollPaneTripulantesAgregados.setBounds(X, 192, WIDTH, 275);
 		scrollPaneTripulantesAgregados.setViewportView(tablaTripulantesAgregados);
-		contentPane.add(scrollPaneMasDetalles);
+		contentPane.add(scrollPaneTripulantesAgregados);
 
 		// Ver Registro
 
@@ -401,6 +406,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnVolverTripulacion.setVisible(false);
 
 		tablaTripulantesAgregados.setVisible(false);
+		scrollPaneTripulantesAgregados.setVisible(false);
 
 	}
 
@@ -496,6 +502,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnVolverTripulacion.setVisible(false);
 		
 		tablaTripulantesAgregados.setVisible(false);
+		scrollPaneTripulantesAgregados.setVisible(false);
 
 	}
 
@@ -582,6 +589,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			btnVolverTripulacion.setVisible(false);
 			
 			tablaTripulantesAgregados.setVisible(false);
+			scrollPaneTripulantesAgregados.setVisible(false);
 
 		} else {
 			JOptionPane.showMessageDialog(null, "seleccione un registro");
@@ -635,7 +643,6 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	public void crearTripulacion() {
 		
 		rowTablaCrearTripulacion = 0;
-		System.out.println(miTripulacionAgregada.size());
 		DefaultTableModel modeloRegistro = (DefaultTableModel) tablaTripulantesAgregados.getModel();
 		modeloRegistro.setColumnCount(3);
 		modeloRegistro.setRowCount(0);
@@ -676,15 +683,10 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		
 		btnTipoTripulacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if ((miTripulacionAgregada.size() > 0) && !comboBoxTipoTripulacion.getSelectedItem().equals("")) {
-					int n = JOptionPane.showConfirmDialog(null, "<html>Si cambia el tipo de tripulacion<br>"
-							+ "Los auxiliares se eliminaran de <br>" + "la tripulacion</html>");
-					System.out.println(n);
-					if (n == 0) {
-						miTripulacionAgregada.clear();
-					}
-				}
 				if (!comboBoxTipoTripulacion.getSelectedItem().equals("")) {
+					btnTipoTripulacion.setEnabled(false);
+					comboBoxTipoTripulacion.setEnabled(false);
+					
 					btnPiloto.setEnabled(true);
 					btnCopiloto.setEnabled(true);
 					btnAuxiliar.setEnabled(true);
@@ -705,7 +707,15 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnPiloto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tripulante miPiloto = null;
-				for (int i = 0; i < pilotos.size(); i++) {
+				int piloto = miAerolinea.contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion("piloto", miTripulacionAgregada);
+				if(piloto == 1) {
+					int respuesta = JOptionPane.showConfirmDialog(null, "Ya agrego un piloto\n¿Desea cambiarlo?");
+					if(respuesta == 0) {
+					// es mejor cambiar de list<tripulante> a Tripulacion
+					}
+				}
+				for (int i = 0; i < pilotos.size() && piloto == 0; i++) {
+					
 					if (pilotos.get(i).getAtributos().get("Nombre").equals(comboBoxPiloto.getSelectedItem())) {
 						miPiloto = pilotos.get(i);
 						miTripulacionAgregada.add(miPiloto);
@@ -714,6 +724,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 						tablaTripulantesAgregados.setValueAt(pilotos.get(i).getAtributos().get("Identificacion"), rowTablaCrearTripulacion, 1);
 						tablaTripulantesAgregados.setValueAt(pilotos.get(i).getAtributos().get("Cargo"), rowTablaCrearTripulacion, 2);
 						rowTablaCrearTripulacion++;
+						
 					}
 				}
 			}
@@ -795,6 +806,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnVolverTripulacion.setVisible(true);
 		
 		tablaTripulantesAgregados.setVisible(true);
+		scrollPaneTripulantesAgregados.setVisible(true);
 	}
 
 	public void crearTripulante() {

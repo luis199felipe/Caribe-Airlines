@@ -66,8 +66,15 @@ public class CaribeAirlines {
 	public void setMisClientes(List<Cliente> misClientes) {
 		this.misClientes = misClientes;
 	}
-
-	//Metodos Aeronaves
+	public int contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion(String cargo, List<Tripulante> miTripulacion) {
+		int j = 0;
+		for (int i = 0; i < miTripulacion.size(); i++) {
+			if(miTripulacion.get(i).getAtributos().get("Cargo").equalsIgnoreCase(cargo)) {
+				j++;
+			}
+		}
+		return j;
+	}
 	public void eliminarPorIdTripulante (String identificacion){
 		List<Tripulante> misNuevosTripulantes = new ArrayList<>();
 		for (int i = 0; i < misTripulantes.size(); i++) {
@@ -297,6 +304,12 @@ public class CaribeAirlines {
 		return datos;
 	}
 
+	public void agregarCliente(Cliente c) {
+		System.out.println("Lo agrego"+misClientes.size());
+		System.out.println(c.getIdentificacion());
+		misClientes.add(c);		
+	}
+
 	//Getter & Setter
 	public List<Aeronave> getMisAeronaves() {
 		return misAeronaves;
@@ -334,11 +347,9 @@ public class CaribeAirlines {
 	public void setMisVuelos(List<Vuelo> misVuelos) {
 		this.misVuelos = misVuelos;
 	}
-	
 	public void setMisTarjetas(List<Tarjeta> tarj) {
 		this.tarjetas = tarj;
 	}
-
 	public Cliente getClienteID(String text) {
 		Iterator it = misClientes.iterator();
 		
@@ -350,12 +361,4 @@ public class CaribeAirlines {
 		}		
 		return null;
 	}
-
-	public void agregarCliente(Cliente c) {
-		System.out.println("Lo agrego"+misClientes.size());
-		System.out.println(c.getIdentificacion());
-		misClientes.add(c);		
-	}
-
-	
 }

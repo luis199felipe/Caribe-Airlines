@@ -15,6 +15,7 @@ public class Tripulacion implements Serializable{
 	private List<Tripulante> auxiliares;
 	private List<Vuelo> misVuelos;
 	
+	
 	//Constructor
 	public Tripulacion(String idTripulacion, Tripulante piloto, Tripulante copiloto, List<Tripulante> auxiliares, String tipoTripulacion) {
 		
