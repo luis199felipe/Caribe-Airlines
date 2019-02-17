@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import VentaLogica.Cliente;
+import VentaLogica.Tarjeta;
 import aeronaveData.DatosAeronave;
 import aeronaveInterface.VentanaAeronave;
 import aeronaveLogica.Aeronave;
@@ -27,6 +28,7 @@ public class CaribeAirlines {
 	private List<Tripulacion> misTripulaciones;
 	private List<Tripulante> misTripulantes;
 	private List<Cliente> misClientes;
+	private List<Tarjeta> tarjetas;
 	
 	//Constructor
 	public CaribeAirlines() {
@@ -37,6 +39,9 @@ public class CaribeAirlines {
 		misVuelos = new ArrayList<>();
 		misRutas = new ArrayList<>();
 		misClientes = new ArrayList<>();
+		tarjetas = new ArrayList<Tarjeta>();
+		
+		
 		Origen creaciones = new Origen(this);
 		
 		creaciones.crearMisRutas(); //SOLO SE DEBE DE EJECUTAR UNA PRIMERA VEZ, ya que queda guardado en el archivo.txt
@@ -329,6 +334,10 @@ public class CaribeAirlines {
 	public void setMisVuelos(List<Vuelo> misVuelos) {
 		this.misVuelos = misVuelos;
 	}
+	
+	public void setMisTarjetas(List<Tarjeta> tarj) {
+		this.tarjetas = tarj;
+	}
 
 	public Cliente getClienteID(String text) {
 		Iterator it = misClientes.iterator();
@@ -347,4 +356,6 @@ public class CaribeAirlines {
 		System.out.println(c.getIdentificacion());
 		misClientes.add(c);		
 	}
+
+	
 }

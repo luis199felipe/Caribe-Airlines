@@ -4,104 +4,78 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import mundo.CaribeAirlines;
 import vueloLogica.Ruta;
-
+import vueloLogica.Vuelo;
 
 public class Compra {
 
-	private double idCompra;
-	private String tipoClase;
-	private double total;
-	private String fechaSalida;
-	private String fechaIngreso;
 	private CaribeAirlines aerolinea;
-	private String idMiCliente;
-	private List<Ruta> misRutas;
-	
-	
-	public Compra() {//Aqui la aerolinea se recibe por parametro. Por ahora creo uno para no entrar a editar la interfaz principal.
+	private Tiquete miTiquete;
+
+	public Compra() {// Aqui la aerolinea se recibe por parametro. Por ahora creo uno para no entrar
+						// a editar la interfaz principal.
 		aerolinea = new CaribeAirlines();
-		misRutas = aerolinea.getMisRutas();
+		miTiquete = new Tiquete();
 	}
-	
-	
+
 	public Cliente getCliente(String text) {
 		return aerolinea.getClienteID(text);
-		
-	}
-	
-	
-	public HashSet<String> getCiudades(){
-		HashSet<String> ciudades = new HashSet();
-		
-		for (int i = 0; i < misRutas.size(); i++) {
-			//System.out.println(misRutas.get(i).getAtributos().get("Destino"));
-			ciudades.add(misRutas.get(i).getAtributos().get("Destino"));
-		}
-		
-		return ciudades;	
-	}
-	
-	public List<String> getFechasDeCiudad(String ciudad) {
-		List<String> fechas = new ArrayList();
-		
-		for (int i = 0; i < misRutas.size(); i++) {
-			if (misRutas.get(i).getAtributos().get("Destino").equals(ciudad)) {
-				fechas.add(misRutas.get(i).getAtributos().get("Fecha")+"//"+misRutas.get(i).getAtributos().get("HoraSalida")+"//"+misRutas.get(i).getAtributos().get("HoraLLegada"));
-			}
-		}		
-		return fechas;
+
 	}
 
-
-	
-
-	public Compra(String tipoClase, double total, String fechaSalida,
-			String fechaIngreso) {
-		this.tipoClase = tipoClase;
-		this.total = total;
-		this.fechaSalida = fechaSalida;
-		this.fechaIngreso = fechaIngreso;
+	public CaribeAirlines getAerolinea() {
+		return aerolinea;
 	}
 
-	public String getTipoClase() {
-		return tipoClase;
+	public void setAerolinea(CaribeAirlines aerolinea) {
+		this.aerolinea = aerolinea;
 	}
 
-	public void setTipoClase(String tipoClase) {
-		this.tipoClase = tipoClase;
-	}
-	
-	public double getTotal() {
-		return total;
+	public Tiquete getMiTiquete() {
+		return miTiquete;
 	}
 
-	public void setTotal(double total) {
-		this.total = total;
+	public void setMiTiquete(Tiquete miTiquete) {
+		this.miTiquete = miTiquete;
 	}
 
-	public String getFechaSalida() {
-		return fechaSalida;
-	}
-
-	public void setFechaSalida(String fechaSalida) {
-		this.fechaSalida = fechaSalida;
-	}
-
-	public String getFechaIngreso() {
-		return fechaIngreso;
-	}
-
-	public void setFechaIngreso(String fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
-	
 	public void agregraCliente(Cliente c) {
 		aerolinea.agregarCliente(c);
 	}
 
+	public HashMap<String, String> verificarVuelo(String ciudadOrigen,String ciudadDestino, String fecha) {
+
+		List<Vuelo> vuelos = aerolinea.getMisVuelos();
+
+		Iterator<Vuelo> it = vuelos.iterator();
+
+		while (it.hasNext()) {
+			Vuelo vuelo = (Vuelo) it.next();
+			
+			
+			
+			String vueloFecha = vuelo.getAtributos().get("Fecha");
+			String vueloOrigen = vuelo.getMiRuta().getAtributos().get("Origen");
+			String vueloDestino = vuelo.getMiRuta().getAtributos().get("Destino");
+			boolean f= vueloFecha.equals(fecha);
+			boolean cO = vueloOrigen.equals(ciudadOrigen);
+			boolean cD= vueloDestino.equals(ciudadDestino);
+			
+			System.out.println(ciudadOrigen+" "+vueloOrigen+" - "+ciudadDestino+" "+vueloDestino+" - "+fecha+" "+vueloFecha);
+			
+			if ( f && cO && cO && cD ) {
+				return vuelo.getAtributos();
+			}
+		}
+
+		return null;
+
+	}
+
+	
 
 }

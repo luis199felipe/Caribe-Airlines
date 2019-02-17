@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import VentaLogica.Cliente;
+import VentaLogica.Tarjeta;
 import aeronaveData.DatosAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
@@ -87,15 +88,15 @@ public class Origen {
 		Vuelo vuelo01 = new Vuelo("01/01/2019", "06:00", "3", misRutas.get(0), misTripulaciones.get(0), misAeronaves.get(0));
 		Vuelo vuelo02 = new Vuelo("02/01/2019", "08:00", "3", misRutas.get(1), misTripulaciones.get(1), misAeronaves.get(1));
 		Vuelo vuelo03 = new Vuelo("03/01/2019", "23:30", "3", misRutas.get(2), misTripulaciones.get(2), misAeronaves.get(2));
-		Vuelo vuelo04 = new Vuelo("04/01/2019", "09:45", "3", misRutas.get(3), misTripulaciones.get(3), misAeronaves.get(3));
+		Vuelo vuelo04 = new Vuelo("16/02/2019", "09:45", "3", misRutas.get(3), misTripulaciones.get(3), misAeronaves.get(3));
 		Vuelo vuelo05 = new Vuelo("05/01/2019", "13:30", "3", misRutas.get(4), misTripulaciones.get(4), misAeronaves.get(4));
 		Vuelo vuelo06 = new Vuelo("06/01/2019", "14:45", "3", misRutas.get(5), misTripulaciones.get(5), misAeronaves.get(5));
 
 		Vuelo vuelo07 = new Vuelo("01/01/2019", "11:45", "3", misRutas.get(6), misTripulaciones.get(0), misAeronaves.get(0));
 		Vuelo vuelo08 = new Vuelo("02/01/2019", "14:12", "3", misRutas.get(7), misTripulaciones.get(1), misAeronaves.get(1));
 		Vuelo vuelo09 = new Vuelo("03/01/2019", "11:35", "3", misRutas.get(8), misTripulaciones.get(2), misAeronaves.get(2));
-		Vuelo vuelo10 = new Vuelo("04/01/2019", "16:10", "3", misRutas.get(9), misTripulaciones.get(3), misAeronaves.get(3));
-		Vuelo vuelo11 = new Vuelo("05/01/2019", "20:15", "3", misRutas.get(10), misTripulaciones.get(4), misAeronaves.get(4));
+		Vuelo vuelo10 = new Vuelo("19/02/2019", "16:10", "3", misRutas.get(9), misTripulaciones.get(3), misAeronaves.get(3));
+		Vuelo vuelo11 = new Vuelo("05/02/2019", "20:15", "3", misRutas.get(10), misTripulaciones.get(4), misAeronaves.get(4));
 		Vuelo vuelo12 = new Vuelo("06/01/2019", "20:40", "3", misRutas.get(11), misTripulaciones.get(5), misAeronaves.get(5));
 		
 		List<Vuelo> misVuelos = new ArrayList<>();
@@ -110,42 +111,7 @@ public class Origen {
 		aerolinea.setMisVuelos(misVuelos);
 	}
 
-	public void crearMisTripulantes() {
-		
-		List<Tripulante> misTripulantes = new ArrayList<>();
-		
-		Tripulante tripulante01 = new Tripulante("piloto", "41897", "Carlos Trejos", "<html>Barrio Bosques<br>calle 02 casa 05</html>", "carlost@gmail.com", "03/10/1975", "Curso de aviaci�n");
-		Tripulante tripulante02 = new Tripulante("piloto", "51567", "Jhon Casta�eda", "<html>Barrio Paz<br>calle 04 casa 51</html>", "jhonc@gmail.com", "13/06/1973", "Curso de aviaci�n");
-		Tripulante tripulante03 = new Tripulante("copiloto", "78499", "Jorge Montes", "<html>Barrio Real<br>calle 08 casa 21</html>", "jorgem@gmail.com", "24/06/1984", "Curso de aviaci�n");
-		Tripulante tripulante04 = new Tripulante("copiloto", "82355", "Luis Jimenez", "<html>Barrio Rojas<br>calle 05 casa 03</html>", "luisj@gmail.com", "09/04/1985", "Curso de aviaci�n");
-		Tripulante tripulante05 = new Tripulante("auxiliar", "26707", "Luisa Belen", "<html>Barrio Randal<br>calle 01 casa 12</html>", "luisab@gmail.com", "22/02/1990", "Curso de azafata");
-		Tripulante tripulante06 = new Tripulante("auxiliar", "90131", "Maria Rosales", "<html>Barrio Proveer<br>calle 08 casa 01</html>", "mariar@gmail.com", "12/05/1993", "Curso de azafata");
-		Tripulante tripulante07 = new Tripulante("auxiliar", "82336", "Veronica Ruiz", "<html>Barrio Pinos<br>calle 02 casa 10</html>", "veronicar@gmail.com", "01/08/1987", "Curso de azafata");
-		Tripulante tripulante08 = new Tripulante("auxiliar", "63247", "Valeria Mendoza", "<html>Barrio Prado<br>calle 23 casa 15</html>", "valentinam@gmail.com", "10/11/1991", "Curso de azafata");
-		Tripulante tripulante09 = new Tripulante("auxiliar", "10945", "Ana Maria Lopez", "<html>Barrio Calera<br>calle 23 casa 02</html>", "anamarial@gmail.com", "30/01/1989", "Curso de azafata");
-		Tripulante tripulante10 = new Tripulante("auxiliar", "86578", "Alejandra Viera", "<html>Barrio Renacer<br>calle 11 casa 14</html>", "alejandrav@gmail.com", "20/03/1982", "Curso de azafata");
-		Tripulante tripulante11 = new Tripulante("auxiliar", "13456", "Esperanza Loaiza", "<html>Barrio Cruzada<br>calle 20 casa 17</html>", "esperanzal@gmail.com", "29/07/1991", "Curso de azafata");
-		Tripulante tripulante12 = new Tripulante("auxiliar", "19832", "Amalia Vera", "<html>Barrio Primavera<br>calle 02 casa 12</html>", "amaliav@gmail.com", "15/07/1992", "Curso de azafata");
-		Tripulante tripulante13 = new Tripulante("auxiliar", "80931", "Mariana Ross", "<html>Barrio Sol<br>calle 08 casa 03</html>", "marianar@gmail.com", "01/06/1993", "Curso de azafata");
-		Tripulante tripulante14 = new Tripulante("auxiliar", "81498", "Linda Rojas", "<html>Barrio Boreal<br>calle 02 casa 18</html>", "lindar@gmail.com", "11/04/1987", "Curso de azafata");
-		Tripulante tripulante15 = new Tripulante("auxiliar", "63125", "Valery Espitia", "<html>Barrio Cocora<br>calle 12 casa 15</html>", "valerye@gmail.com", "16/01/1991", "Curso de azafata");
-		Tripulante tripulante16 = new Tripulante("auxiliar", "19868", "Ana Marcela Luz", "<html>Barrio Canada<br>calle 32 casa 12</html>", "anamarcelal@gmail.com", "08/09/1989", "Curso de azafata");
-		Tripulante tripulante17 = new Tripulante("auxiliar", "88653", "Alejandra Cortes", "<html>Barrio Villa<br>calle 15 casa 43</html>", "alejandrac@gmail.com", "02/07/1982", "Curso de azafata");
-		Tripulante tripulante18 = new Tripulante("auxiliar", "13646", "Lucia Tejada", "<html>Barrio Hore calle<br>25 casa 66</html>", "luciat@gmail.com", "30/12/1991", "Curso de azafata");
-
-		misTripulantes.add(tripulante01);	misTripulantes.add(tripulante02);
-		misTripulantes.add(tripulante03);	misTripulantes.add(tripulante04);
-		misTripulantes.add(tripulante05);	misTripulantes.add(tripulante06);
-		misTripulantes.add(tripulante07);	misTripulantes.add(tripulante08);
-		misTripulantes.add(tripulante09);	misTripulantes.add(tripulante10);
-		misTripulantes.add(tripulante11);	misTripulantes.add(tripulante12);
-		misTripulantes.add(tripulante13);	misTripulantes.add(tripulante14);
-		misTripulantes.add(tripulante15);	misTripulantes.add(tripulante16);
-		misTripulantes.add(tripulante17);	misTripulantes.add(tripulante18);
-		
-		aerolinea.setMisTripulantes(misTripulantes);
 	
-	}
 
 	public void crearMisTripulaciones() {
 		
@@ -256,6 +222,43 @@ public class Origen {
 		aerolinea.setMisAeronaves(misAeronaves);
 	}
 	
+public void crearMisTripulantes() {
+		
+		List<Tripulante> misTripulantes = new ArrayList<>();
+		
+		Tripulante tripulante01 = new Tripulante("piloto", "41897", "Carlos Trejos", "<html>Barrio Bosques<br>calle 02 casa 05</html>", "carlost@gmail.com", "03/10/1975", "Curso de aviaci�n");
+		Tripulante tripulante02 = new Tripulante("piloto", "51567", "Jhon Castaneda", "<html>Barrio Paz<br>calle 04 casa 51</html>", "jhonc@gmail.com", "13/06/1973", "Curso de aviaci�n");
+		Tripulante tripulante03 = new Tripulante("copiloto", "78499", "Jorge Montes", "<html>Barrio Real<br>calle 08 casa 21</html>", "jorgem@gmail.com", "24/06/1984", "Curso de aviaci�n");
+		Tripulante tripulante04 = new Tripulante("copiloto", "82355", "Luis Jimenez", "<html>Barrio Rojas<br>calle 05 casa 03</html>", "luisj@gmail.com", "09/04/1985", "Curso de aviaci�n");
+		Tripulante tripulante05 = new Tripulante("auxiliar", "26707", "Luisa Belen", "<html>Barrio Randal<br>calle 01 casa 12</html>", "luisab@gmail.com", "22/02/1990", "Curso de azafata");
+		Tripulante tripulante06 = new Tripulante("auxiliar", "90131", "Maria Rosales", "<html>Barrio Proveer<br>calle 08 casa 01</html>", "mariar@gmail.com", "12/05/1993", "Curso de azafata");
+		Tripulante tripulante07 = new Tripulante("auxiliar", "82336", "Veronica Ruiz", "<html>Barrio Pinos<br>calle 02 casa 10</html>", "veronicar@gmail.com", "01/08/1987", "Curso de azafata");
+		Tripulante tripulante08 = new Tripulante("auxiliar", "63247", "Valeria Mendoza", "<html>Barrio Prado<br>calle 23 casa 15</html>", "valentinam@gmail.com", "10/11/1991", "Curso de azafata");
+		Tripulante tripulante09 = new Tripulante("auxiliar", "10945", "Ana Maria Lopez", "<html>Barrio Calera<br>calle 23 casa 02</html>", "anamarial@gmail.com", "30/01/1989", "Curso de azafata");
+		Tripulante tripulante10 = new Tripulante("auxiliar", "86578", "Alejandra Viera", "<html>Barrio Renacer<br>calle 11 casa 14</html>", "alejandrav@gmail.com", "20/03/1982", "Curso de azafata");
+		Tripulante tripulante11 = new Tripulante("auxiliar", "13456", "Esperanza Loaiza", "<html>Barrio Cruzada<br>calle 20 casa 17</html>", "esperanzal@gmail.com", "29/07/1991", "Curso de azafata");
+		Tripulante tripulante12 = new Tripulante("auxiliar", "19832", "Amalia Vera", "<html>Barrio Primavera<br>calle 02 casa 12</html>", "amaliav@gmail.com", "15/07/1992", "Curso de azafata");
+		Tripulante tripulante13 = new Tripulante("auxiliar", "80931", "Mariana Ross", "<html>Barrio Sol<br>calle 08 casa 03</html>", "marianar@gmail.com", "01/06/1993", "Curso de azafata");
+		Tripulante tripulante14 = new Tripulante("auxiliar", "81498", "Linda Rojas", "<html>Barrio Boreal<br>calle 02 casa 18</html>", "lindar@gmail.com", "11/04/1987", "Curso de azafata");
+		Tripulante tripulante15 = new Tripulante("auxiliar", "63125", "Valery Espitia", "<html>Barrio Cocora<br>calle 12 casa 15</html>", "valerye@gmail.com", "16/01/1991", "Curso de azafata");
+		Tripulante tripulante16 = new Tripulante("auxiliar", "19868", "Ana Marcela Luz", "<html>Barrio Canada<br>calle 32 casa 12</html>", "anamarcelal@gmail.com", "08/09/1989", "Curso de azafata");
+		Tripulante tripulante17 = new Tripulante("auxiliar", "88653", "Alejandra Cortes", "<html>Barrio Villa<br>calle 15 casa 43</html>", "alejandrac@gmail.com", "02/07/1982", "Curso de azafata");
+		Tripulante tripulante18 = new Tripulante("auxiliar", "13646", "Lucia Tejada", "<html>Barrio Hore calle<br>25 casa 66</html>", "luciat@gmail.com", "30/12/1991", "Curso de azafata");
+
+		misTripulantes.add(tripulante01);	misTripulantes.add(tripulante02);
+		misTripulantes.add(tripulante03);	misTripulantes.add(tripulante04);
+		misTripulantes.add(tripulante05);	misTripulantes.add(tripulante06);
+		misTripulantes.add(tripulante07);	misTripulantes.add(tripulante08);
+		misTripulantes.add(tripulante09);	misTripulantes.add(tripulante10);
+		misTripulantes.add(tripulante11);	misTripulantes.add(tripulante12);
+		misTripulantes.add(tripulante13);	misTripulantes.add(tripulante14);
+		misTripulantes.add(tripulante15);	misTripulantes.add(tripulante16);
+		misTripulantes.add(tripulante17);	misTripulantes.add(tripulante18);
+		
+		aerolinea.setMisTripulantes(misTripulantes);
+	
+	}
+	
 	public void crearMisClientes() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		Cliente c1 = new Cliente("12345678", "Andres", "Garcia", "Mz 20 # 10", "andres@gmail.com", "14/12/1990");
@@ -280,5 +283,14 @@ public class Origen {
 		
 		aerolinea.setMisClientes(clientes);
 	}
+	
+	public void crearTarjetasClientes() {
+		List<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
+		Tarjeta t1 = new Tarjeta("credito", 1250000, "12345678","12345678000","14/12","123");
+		Tarjeta t2 = new Tarjeta("debito", 10000, "87654321","87654321000","17/12","876");
+		aerolinea.setMisTarjetas(tarjetas);
+		
+	}
+	
 	
 }
