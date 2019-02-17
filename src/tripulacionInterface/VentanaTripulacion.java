@@ -693,14 +693,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 					comboBoxPiloto.setEnabled(true);
 					comboBoxCopiloto.setEnabled(true);
 					comboBoxAuxiliar.setEnabled(true);
-				} else {
-					btnPiloto.setEnabled(false);
-					btnCopiloto.setEnabled(false);
-					btnAuxiliar.setEnabled(false);
-					comboBoxPiloto.setEnabled(false);
-					comboBoxCopiloto.setEnabled(false);
-					comboBoxAuxiliar.setEnabled(false);
-				}
+				} 
 			}
 		});
 
@@ -708,13 +701,28 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			public void actionPerformed(ActionEvent e) {
 				Tripulante miPiloto = null;
 				int piloto = miAerolinea.contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion("piloto", miTripulacionAgregada);
-				if(piloto == 1) {
+				if(comboBoxPiloto.getSelectedItem().equals("")) {
+					JOptionPane.showMessageDialog(null, "Seleccione un piloto");
+				}
+				if(piloto == 1 && !comboBoxPiloto.getSelectedItem().equals("")) {
 					int respuesta = JOptionPane.showConfirmDialog(null, "Ya agrego un piloto\n¿Desea cambiarlo?");
 					if(respuesta == 0) {
-					// es mejor cambiar de list<tripulante> a Tripulacion
+						for (int i = 0; i < miTripulacionAgregada.size(); i++) {
+							if(miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("piloto")) {
+								miTripulacionAgregada.remove(i);
+								rowTablaCrearTripulacion --;
+								modeloRegistro.setRowCount(miTripulacionAgregada.size());
+								for (int j = 0; j < tablaTripulantesAgregados.getRowCount(); j++) {
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Nombre"), j, 0);
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Identificacion"), j, 1);
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Cargo"), j, 2);
+								}
+								piloto = 0;
+							}
+						}
 					}
 				}
-				for (int i = 0; i < pilotos.size() && piloto == 0; i++) {
+				for (int i = 0; i < pilotos.size() && piloto == 0 && !comboBoxPiloto.getSelectedItem().equals(""); i++) {
 					
 					if (pilotos.get(i).getAtributos().get("Nombre").equals(comboBoxPiloto.getSelectedItem())) {
 						miPiloto = pilotos.get(i);
@@ -732,7 +740,29 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnCopiloto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tripulante miCopiloto = null;
-				for (int i = 0; i < copilotos.size(); i++) {
+				int copiloto = miAerolinea.contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion("copiloto", miTripulacionAgregada);
+				if(comboBoxCopiloto.getSelectedItem().equals("")) {
+					JOptionPane.showMessageDialog(null, "Seleccione un copiloto");
+				}
+				if(copiloto == 1 && !comboBoxCopiloto.getSelectedItem().equals("")) {
+					int respuesta = JOptionPane.showConfirmDialog(null, "Ya agrego un copiloto\n¿Desea cambiarlo?");
+					if(respuesta == 0) {
+						for (int i = 0; i < miTripulacionAgregada.size(); i++) {
+							if(miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("copiloto")) {
+								miTripulacionAgregada.remove(i);
+								rowTablaCrearTripulacion --;
+								modeloRegistro.setRowCount(miTripulacionAgregada.size());
+								for (int j = 0; j < tablaTripulantesAgregados.getRowCount(); j++) {
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Nombre"), j, 0);
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Identificacion"), j, 1);
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Cargo"), j, 2);
+								}
+								copiloto = 0;
+							}
+						}
+					}
+				}
+				for (int i = 0; i < copilotos.size() && copiloto == 0 && !comboBoxCopiloto.getSelectedItem().equals(""); i++) {
 					if (copilotos.get(i).getAtributos().get("Nombre").equals(comboBoxCopiloto.getSelectedItem())) {
 						miCopiloto = copilotos.get(i);
 						miTripulacionAgregada.add(miCopiloto);
@@ -749,7 +779,40 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnAuxiliar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tripulante miAuxiliar = null;
-				for (int i = 0; i < auxiliares.size(); i++) {
+				int auxiliar = miAerolinea.contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion("auxiliar", miTripulacionAgregada);
+				if(comboBoxAuxiliar.getSelectedItem().equals("")) {
+					JOptionPane.showMessageDialog(null, "Seleccione un auxiliar");
+				}
+				int tipo = comboBoxTipoTripulacion.getSelectedIndex();
+				int valor = 0;
+				if(tipo == 1) {//viaje nacional
+					System.out.println("entro");
+					valor = 3;
+				}else if(tipo == 2){//viaje internacional
+					valor = 7;
+				}
+				System.out.println(auxiliar == valor);
+				if(auxiliar == valor && !comboBoxAuxiliar.getSelectedItem().equals("")) {
+					int respuesta = JOptionPane.showConfirmDialog(null, "Ya agrego "+auxiliar+" auxiliares\n¿Desea cambiar alguno?");
+					if(respuesta == 0) {
+						String identificacion = JOptionPane.showInputDialog(null, "Ingrese Identificacion del auxiliar que desea eliminar");
+						for (int i = 0; i < miTripulacionAgregada.size(); i++) {
+							if(miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("auxiliar") && 
+									miTripulacionAgregada.get(i).getAtributos().get("Identificacion").equalsIgnoreCase(identificacion)) {
+								miTripulacionAgregada.remove(i);
+								rowTablaCrearTripulacion --;
+								modeloRegistro.setRowCount(miTripulacionAgregada.size());
+								for (int j = 0; j < tablaTripulantesAgregados.getRowCount(); j++) {
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Nombre"), j, 0);
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Identificacion"), j, 1);
+									tablaTripulantesAgregados.setValueAt(miTripulacionAgregada.get(j).getAtributos().get("Cargo"), j, 2);
+								}
+								auxiliar--;
+							}
+						}
+					}
+				}
+				for (int i = 0; i < auxiliares.size() && auxiliar < valor && !comboBoxAuxiliar.getSelectedItem().equals(""); i++) {
 					if (auxiliares.get(i).getAtributos().get("Nombre").equals(comboBoxAuxiliar.getSelectedItem())) {
 						miAuxiliar = auxiliares.get(i);
 						miTripulacionAgregada.add(miAuxiliar);
@@ -762,6 +825,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 				}
 			}
 		});
+		
 		// Ver Tabla Tripulacion / Tripulante
 		
 		tablaTripulaciones.setVisible(false);
