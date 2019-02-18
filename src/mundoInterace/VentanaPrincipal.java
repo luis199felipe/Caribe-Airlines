@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 public class VentanaPrincipal implements ActionListener{
 
 	private JFrame frame;
-	private JButton btnAdministrador,btnCliente;
+	private JButton btnAdministrador,btnCliente,btnConsultas ;
 	private CaribeAirlines aerolinea;
 
 	/**
@@ -57,14 +57,19 @@ public class VentanaPrincipal implements ActionListener{
 		
 		
 		btnAdministrador = new JButton("ADMINISTRADOR");
-		btnAdministrador.setBounds(298, 418, 214, 43);
+		btnAdministrador.setBounds(160, 422, 214, 43);
 		btnAdministrador.addActionListener(this);
 		frame.getContentPane().add(btnAdministrador);
 		
 		btnCliente = new JButton("CLIENTE");
 		btnCliente.addActionListener(this);
-		btnCliente.setBounds(524, 418, 214, 43);
+		btnCliente.setBounds(389, 422, 214, 43);
 		frame.getContentPane().add(btnCliente);
+		
+		btnConsultas = new JButton("CONSULTAS");
+		btnConsultas.setBounds(615, 422, 214, 43);
+		btnConsultas.addActionListener(this);
+		frame.getContentPane().add(btnConsultas);
 		
 		
 		
@@ -81,5 +86,11 @@ public class VentanaPrincipal implements ActionListener{
 		if (e.getSource() == btnCliente) {
 			VentanaCompra vCliente = new VentanaCompra(aerolinea);
 		}
+		
+		if (e.getSource()==btnConsultas) {
+			VentanaConsultas vc = new VentanaConsultas(aerolinea);
+			
+		}
+		
 	}
 }
