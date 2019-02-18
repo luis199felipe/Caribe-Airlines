@@ -286,8 +286,12 @@ public void crearMisTripulantes() {
 	
 	public void crearTarjetasClientes() {
 		List<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
-		Tarjeta t1 = new Tarjeta("credito", 1250000, "12345678","12345678000","14/12","123");
-		Tarjeta t2 = new Tarjeta("debito", 10000, "87654321","87654321000","17/12","876");
+		Tarjeta t1 = new Tarjeta("credito", 1250000,"12345678", "1000","14/12","123");
+		Tarjeta t2 = new Tarjeta("debito", 10000, "87654321","87654321000","17/12","000");
+		
+		tarjetas.add(t1);
+		tarjetas.add(t2);
+		System.out.println("crearTarjetas clien " + tarjetas.size() );
 		aerolinea.setMisTarjetas(tarjetas);
 		
 	}

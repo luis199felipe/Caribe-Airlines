@@ -1,27 +1,31 @@
 package mundoInterace;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import aeronaveInterface.VentanaAeronave;
+import VentaInterface.VentanaCompra;
 import mundo.CaribeAirlines;
-import tripulacionInterface.VentanaTripulacion;
 
-public class VentanaPrincipal extends JFrame {
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-	private JPanel contentPane;
+public class VentanaPrincipal implements ActionListener{
 
+	private JFrame frame;
+	private JButton btnAdministrador,btnCliente;
+	private CaribeAirlines aerolinea;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
+					VentanaPrincipal window = new VentanaPrincipal();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -29,21 +33,42 @@ public class VentanaPrincipal extends JFrame {
 		});
 	}
 
+	/**
+	 * Create the application.
+	 */
 	public VentanaPrincipal() {
-		setTitle("Caribe Airlines");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 800, 589);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JInternalFrame ventanaAeronave = new VentanaAeronave();
-		ventanaAeronave.setVisible(true);
-		contentPane.add(ventanaAeronave);
+		frame = new JFrame();
+		frame.setBounds(100, 100, 662, 524);
+		frame.getContentPane().setLayout(null);
 		
-		JInternalFrame ventanaTripulacion = new VentanaTripulacion();
-		ventanaTripulacion.setVisible(true);
-		contentPane.add(ventanaTripulacion);
+		aerolinea = new CaribeAirlines();
+		
+		btnAdministrador = new JButton("ADMINISTRADOR");
+		btnAdministrador.setBounds(83, 255, 214, 43);
+		btnAdministrador.addActionListener(this);
+		frame.getContentPane().add(btnAdministrador);
+		
+		btnCliente = new JButton("CLIENTE");
+		btnCliente.addActionListener(this);
+		btnCliente.setBounds(309, 255, 214, 43);
+		frame.getContentPane().add(btnCliente);
+		
+		
+		
+		
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==btnAdministrador) {
+			VentanaAdministrador vAdmin = new VentanaAdministrador(aerolinea);
+			vAdmin.setVisible(true);
+		}
+		
+		if (e.getSource() == btnCliente) {
+			VentanaCompra vCliente = new VentanaCompra(aerolinea);
+					}
+	}
+
 }

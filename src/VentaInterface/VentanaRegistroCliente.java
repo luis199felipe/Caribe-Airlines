@@ -22,7 +22,7 @@ public class VentanaRegistroCliente implements ActionListener{
 	private JTextField txtDireccion;
 	private JTextField txtFechaNacimiento;
 	private JTextField txtEmail;
-	private JButton btnGuardar;
+	private JButton btnGuardar,btnRegistrarTajerta ;
 	private Compra miC;
 
 	
@@ -95,13 +95,21 @@ public class VentanaRegistroCliente implements ActionListener{
 		txtEmail.setColumns(10);
 		
 		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBounds(168, 233, 117, 25);
+		btnGuardar.setBounds(80, 233, 117, 25);
 		btnGuardar.addActionListener(this);
 		frame.getContentPane().add(btnGuardar);
+		
+		btnRegistrarTajerta = new JButton("Registrar Tajerta");
+		btnRegistrarTajerta.setBounds(225, 233, 155, 25);
+		btnRegistrarTajerta.addActionListener(this);
+		frame.getContentPane().add(btnRegistrarTajerta);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==btnRegistrarTajerta ) {
+			VentanaRegistroTarjeta vr = new VentanaRegistroTarjeta();
+		}
 		if (e.getSource()==btnGuardar) {
 			Cliente c = new Cliente(txtIdentificacion.getText(), txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(), txtEmail.getText(), txtFechaNacimiento.getText());
 			miC.agregraCliente(c);

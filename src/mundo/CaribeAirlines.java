@@ -57,8 +57,19 @@ public class CaribeAirlines {
 		creaciones.RegistroVuelos();
 		
 		creaciones.crearMisClientes();
+		System.out.println("Debio creear las tarjetas ");
+		creaciones.crearTarjetasClientes();
 	}
 	
+	public List<Tarjeta> getTarjetas() {
+		return tarjetas;
+	}
+
+	public void setTarjetas(List<Tarjeta> tarjetas) {
+		System.out.println("Se guardaron las tarjetas "+tarjetas.size());
+		this.tarjetas = tarjetas;
+	}
+
 	public List<Cliente> getMisClientes() {
 		return misClientes;
 	}

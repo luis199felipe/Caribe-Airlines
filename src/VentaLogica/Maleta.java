@@ -2,21 +2,21 @@ package VentaLogica;
 
 public class Maleta {
 	private String miCompra;	
-	private String dimenciones;
+	private String dimensiones;
 	private double peso;
 
-	public Maleta(String dimenciones, double peso) {
+	public Maleta(String dimensiones, double peso) {
 		super();
-		this.dimenciones = dimenciones;
+		this.dimensiones = dimensiones;
 		this.peso = peso;
 	}
 
 	public String getDimenciones() {
-		return dimenciones;
+		return dimensiones;
 	}
 
 	public void setDimenciones(String dimenciones) {
-		this.dimenciones = dimenciones;
+		this.dimensiones = dimenciones;
 	}
 
 	public double getPeso() {
