@@ -88,14 +88,14 @@ public class Origen {
 		Vuelo vuelo01 = new Vuelo("01/01/2019", "06:00", "3", misRutas.get(0), misTripulaciones.get(0), misAeronaves.get(0));
 		Vuelo vuelo02 = new Vuelo("02/01/2019", "08:00", "3", misRutas.get(1), misTripulaciones.get(1), misAeronaves.get(1));
 		Vuelo vuelo03 = new Vuelo("03/01/2019", "23:30", "3", misRutas.get(2), misTripulaciones.get(2), misAeronaves.get(2));
-		Vuelo vuelo04 = new Vuelo("16/02/2019", "09:45", "3", misRutas.get(3), misTripulaciones.get(3), misAeronaves.get(3));
+		Vuelo vuelo04 = new Vuelo("20/02/2019", "09:45", "3", misRutas.get(3), misTripulaciones.get(3), misAeronaves.get(3));
 		Vuelo vuelo05 = new Vuelo("05/01/2019", "13:30", "3", misRutas.get(4), misTripulaciones.get(4), misAeronaves.get(4));
 		Vuelo vuelo06 = new Vuelo("06/01/2019", "14:45", "3", misRutas.get(5), misTripulaciones.get(5), misAeronaves.get(5));
 
 		Vuelo vuelo07 = new Vuelo("01/01/2019", "11:45", "3", misRutas.get(6), misTripulaciones.get(0), misAeronaves.get(0));
 		Vuelo vuelo08 = new Vuelo("02/01/2019", "14:12", "3", misRutas.get(7), misTripulaciones.get(1), misAeronaves.get(1));
 		Vuelo vuelo09 = new Vuelo("03/01/2019", "11:35", "3", misRutas.get(8), misTripulaciones.get(2), misAeronaves.get(2));
-		Vuelo vuelo10 = new Vuelo("19/02/2019", "16:10", "3", misRutas.get(9), misTripulaciones.get(3), misAeronaves.get(3));
+		Vuelo vuelo10 = new Vuelo("28/02/2019", "16:10", "3", misRutas.get(9), misTripulaciones.get(3), misAeronaves.get(3));
 		Vuelo vuelo11 = new Vuelo("05/02/2019", "20:15", "3", misRutas.get(10), misTripulaciones.get(4), misAeronaves.get(4));
 		Vuelo vuelo12 = new Vuelo("06/01/2019", "20:40", "3", misRutas.get(11), misTripulaciones.get(5), misAeronaves.get(5));
 		
@@ -286,7 +286,7 @@ public void crearMisTripulantes() {
 	
 	public void crearTarjetasClientes() {
 		List<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
-		Tarjeta t1 = new Tarjeta("credito", 1250000,"12345678", "1000","14/12","123");
+		Tarjeta t1 = new Tarjeta("credito",5000000,"12345678", "1000","14/12","123");
 		Tarjeta t2 = new Tarjeta("debito", 10000, "87654321","87654321000","17/12","000");
 		
 		tarjetas.add(t1);

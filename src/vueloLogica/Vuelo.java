@@ -25,6 +25,14 @@ public class Vuelo implements Serializable{
 		this.miTripulacion = miTripulacion;
 		this.miAeronave = miAeronave;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Vuelo [Hora de Salida=" +atributos.get("HoraSalida") + ", miRuta=" +miRuta.toString() +", " + miAeronave.toString() + "]";
+	}
+
+
 	//Methods
 	public String encontrarHoraLlegada(String salida, String duracion) {
 		String llegada = "";

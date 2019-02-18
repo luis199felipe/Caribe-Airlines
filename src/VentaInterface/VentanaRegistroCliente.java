@@ -1,11 +1,13 @@
 package VentaInterface;
 
 import java.awt.EventQueue;
+import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import VentaLogica.Cliente;
@@ -108,11 +110,16 @@ public class VentanaRegistroCliente implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnRegistrarTajerta ) {
-			VentanaRegistroTarjeta vr = new VentanaRegistroTarjeta();
+			VentanaRegistroTarjeta vr = new VentanaRegistroTarjeta(txtIdentificacion.getText(),miC);
+			
 		}
 		if (e.getSource()==btnGuardar) {
 			Cliente c = new Cliente(txtIdentificacion.getText(), txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(), txtEmail.getText(), txtFechaNacimiento.getText());
-			miC.agregraCliente(c);
+			if (!miC.agregraCliente(c)) {
+				
+			}
+			JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
+			frame.setVisible(false);
 		}
 	}
 }

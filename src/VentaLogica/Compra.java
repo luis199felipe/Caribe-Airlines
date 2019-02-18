@@ -23,7 +23,7 @@ public class Compra {
 		aerolinea = ae;
 		miTiquete = new Tiquete();
 	}
-
+	
 	public Cliente getCliente(String text) {
 		return aerolinea.getClienteID(text);
 
@@ -45,8 +45,8 @@ public class Compra {
 		this.miTiquete = miTiquete;
 	}
 
-	public void agregraCliente(Cliente c) {
-		aerolinea.agregarCliente(c);
+	public boolean agregraCliente(Cliente c) {
+		return aerolinea.agregarCliente(c);
 	}
 
 	public Vuelo verificarVuelo(String ciudadOrigen,String ciudadDestino, String fecha) {
@@ -81,15 +81,15 @@ public class Compra {
 	public boolean verificarCupo(String iden, String num, String cod, String fec, String tipo,double valorCompra) {
 		List<Tarjeta> tjs = aerolinea.getTarjetas();
 		
-		System.out.println(iden+" "+num.substring(1)+" "+cod+" "+fec+" "+tipo);
+		System.out.println(iden+" "+num+" "+cod+" "+fec+" "+tipo);
 		
 		Iterator<Tarjeta> tj = tjs.iterator();
 		
 		while (tj.hasNext()) {
 			Tarjeta tarjeta = (Tarjeta) tj.next();
 			System.out.println(tarjeta.getMiClienteID()+" "+tarjeta.getNumero()+" "+tarjeta.getCodigo()+" "+tarjeta.getFecha()+" "+tarjeta.getTipo()+" ");
-			System.out.println(tarjeta.getMiClienteID().equals(iden) +" "+tarjeta.getNumero().equals(num.substring(1)) +" "+tarjeta.getCodigo().equals(cod) +" "+tarjeta.getFecha().equals(fec)+" "+tarjeta.getTipo().equals(tipo) );
-			if (tarjeta.getMiClienteID().equals(iden) && tarjeta.getNumero().equals(num.substring(1)) && tarjeta.getCodigo().equals(cod) && tarjeta.getFecha().equals(fec) && tarjeta.getTipo().equals(tipo)) {
+			System.out.println(tarjeta.getMiClienteID().equals(iden) +" "+tarjeta.getNumero().equals(num) +" "+tarjeta.getCodigo().equals(cod) +" "+tarjeta.getFecha().equals(fec)+" "+tarjeta.getTipo().equals(tipo) );
+			if (tarjeta.getMiClienteID().equals(iden) && tarjeta.getNumero().equals(num) && tarjeta.getCodigo().equals(cod) && tarjeta.getFecha().equals(fec) && tarjeta.getTipo().equals(tipo)) {
 				if (tarjeta.getCupo()>valorCompra) {
 					return true;	
 				}else {
@@ -99,6 +99,15 @@ public class Compra {
 		}
 		return false;
 		
+	}
+
+	public void guardarTiquete() {
+		aerolinea.agregarTiquete(miTiquete);
+		
+	}
+
+	public void agregarTarjeta(Tarjeta t) {
+		aerolinea.agregarTarjeta(t);
 	}
 
 	
