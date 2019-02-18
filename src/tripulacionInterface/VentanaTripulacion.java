@@ -826,6 +826,21 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			}
 		});
 		
+		btnGuardarTripulacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean tripulacion = miAerolinea.crearTripulacion(miTripulacionAgregada,(String)comboBoxTipoTripulacion.getSelectedItem());
+				if(tripulacion == true) {
+					JOptionPane.showMessageDialog(null, "Creado");
+					verRegistroFiltrado();
+				}
+			}
+		});
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				verRegistroFiltrado();
+			}
+		});
+		
 		// Ver Tabla Tripulacion / Tripulante
 		
 		tablaTripulaciones.setVisible(false);
@@ -910,6 +925,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		btnTipoTripulacion.setVisible(false);
 
 		tablaTripulantesAgregados.setVisible(false);
+		scrollPaneTripulantesAgregados.setVisible(false);
 
 	}
 

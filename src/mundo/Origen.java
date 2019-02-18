@@ -159,12 +159,12 @@ public class Origen {
 		internacional2.add(auxiliares.get(12));
 		internacional2.add(auxiliares.get(13));
 		
-		Tripulacion tripulacion1 = new Tripulacion("001", pilotos.get(0), copilotos.get(0), nacional1, "Nacional");
-		Tripulacion tripulacion2 = new Tripulacion("002", pilotos.get(1), copilotos.get(1), nacional2, "Nacional");
-		Tripulacion tripulacion3 = new Tripulacion("003", pilotos.get(0), copilotos.get(1), internacional1, "Internacional");
-		Tripulacion tripulacion4 = new Tripulacion("004", pilotos.get(1), copilotos.get(0), internacional2, "Internacional");
-		Tripulacion tripulacion5 = new Tripulacion("005", pilotos.get(0), copilotos.get(0), internacional1, "Internacional");
-		Tripulacion tripulacion6 = new Tripulacion("006", pilotos.get(1), copilotos.get(1), internacional2, "Internacional");
+		Tripulacion tripulacion1 = new Tripulacion("1", pilotos.get(0), copilotos.get(0), nacional1, "Nacional");
+		Tripulacion tripulacion2 = new Tripulacion("2", pilotos.get(1), copilotos.get(1), nacional2, "Nacional");
+		Tripulacion tripulacion3 = new Tripulacion("3", pilotos.get(0), copilotos.get(1), internacional1, "Internacional");
+		Tripulacion tripulacion4 = new Tripulacion("4", pilotos.get(1), copilotos.get(0), internacional2, "Internacional");
+		Tripulacion tripulacion5 = new Tripulacion("5", pilotos.get(0), copilotos.get(0), internacional1, "Internacional");
+		Tripulacion tripulacion6 = new Tripulacion("6", pilotos.get(1), copilotos.get(1), internacional2, "Internacional");
 		
 		List<Tripulacion> misTripulaciones = new ArrayList<>();
 		

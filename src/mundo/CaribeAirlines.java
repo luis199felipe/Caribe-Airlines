@@ -321,6 +321,30 @@ public class CaribeAirlines {
 		misClientes.add(c);		
 	}
 
+	public boolean crearTripulacion(List<Tripulante> miTripulacionAgregada, String tipoTripulacion) {
+		List<Tripulante> auxiliares = new ArrayList<>();
+		Tripulante piloto = null;
+		Tripulante copiloto = null;
+		
+		for (int i = 0; i < miTripulacionAgregada.size(); i++) {
+			if(miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("piloto")) {
+				piloto = miTripulacionAgregada.get(i);
+			}
+			if(miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("copiloto")) {
+				copiloto = miTripulacionAgregada.get(i);
+			}
+			if(miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("auxiliar")) {
+				auxiliares.add(miTripulacionAgregada.get(i));
+			}
+		}
+		String id = misTripulaciones.get(misTripulaciones.size()-1).getMiTripulacion().get("IdTripulacion");
+		int  identificacion = Integer.parseInt(id) + 1;
+		Tripulacion miTripulacion = new Tripulacion(String.valueOf(identificacion), piloto, copiloto, auxiliares, tipoTripulacion);
+		misTripulaciones.add(miTripulacion);
+		
+		return true;
+	}
+	
 	//Getter & Setter
 	public List<Aeronave> getMisAeronaves() {
 		return misAeronaves;
