@@ -22,6 +22,15 @@ public class Aeronave implements Serializable{
 		registro = new ArrayList<>();
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Aeronave [ubicacion=" + ubicacion + ", tipoAeronave=" + tipoAeronave.getAtributos().get("Marca") + ", matricula=" + matricula+"]";
+	}
+
+
+
 	//Getter & Setter
 	public String getUbicacion() {
 		return ubicacion;

@@ -23,6 +23,11 @@ public class Ruta implements Serializable{
 	public HashMap<String, String> getAtributos() {
 		return atributos;
 	}
+	@Override
+	public String toString() {
+		return "Ruta [Origen=" + atributos.get("Origen") + ", Destino "+ atributos.get("Destino")+"]";
+	}
+
 	public void setAtributos(HashMap<String, String> atributos) {
 		this.atributos = atributos;
 	}

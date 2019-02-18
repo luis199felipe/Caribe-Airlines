@@ -46,12 +46,12 @@ public class VentanaCompra implements ActionListener {
 
 	private JRadioButton RadioButtonIdaYRegreso, RadioButtonSoloIda, rdbtnEconomica, rdbtnEjecutiva,rdbtnTarjetaDebito,rdbtnTarjetaCredito;
 	private JButton btnRegistro, btnCargarDatos, btnVerDisponibilidad, btnContinuar, btnAgregarMaleta,btnContinuar2,btnVerificarCupo ,btnComprar;
-	private JLabel nombre, direccion, fecha, correo;
+	private JLabel nombre, direccion, fecha, correo,lblMaleta;
 	private Compra miCompra;
 	private int contMaletas;
 	private JTabbedPane tabbedPane;
 	private JTextPane txtEstado;
-
+	private JTextPane txtResumenCompra ;
 	private JDateChooser fechaSalida, fechaRegreso;
 	private JTextField txtIdentificacion;
 	private JTextField txtNumtarjeta;
@@ -168,6 +168,7 @@ public class VentanaCompra implements ActionListener {
 
 		fechaSalida = new JDateChooser();
 		fechaSalida.setBounds(481, 38, 209, 20);
+		fechaSalida.setMinSelectableDate(new java.util.Date());
 		panelViaje.add(fechaSalida);
 
 		fechaRegreso = new JDateChooser();
@@ -195,8 +196,8 @@ public class VentanaCompra implements ActionListener {
 		btnAgregarMaleta.setBounds(12, 168, 207, 25);
 		btnAgregarMaleta.addActionListener(this);
 		panelEquipaje.add(btnAgregarMaleta);
-		contMaletas = 1;
-		JLabel lblMaleta = new JLabel("Maleta " + contMaletas + ":");
+		contMaletas = 0;
+		lblMaleta = new JLabel("Maleta " + (contMaletas+1) + ":");
 		lblMaleta.setBounds(12, 25, 121, 15);
 		panelEquipaje.add(lblMaleta);
 
@@ -231,7 +232,7 @@ public class VentanaCompra implements ActionListener {
 		// CLIENTE********************************************************************************************
 		JPanel panelCliente_1 = new JPanel();
 		tabbedPane.addTab("Cliente", null, panelCliente_1, null);
-		tabbedPane.setEnabledAt(2, false);
+		//tabbedPane.setEnabledAt(2, false);
 		panelCliente_1.setLayout(null);
 
 		JLabel lblingreseSuNumero = new JLabel(
@@ -303,7 +304,6 @@ public class VentanaCompra implements ActionListener {
 		panelCliente_1.add(rdbtnTarjetaCredito);
 
 		txtNumtarjeta = new JTextField();
-		txtNumtarjeta.setText("\n");
 		txtNumtarjeta.setBounds(441, 150, 242, 19);
 		panelCliente_1.add(txtNumtarjeta);
 		txtNumtarjeta.setColumns(10);
@@ -348,18 +348,30 @@ public class VentanaCompra implements ActionListener {
 		btnVerificarCupo.addActionListener(this);
 		panelCliente_1.add(btnVerificarCupo);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBounds(19, 296, 394, 97);
-		panelCliente_1.add(textPane_1);
+		txtResumenCompra = new JTextPane();
+		txtResumenCompra.setBounds(19, 296, 394, 97);
+		panelCliente_1.add(txtResumenCompra);
 
 	}
 
 	boolean moda = false;
 	boolean clas = false;
 	boolean continuar = false;
+	boolean cupo = false;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource()==btnComprar) {
+			if (txtResumenCompra.equals("")) {
+				JOptionPane.showMessageDialog(null, "Primero debe revisar si tiene cupo y cumplir todos los requisitos anteriores");
+			}else {
+				String resumenTiquete = miCompra.getMiTiquete().toString();
+				txtResumenCompra.setText(resumenTiquete);
+				miCompra.guardarTiquete();
+				JOptionPane.showMessageDialog(null, "Se ha guardado correctamente su reserva, porfavor revise su correo electronico");
+			}
+		}
 		
 		
 		if (e.getSource()==btnVerificarCupo) {
@@ -376,13 +388,13 @@ public class VentanaCompra implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Por favor seleccione el tipo de tarjeta");
 			}
 			
-			double vCompra = 0;
-			boolean t = miCompra.verificarCupo(iden,num,cod,fec,tipo,vCompra);
+			
+			boolean t = miCompra.verificarCupo(iden,num,cod,fec,tipo,miCompra.getMiTiquete().getTotal());
 			
 			
 			if (t) {
 				JOptionPane.showMessageDialog(null, "Su tarjeta tiene cupo y puede continuar con la compra");
-				
+				txtResumenCompra.setText(txtEstado.getText()+", Cantidad de Maletas "+contMaletas);
 			}else {
 				JOptionPane.showMessageDialog(null, "Su tarjeta no tiene cupo o escribio mal los datos");
 			}
@@ -401,6 +413,7 @@ public class VentanaCompra implements ActionListener {
 			
 			if (verPeso && verDim) {
 				contMaletas++;
+				lblMaleta.setText("Maleta " + (contMaletas+1) + ":");
 				Maleta m = new Maleta(dimensiones.getText(), pe);
 				miCompra.getMiTiquete().agregarMaleta(m);
 				JOptionPane.showMessageDialog(null, "Maleta "+contMaletas+" agregada");
@@ -423,13 +436,15 @@ public class VentanaCompra implements ActionListener {
 
 		// **************************************** PANEL VIAJE  *************************************************************************************
 		if (e.getActionCommand() == "Solo ida" || e.getActionCommand() == "Ida y regreso") {
-			miCompra.getMiTiquete().setTipoClase(e.getActionCommand());
 			moda = true;
 			fechaRegreso.setEnabled(true);
 			if (e.getActionCommand() == "Solo ida") {
+				
 				fechaRegreso.setEnabled(false);
 			}
 		}
+		
+		
 
 		if (e.getActionCommand() == "Economica" || e.getActionCommand() == "Ejecutiva") {
 			clas = true;
@@ -454,8 +469,9 @@ public class VentanaCompra implements ActionListener {
 					if (vueloSalida != null) {
 						mostrar += "El vuelo de ida se encuentra disponible para las " + vueloSalida.getAtributos().get("HoraSalida")
 								+ " \n";
+						miCompra.getMiTiquete().setVueloIda(vueloSalida);
 					} else {
-						mostrar += "El vuelo de ida NO se encuentra en la fecha seleccionada ";
+						mostrar += "El vuelo de ida NO se encuentra en la fecha seleccionada \n";
 
 					}
 					if (idaRegreso) {
@@ -466,6 +482,7 @@ public class VentanaCompra implements ActionListener {
 							if (vueloRegreso != null) {
 								mostrar += "El vuelo de regreso se encuentra disponible para las "
 										+ vueloRegreso.getAtributos().get("HoraSalida");
+								miCompra.getMiTiquete().setVueloRegreso(vueloRegreso);
 							} else {
 								mostrar += "El vuelo de regreso no se encuentra en la fecha seleccionada ";
 							}
@@ -475,7 +492,7 @@ public class VentanaCompra implements ActionListener {
 						}
 					}
 					JOptionPane.showMessageDialog(null, mostrar);
-					txtEstado.setText(mostrar);
+					txtEstado.setText(mostrar+", El precio total con las opciones seleccionadas es "+miCompra.getMiTiquete().getTotal());
 
 					if (vueloSalida != null && ((idaRegreso && vueloRegreso != null) || !idaRegreso)) {
 						continuar = true;
@@ -506,10 +523,12 @@ public class VentanaCompra implements ActionListener {
 		}
 
 		if (e.getSource() == btnCargarDatos) {
-			Cliente c = miCompra.getCliente(txtIdentificacion.getText());
+			String ident = txtIdentificacion.getText();
+			Cliente c = miCompra.getCliente(ident);
 			if (c != null) {
 				nombre.setText(c.getNombre() + " " + c.getApellido());
 				direccion.setText(c.getDireccion());
+				miCompra.getMiTiquete().setIdMiCliente(ident);
 				fecha.setText(c.getFechaNacimiento());
 				correo.setText(c.getEmail());
 			} else {
@@ -551,7 +570,6 @@ public class VentanaCompra implements ActionListener {
 					JOptionPane.showMessageDialog(null, "El peso permitido en clase economica vuelo Internacional es menor a 24Kg");
 				}else {
 					if (contMaletas<2) {
-						contMaletas++;
 						return true;
 					}else {
 						JOptionPane.showMessageDialog(null, "La cantidad maxima de maletas para economica internacional es 2");
@@ -562,7 +580,6 @@ public class VentanaCompra implements ActionListener {
 					JOptionPane.showMessageDialog(null, "El peso permitido en clase ejecutiva vuelo Internacional es menor a 24Kg");
 				}else {
 					if (contMaletas<2) {
-						contMaletas++;
 						return true;
 					}else {
 						JOptionPane.showMessageDialog(null, "La cantidad maxima de maletas para ejecutiva internacional es 2");

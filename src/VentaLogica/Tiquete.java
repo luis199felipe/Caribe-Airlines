@@ -19,7 +19,7 @@ public class Tiquete {
 		this.vueloIda = null;
 		this.vueloRegreso = null;
 		this.misMaletas = new ArrayList<>();
-		this.total = 0;
+		this.total = 400000;
 	}
 	
 	public Tiquete(String idMiCliente, String clase, Vuelo vueloIda, Vuelo vueloRegreso, List<Maleta> misMaletas,
@@ -29,7 +29,7 @@ public class Tiquete {
 		this.vueloIda = vueloIda;
 		this.vueloRegreso = vueloRegreso;
 		this.misMaletas = misMaletas;
-		this.total = total;
+		this.total = 400000;
 	}
 	
 	
@@ -78,11 +78,34 @@ public class Tiquete {
 	public String getTipoClase() {
 		return clase;
 	}
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		String vr ="null";
+		if (vueloRegreso!=null) {
+			vr = vueloRegreso.toString();
+		}
+		
+		return "Tiquete [Identificación=" + idMiCliente + ", clase=" + clase + ", vueloIda={" + vueloIda.toString() + "}, vueloRegreso=" +vr
+				+ ", misMaletas="  + ", total=" + total + "]";
+	}
+
 	public void setTipoClase(String tipoClase) {
 		this.clase = tipoClase;
+		if (tipoClase.equals("Economica")) {
+			this.total = total*1.1;	
+		}else {
+			this.total = total*1.5;
+		}
 	}
 	public double getTotal() {
-		return total;
+		if (vueloRegreso!=null) {
+			total*=2;
+		}
+		return Math.floor(total);
 	}
 	public void setTotal(double total) {
 		this.total = total;
