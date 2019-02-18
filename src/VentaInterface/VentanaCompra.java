@@ -48,6 +48,7 @@ public class VentanaCompra implements ActionListener {
 	private JButton btnRegistro, btnCargarDatos, btnVerDisponibilidad, btnContinuar, btnAgregarMaleta,btnContinuar2,btnVerificarCupo ,btnComprar;
 	private JLabel nombre, direccion, fecha, correo,lblMaleta;
 	private Compra miCompra;
+	private JTextPane ResumenMaletas; 
 	private int contMaletas;
 	private JTabbedPane tabbedPane;
 	private JTextPane txtEstado;
@@ -106,7 +107,7 @@ public class VentanaCompra implements ActionListener {
 		ciudades.add("Panama");
 		ciudades.add("Los Angeles");
 		ciudades.add("Buenos Aires");
-		ciudades.add("Moterrey");
+		ciudades.add("Monterrey");
 		ciudades.add("Bogotá");
 		Iterator<String> it = ciudades.iterator();
 		while (it.hasNext()) {
@@ -219,9 +220,9 @@ public class VentanaCompra implements ActionListener {
 		peso.setColumns(10);
 		panelEquipaje.add(peso);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(369, 25, 283, 307);
-		panelEquipaje.add(textPane);
+		ResumenMaletas = new JTextPane();
+		ResumenMaletas.setBounds(369, 25, 283, 307);
+		panelEquipaje.add(ResumenMaletas);
 		
 		btnContinuar2 = new JButton("Continuar");
 		btnContinuar2.setBounds(12, 214, 207, 53);
@@ -412,10 +413,12 @@ public class VentanaCompra implements ActionListener {
 			boolean verPeso = verificarPeso(pe);
 			
 			if (verPeso && verDim) {
+				ResumenMaletas.setText(ResumenMaletas.getText()+"Maleta " + (contMaletas+1) + ": " +dimensiones.getText()+" "+ pe+" \n");
 				contMaletas++;
 				lblMaleta.setText("Maleta " + (contMaletas+1) + ":");
 				Maleta m = new Maleta(dimensiones.getText(), pe);
 				miCompra.getMiTiquete().agregarMaleta(m);
+				
 				JOptionPane.showMessageDialog(null, "Maleta "+contMaletas+" agregada");
 			}
 			

@@ -10,6 +10,7 @@ import mundo.CaribeAirlines;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
@@ -46,19 +47,23 @@ public class VentanaPrincipal implements ActionListener{
 		
 		aerolinea = new CaribeAirlines();
 		ImageIcon imagen = new ImageIcon("images/logo.jpg");
-		JLabel n = new JLabel(new ImageIcon("/home/pipe/Proyecto/Caribe-Airlines/src/images/logop.jpg"));
+		File a = new File("src/images/logop.jpg");
+		String arc = a.getAbsolutePath();
+		System.out.println(arc);
+		
+		JLabel n = new JLabel(new ImageIcon(arc));
 		n.setBounds(12, 12, 976, 398);
 		frame.getContentPane().add(n);
 		
 		
 		btnAdministrador = new JButton("ADMINISTRADOR");
-		btnAdministrador.setBounds(297, 403, 214, 43);
+		btnAdministrador.setBounds(298, 418, 214, 43);
 		btnAdministrador.addActionListener(this);
 		frame.getContentPane().add(btnAdministrador);
 		
 		btnCliente = new JButton("CLIENTE");
 		btnCliente.addActionListener(this);
-		btnCliente.setBounds(524, 403, 214, 43);
+		btnCliente.setBounds(524, 418, 214, 43);
 		frame.getContentPane().add(btnCliente);
 		
 		
@@ -75,6 +80,6 @@ public class VentanaPrincipal implements ActionListener{
 		
 		if (e.getSource() == btnCliente) {
 			VentanaCompra vCliente = new VentanaCompra(aerolinea);
-					}
+		}
 	}
 }

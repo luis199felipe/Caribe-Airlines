@@ -67,7 +67,8 @@ public class Compra {
 			boolean cO = vueloOrigen.equals(ciudadOrigen);
 			boolean cD= vueloDestino.equals(ciudadDestino);
 			
-			//System.out.println(ciudadOrigen+" "+vueloOrigen+" - "+ciudadDestino+" "+vueloDestino+" - "+fecha+" "+vueloFecha);
+			System.out.println(ciudadOrigen+" "+vueloOrigen+" - "+ciudadDestino+" "+vueloDestino+" - "+fecha+" "+vueloFecha);
+			System.out.println(ciudadOrigen.equals(cO)+" "+ciudadDestino.equals(cD)+" "+fecha.equals(vueloFecha));
 			
 			if ( f && cO && cO && cD ) {
 				return vuelo;
