@@ -217,10 +217,10 @@ public class CaribeAirlines {
 		String[][] tabla = new String[row][2];
 
 		tabla[0][0] = "Piloto";
-		tabla[0][1] = miTripulacion.getMisVuelos().get(1).getMiTripulacion().getMiTripulacion().get("Piloto");
+		tabla[0][1] = miTripulacion.getMiTripulacion().get("Piloto");
 		tabla[1][0] = "Copiloto";
-		tabla[1][1] = miTripulacion.getMisVuelos().get(1).getMiTripulacion().getMiTripulacion().get("Copiloto");
-
+		tabla[1][1] = miTripulacion.getMiTripulacion().get("Copiloto");
+		
 		List<String> mostrar = new ArrayList<>();
 		String palabra = "";
 		for (int j = 0; j < miTripulacion.cadenaAuxiliares().length(); j++) {
@@ -345,27 +345,38 @@ public class CaribeAirlines {
 
 	public boolean crearTripulacion(List<Tripulante> miTripulacionAgregada, String tipoTripulacion) {
 		List<Tripulante> auxiliares = new ArrayList<>();
+		int numeroAuxiliares = 0;
+		int numeroPilotos = 0;
+		int numeroCopilotos = 0;
 		Tripulante piloto = null;
 		Tripulante copiloto = null;
 
 		for (int i = 0; i < miTripulacionAgregada.size(); i++) {
 			if (miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("piloto")) {
 				piloto = miTripulacionAgregada.get(i);
+				numeroPilotos++;
 			}
 			if (miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("copiloto")) {
 				copiloto = miTripulacionAgregada.get(i);
+				numeroCopilotos++;
 			}
 			if (miTripulacionAgregada.get(i).getAtributos().get("Cargo").equalsIgnoreCase("auxiliar")) {
 				auxiliares.add(miTripulacionAgregada.get(i));
+				numeroAuxiliares++;
 			}
 		}
-		String id = misTripulaciones.get(misTripulaciones.size() - 1).getMiTripulacion().get("IdTripulacion");
-		int identificacion = Integer.parseInt(id) + 1;
-		Tripulacion miTripulacion = new Tripulacion(String.valueOf(identificacion), piloto, copiloto, auxiliares,
-				tipoTripulacion);
-		misTripulaciones.add(miTripulacion);
-
-		return true;
+		if((tipoTripulacion.equalsIgnoreCase("Nacional") && numeroAuxiliares == 3 ||
+				tipoTripulacion.equalsIgnoreCase("Internacional") && numeroAuxiliares == 7) && 
+				numeroPilotos == 1 && numeroCopilotos == 1) {
+			String id = misTripulaciones.get(misTripulaciones.size() - 1).getMiTripulacion().get("IdTripulacion");
+			int identificacion = Integer.parseInt(id) + 1;
+			Tripulacion miTripulacion = new Tripulacion(String.valueOf(identificacion), piloto, copiloto, auxiliares,
+					tipoTripulacion);
+			miTripulacion.setMisVuelos(new ArrayList<Vuelo>());
+			misTripulaciones.add(miTripulacion);
+			return true;
+		}
+		return false;
 	}
 
 	// Getter & Setter

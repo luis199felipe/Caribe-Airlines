@@ -671,6 +671,8 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			comboBoxAuxiliar.addItem(auxiliares.get(i).getAtributos().get("Nombre"));
 		}
 		if (comboBoxTipoTripulacion.getSelectedItem().equals("")) {
+			btnTipoTripulacion.setEnabled(true);
+			comboBoxTipoTripulacion.setEnabled(true);
 			
 			btnPiloto.setEnabled(false);
 			btnCopiloto.setEnabled(false);
@@ -786,12 +788,10 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 				int tipo = comboBoxTipoTripulacion.getSelectedIndex();
 				int valor = 0;
 				if(tipo == 1) {//viaje nacional
-					System.out.println("entro");
 					valor = 3;
 				}else if(tipo == 2){//viaje internacional
 					valor = 7;
 				}
-				System.out.println(auxiliar == valor);
 				if(auxiliar == valor && !comboBoxAuxiliar.getSelectedItem().equals("")) {
 					int respuesta = JOptionPane.showConfirmDialog(null, "Ya agrego "+auxiliar+" auxiliares\n¿Desea cambiar alguno?");
 					if(respuesta == 0) {
@@ -832,12 +832,26 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 				if(tripulacion == true) {
 					JOptionPane.showMessageDialog(null, "Creado");
 					verRegistroFiltrado();
+					miTripulacionAgregada.clear();
+				}else {
+					JOptionPane.showMessageDialog(null, "Faltan tripulantes por agregar");
 				}
+				
+				comboBoxTipoTripulacion.removeAllItems();
+				comboBoxPiloto.removeAllItems();
+				comboBoxCopiloto.removeAllItems();
+				comboBoxAuxiliar.removeAllItems();
 			}
 		});
-		btnVolver.addActionListener(new ActionListener() {
+		btnVolverTripulacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				verRegistroFiltrado();
+				miTripulacionAgregada.clear();
+				
+				comboBoxTipoTripulacion.removeAllItems();
+				comboBoxPiloto.removeAllItems();
+				comboBoxCopiloto.removeAllItems();
+				comboBoxAuxiliar.removeAllItems();
 			}
 		});
 		
