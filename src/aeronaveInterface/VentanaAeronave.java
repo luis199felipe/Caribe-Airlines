@@ -55,8 +55,8 @@ public class VentanaAeronave extends JInternalFrame implements ActionListener{
 	private static final int LETRA_BUTTON = 10;
 	private static final int ROW_HEIGHT = 35;
 
-	public VentanaAeronave(CaribeAirlines ae) {
-		miAerolinea = ae;
+	public VentanaAeronave(CaribeAirlines miAerolinea) {
+		this.miAerolinea = miAerolinea;
 		List<Aeronave> misAeronaves = miAerolinea.getMisAeronaves();
 		List<TipoAeronave> misTipoAeronaves = miAerolinea.getMisTipoAeronave();
 		

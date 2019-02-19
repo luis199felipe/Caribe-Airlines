@@ -12,10 +12,11 @@ public class Vuelo implements Serializable{
 	private Tripulacion miTripulacion;
 	private Aeronave miAeronave;
 	
-	public Vuelo(String fecha, String horaSalida, String tiempoAlistamiento,
+	public Vuelo(String idVuelo, String fecha, String horaSalida, String tiempoAlistamiento,
 			Ruta miRuta, Tripulacion miTripulacion, Aeronave miAeronave) {
 		
 		atributos = new HashMap<>();
+		atributos.put("IdVuelo",idVuelo);
 		atributos.put("Fecha", fecha);
 		atributos.put("HoraSalida", horaSalida);
 		atributos.put("HoraLLegada", encontrarHoraLlegada(horaSalida, miRuta.getAtributos().get("Duracion")));

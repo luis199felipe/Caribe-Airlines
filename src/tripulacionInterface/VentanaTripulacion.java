@@ -68,8 +68,8 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	private static final int ROW_HEIGHT = 35;
 	private static final int LBL_HEIGHT = 21;
  
-	public VentanaTripulacion() {
-		miAerolinea = new CaribeAirlines();
+	public VentanaTripulacion(CaribeAirlines miAerolinea) {
+		this.miAerolinea = miAerolinea;
 		miTripulacionAgregada = new ArrayList<>();
 
 		filtroRegistro = "Todo";
