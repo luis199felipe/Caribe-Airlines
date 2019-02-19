@@ -48,10 +48,10 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	private JScrollPane scrollPaneRegistro, scrollPaneMasDetalles, scrollPaneTripulantesAgregados;
 	private JTable tablaTripulaciones, tablaRegistro, tablaTripulantesAgregados, tablaMasDetalles;
 	private JButton btnCrear, btnEliminar, btnMasDetalles, btnVolver, btnTipoTripulacion, btnPiloto, btnCopiloto,
-			btnAuxiliar, btnVolverTripulacion, btnGuardarTripulacion;
+			btnAuxiliar, btnVolverTripulacion, btnGuardarTripulacion, btnVolverTripulante, btnGuardarTripulante;
 	private JLabel lblTitulo, lblTituloCrearTripulacion, lblPiloto, lblCopiloto, lblTipotripulacion, lblAuxiliar;
-	private JLabel lblCargo, lblIdentificacion, lblNombre, lblDireccion, lblCorreo, lblFechaNacimiento, lblEstudios;
-	private JTextField txtIdentificacion, txtNombreTripulante, txtDireccion, txtCorreo, txtFechaNacimiento, txtEstudios;
+	private JLabel lblTituloCrearTripulante, lblCargo, lblIdentificacion, lblNombre, lblDireccion, lblCorreo, lblFechaNacimiento, lblEstudios;
+	private JTextField txtIdentificacion, txtNombre, txtDireccion, txtCorreo, txtFechaNacimiento, txtEstudios;
 	private String filtroRegistro;
 	private int posOpcion, posRegistro;
 
@@ -332,7 +332,13 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		scrollPaneTripulantesAgregados.setBounds(X, 192, WIDTH, 275);
 		scrollPaneTripulantesAgregados.setViewportView(tablaTripulantesAgregados);
 		contentPane.add(scrollPaneTripulantesAgregados);
-
+		
+		lblTituloCrearTripulante = new JLabel("Crear Tripulante");
+		lblTituloCrearTripulante.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTituloCrearTripulante.setBounds(X, 11, WIDTH, LBL_HEIGHT);
+		lblTituloCrearTripulante.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		contentPane.add(lblTituloCrearTripulante);
+		
 		lblCargo = new JLabel("Cargo");
 		lblCargo.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		lblCargo.setBounds(X, 45, 100, LBL_HEIGHT);
@@ -369,38 +375,51 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		contentPane.add(lblEstudios);
 		
 		comboBoxCargo = new JComboBox();
+		comboBoxCargo.addActionListener(this);
 		comboBoxCargo.setBounds(X+200, 45, 150, LBL_HEIGHT);
 		contentPane.add(comboBoxCargo);
 		
-		txtIdentificacion = new JTextField();
+		txtIdentificacion = new JTextField("");
+		txtIdentificacion.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		txtIdentificacion.setBounds(X+200, 77, 150, LBL_HEIGHT);
 		contentPane.add(txtIdentificacion);
-		txtIdentificacion.setColumns(10);
 		
-		txtNombreTripulante = new JTextField();
-		txtNombreTripulante.setBounds(X+200, 109, 150, LBL_HEIGHT);
-		contentPane.add(txtNombreTripulante);
-		txtNombreTripulante.setColumns(10);
+		txtNombre = new JTextField("");
+		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
+		txtNombre.setBounds(X+200, 109, 150, LBL_HEIGHT);
+		contentPane.add(txtNombre);
 		
-		txtDireccion = new JTextField();
+		txtDireccion = new JTextField("");
+		txtDireccion.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		txtDireccion.setBounds(X+200, 141, 150, LBL_HEIGHT);
 		contentPane.add(txtDireccion);
-		txtDireccion.setColumns(10);
 		
-		txtCorreo = new JTextField();
+		txtCorreo = new JTextField("");
+		txtCorreo.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		txtCorreo.setBounds(X+200, 173, 150, LBL_HEIGHT);
 		contentPane.add(txtCorreo);
-		txtCorreo.setColumns(10);
 		
-		txtFechaNacimiento = new JTextField();
+		txtFechaNacimiento = new JTextField("");
+		txtFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		txtFechaNacimiento.setBounds(X+200, 206, 150, LBL_HEIGHT);
 		contentPane.add(txtFechaNacimiento);
-		txtFechaNacimiento.setColumns(10);
 
-		txtEstudios = new JTextField();
+		txtEstudios = new JTextField("");
+		txtEstudios.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
 		txtEstudios.setBounds(X+200, 237, 150, LBL_HEIGHT);
 		contentPane.add(txtEstudios);
-		txtEstudios.setColumns(10);
+		
+		btnVolverTripulante = new JButton("Volver");
+		btnVolverTripulante.addActionListener(this);
+		btnVolverTripulante.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnVolverTripulante.setBounds(10, 477, 113, 23);
+		contentPane.add(btnVolverTripulante);
+
+		btnGuardarTripulante = new JButton("Guardar");
+		btnGuardarTripulante.addActionListener(this);
+		btnGuardarTripulante.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnGuardarTripulante.setBounds(251, 477, 113, 23);
+		contentPane.add(btnGuardarTripulante);
 		
 		verTablaTripulacionTripulante(true);
 		verCreartripulante(false);
@@ -566,8 +585,6 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	}
 
 	private int rowTablaCrearTripulacion;
-	private JTextField txtCargo;
-	private JTextField txtNombre;
 	
 	public void crearTripulacion() {
 
@@ -600,6 +617,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 			comboBoxAuxiliar.addItem(auxiliares.get(i).getAtributos().get("Nombre"));
 		}
 		if (comboBoxTipoTripulacion.getSelectedItem().equals("")) {
+			
 			btnTipoTripulacion.setEnabled(true);
 			comboBoxTipoTripulacion.setEnabled(true);
 
@@ -676,6 +694,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 				}
 			}
 		});
+		
 		btnCopiloto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tripulante miCopiloto = null;
@@ -790,16 +809,17 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 					JOptionPane.showMessageDialog(null, "Creado");
 					verRegistroFiltrado();
 					miTripulacionAgregada.clear();
+					
+					comboBoxTipoTripulacion.removeAllItems();
+					comboBoxPiloto.removeAllItems();
+					comboBoxCopiloto.removeAllItems();
+					comboBoxAuxiliar.removeAllItems();
 				} else {
 					JOptionPane.showMessageDialog(null, "Faltan tripulantes por agregar");
 				}
-
-				comboBoxTipoTripulacion.removeAllItems();
-				comboBoxPiloto.removeAllItems();
-				comboBoxCopiloto.removeAllItems();
-				comboBoxAuxiliar.removeAllItems();
 			}
 		});
+		
 		btnVolverTripulacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				verRegistroFiltrado();
@@ -821,6 +841,47 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 
 	public void crearTripulante() {
 		
+		comboBoxCargo.addItem("");
+		comboBoxCargo.addItem("Piloto");
+		comboBoxCargo.addItem("Copiloto");
+		comboBoxCargo.addItem("Auxiliar");
+
+		btnGuardarTripulante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean cargo = !comboBoxCargo.getSelectedItem().equals("");
+				boolean identificacion = !txtIdentificacion.getText().equals("");
+				boolean nombre = !txtNombre.getText().equals("");
+				boolean direccion = !txtDireccion.getText().equals("");
+				boolean correo = !txtCorreo.getText().equals("");
+				boolean fechaNacimiento = !txtFechaNacimiento.getText().equals("");
+				boolean estudios = !txtEstudios.getText().equals("");
+				
+				if(cargo && identificacion && nombre && direccion && correo && fechaNacimiento && estudios) {
+					
+					Tripulante miTripulante = new Tripulante(String.valueOf(comboBoxCargo.getSelectedItem()), 
+								txtIdentificacion.getText(), txtNombre.getText(), txtDireccion.getText(),
+								txtCorreo.getText(), txtFechaNacimiento.getText(), txtEstudios.getText());
+					
+					boolean tripulante = miAerolinea.crearTripulante(miTripulante);
+					if (tripulante == true) {
+						JOptionPane.showMessageDialog(null, "Creado");
+						verRegistroFiltrado();
+						comboBoxCargo.removeAllItems();
+						txtIdentificacion.setText("");
+						txtNombre.setText("");
+						txtDireccion.setText("");
+						txtCorreo.setText("");
+						txtFechaNacimiento.setText("");
+						txtEstudios.setText("");
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "Error al verificar:\nIdentificacion asociada a un\ntripulante ya creado");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Aun hay campos vacios");
+				}
+			}
+		});
 		verTablaTripulacionTripulante(false);
 		verCreartripulante(true);
 		verCreartripulacion(false);
@@ -874,6 +935,8 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 	}
 	
 	public void verCreartripulante(boolean opcion) {
+		lblTituloCrearTripulante.setVisible(opcion);
+		
 		lblCargo.setVisible(opcion);
 		lblIdentificacion.setVisible(opcion);
 		lblNombre.setVisible(opcion);
@@ -881,6 +944,17 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		lblCorreo.setVisible(opcion);
 		lblFechaNacimiento.setVisible(opcion);
 		lblEstudios.setVisible(opcion);
+		
+		comboBoxCargo.setVisible(opcion);
+		txtIdentificacion.setVisible(opcion);
+		txtNombre.setVisible(opcion);
+		txtDireccion.setVisible(opcion);
+		txtCorreo.setVisible(opcion);
+		txtFechaNacimiento.setVisible(opcion);
+		txtEstudios.setVisible(opcion);
+		
+		btnVolverTripulante.setVisible(opcion);
+		btnGuardarTripulante.setVisible(opcion);
 	}
 	
 	public void verCreartripulacion(boolean opcion) {

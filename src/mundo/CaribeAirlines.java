@@ -86,7 +86,7 @@ public class CaribeAirlines {
 	public void setMisClientes(List<Cliente> misClientes) {
 		this.misClientes = misClientes;
 	}
-
+	
 	public int contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion(String cargo, List<Tripulante> miTripulacion) {
 		int j = 0;
 		for (int i = 0; i < miTripulacion.size(); i++) {
@@ -342,7 +342,23 @@ public class CaribeAirlines {
 		misClientes.add(c);
 		return true;
 	}
-
+	
+	public boolean crearTripulante(Tripulante miTripulante) {// si lo encuentra true 
+		boolean centinela = false;
+		String identificacion = miTripulante.getAtributos().get("Identificacion");
+		for (int i = 0; i < misTripulantes.size() && centinela == false; i++) {
+			if(misTripulantes.get(i).getAtributos().get("Identificacion").equals(identificacion)) {
+				centinela = true;
+			}
+		}
+		if(centinela == true) {
+			return false;
+		}else {
+			misTripulantes.add(miTripulante);
+			return true;
+		}
+	}
+	
 	public boolean crearTripulacion(List<Tripulante> miTripulacionAgregada, String tipoTripulacion) {
 		List<Tripulante> auxiliares = new ArrayList<>();
 		int numeroAuxiliares = 0;
@@ -453,4 +469,5 @@ public class CaribeAirlines {
 		tarjetas.add(t);
 
 	}
+	
 }
