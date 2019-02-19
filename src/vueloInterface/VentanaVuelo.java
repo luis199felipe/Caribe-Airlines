@@ -81,8 +81,18 @@ public class VentanaVuelo extends JInternalFrame {
 				tablaRegistro.getColumnModel().getColumn(3).setPreferredWidth(WIDTH_VUElO);
 				tablaRegistro.setRowHeight(ROW_HEIGHT);
 				
-				String[][] datos = new String[4][0];
+				String[][] datos = new String[0][4];
 				datos = miAerolinea.llenarTablaDeDatosVuelo(posOpcion);// 0 nacional 1 internacional
+				
+				DefaultTableModel modeloRegistro = (DefaultTableModel) tablaRegistro.getModel();
+				modeloRegistro.setRowCount(datos.length);
+
+				
+				for (int i = 0; i < tablaRegistro.getRowCount(); i++) {
+					for (int j = 1; j < tablaRegistro.getColumnCount(); j++) {
+						tablaRegistro.setValueAt(datos[i][j - 1], i, j);
+					}
+				}
 				
 				verTablaPrincipal(true);
 				verRegistro(true);

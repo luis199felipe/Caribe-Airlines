@@ -272,14 +272,32 @@ public class CaribeAirlines {
 		return tabla;
 	}
 	public String[][] llenarTablaDeDatosVuelo(int posOpcion) {
-		String[][] tabla = new String[misVuelos.size()][3];
+		String tipoVuelo = "";
+		int tamano = 0;
+		
+		if(posOpcion == 0) {
+			tipoVuelo = "Nacional";
+		}else if(posOpcion == 1) {
+			tipoVuelo = "Internacional";
+		}
+		
 		for (int i = 0; i < misVuelos.size(); i++) {
-			if(true) {
-				
+			if(misVuelos.get(i).getMiRuta().getAtributos().get("Tipo vuelo").equalsIgnoreCase(tipoVuelo)) {
+				tamano++;
 			}
-			tabla[i][0] = misTripulantes.get(i).getAtributos().get("Nombre");
-			tabla[i][1] = misTripulantes.get(i).getAtributos().get("Identificacion");
-			tabla[i][2] = misTripulantes.get(i).getAtributos().get("Cargo");
+		}
+		
+		String[][] tabla = new String[tamano][3];
+		
+		int j = 0;
+		for (int i = 0; i < misVuelos.size(); i++) {
+			if(misVuelos.get(i).getMiRuta().getAtributos().get("Tipo vuelo").equalsIgnoreCase(tipoVuelo)) {
+				tabla[j][0] = misVuelos.get(i).getAtributos().get("Fecha");
+				tabla[j][1] = misVuelos.get(i).getMiRuta().getAtributos().get("Origen");
+				tabla[j][2] = misVuelos.get(i).getMiRuta().getAtributos().get("Destino");
+				j++;
+			}
+			
 		}
 		return tabla;
 	}
