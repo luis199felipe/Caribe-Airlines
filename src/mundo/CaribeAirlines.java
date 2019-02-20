@@ -271,6 +271,7 @@ public class CaribeAirlines {
 		}
 		return tabla;
 	}
+	
 	public String[][] llenarTablaDeDatosVuelo(int posOpcion) {
 		String tipoVuelo = "";
 		int tamano = 0;
@@ -301,6 +302,7 @@ public class CaribeAirlines {
 		}
 		return tabla;
 	}
+	
 	public String[][] llenarTablaDeDatosAeronave(int opcion) {
 		HashMap<String, Object> datos = misTipoAeronave.get(opcion).getAtributos();
 		int filas = datos.size();
@@ -493,7 +495,6 @@ public class CaribeAirlines {
 	}
 
 	public void agregarTiquete(Tiquete miTiquete) {
-		// TODO Auto-generated method stub
 		misTiquetes.add(miTiquete);
 	}
 
