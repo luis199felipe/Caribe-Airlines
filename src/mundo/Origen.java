@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import VentaLogica.Cliente;
+import VentaLogica.Maleta;
 import VentaLogica.Tarjeta;
+import VentaLogica.Tiquete;
 import aeronaveData.DatosAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
@@ -286,15 +288,44 @@ public void crearMisTripulantes() {
 	
 	public void crearTarjetasClientes() {
 		List<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
-		Tarjeta t1 = new Tarjeta("credito",5000000,"12345678", "1000","14/12","123");
-		Tarjeta t2 = new Tarjeta("debito", 10000, "87654321","87654321000","17/12","000");
+		Tarjeta t1 = new Tarjeta("debito",5000000,"12345678", "12345678000","10/10","000");
+		Tarjeta t2 = new Tarjeta("debito", 10000, "87654321","87654321000","10/10","000");
+		Tarjeta t3 = new Tarjeta("credito", 1239821, "12345","12345000","10/10","000");
+		Tarjeta t4 = new Tarjeta("debito",12412 , "1234","1234000","10/10","000");
+		Tarjeta t5 = new Tarjeta("credito",1234123 , "123","123000","10/10","000");
+		Tarjeta t6 = new Tarjeta("debito",436545 , "12","12000","10/10","000");
 		
+				
 		tarjetas.add(t1);
 		tarjetas.add(t2);
+		tarjetas.add(t3);
+		tarjetas.add(t4);
+		tarjetas.add(t5);
+		tarjetas.add(t6);
+		
 		System.out.println("crearTarjetas clien " + tarjetas.size() );
 		aerolinea.setMisTarjetas(tarjetas);
 		
 	}
+	
+	public void crearMisTiquetes() {
+		List<Tiquete> misTiquetes = new ArrayList<>();
+		
+		List<Maleta> m = new ArrayList<Maleta>();
+		
+		Maleta m1= new Maleta("10-10-12", 20);
+		Maleta m2= new Maleta("10-22-12", 10);
+		m.add(m1);
+		m.add(m2);
+		
+		Tiquete tiq = new Tiquete("12345678","ecomomica",aerolinea.getMisVuelos().get(1),aerolinea.getMisVuelos().get(7),m,1300000);
+		misTiquetes.add(tiq);
+		
+		
+		aerolinea.setMisTiquetes(misTiquetes);
+		
+	}
+	
 	
 	
 }

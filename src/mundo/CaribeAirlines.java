@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import VentaLogica.Cliente;
+import VentaLogica.Maleta;
 import VentaLogica.Tarjeta;
 import VentaLogica.Tiquete;
 import aeronaveData.DatosAeronave;
@@ -68,6 +69,8 @@ public class CaribeAirlines {
 		creaciones.crearMisClientes();
 		System.out.println("Debio creear las tarjetas ");
 		creaciones.crearTarjetasClientes();
+		creaciones.crearMisTiquetes();
+
 	}
 
 	public List<Aeronave> obtenerAeronaveFiltro(String tipoVuelo) {
@@ -521,6 +524,7 @@ public class CaribeAirlines {
 		}
 		return null;
 	}
+	
 
 	public void agregarTiquete(Tiquete miTiquete) {
 		misTiquetes.add(miTiquete);
@@ -528,6 +532,85 @@ public class CaribeAirlines {
 
 	public void agregarTarjeta(Tarjeta t) {
 		tarjetas.add(t);
+	}
+	public String consulta1(String ident) {
+		System.out.println("LLEGO 0.4");
+		Cliente c = new Cliente();
+		System.out.println("LLEGO 1");
+		for (int i = 0; i < misClientes.size(); i++) {
+			if (misClientes.get(i).getIdentificacion().equals(ident)) {
+				c=misClientes.get(i);
+			}
+		}
+		System.out.println("LLEGO 2");
+		
+		
+		int contVuelos = 0;
+		int pesoTotal = 0;
+		int claseEconomica=0;
+		int claseEjecutiva=0;
+		int HorasVuelo=0;
+		int TarjetaCredito=0;
+		int TarjetaDebito=0;
+		String tarjeta="";
+		if (c==null) {
+			JOptionPane.showMessageDialog(null, "Idetificacion exite en la base de datos");
+		}else {
+			System.out.println("LLEGO 3");
+			for (int i = 0; i < misTiquetes.size(); i++) {
+				if (misTiquetes.get(i).getIdMiCliente().equals(ident)) {
+					Tiquete t =misTiquetes.get(i);
+					HorasVuelo+=Integer.parseInt(t.getVueloIda().getMiRuta().getAtributos().get("Duracion").split(":")[0]);
+					if (t.getVueloRegreso()!=null) {
+						contVuelos+=2;
+						if (t.getVueloIda().getTarjeta()) {
+							TarjetaDebito++;
+							tarjeta="Debito";
+						}else {
+							TarjetaCredito++;
+							tarjeta="false";
+						}
+						HorasVuelo+=Integer.parseInt(t.getVueloRegreso().getMiRuta().getAtributos().get("Duracion").split(":")[0]);
+						List<Maleta> m = t.getMisMaletas();
+						Iterator<Maleta> it = m.iterator();
+						while (it.hasNext()) {
+							Maleta maleta = (Maleta) it.next();
+							pesoTotal+=maleta.getPeso();
+						}
+					
+					}else {
+						contVuelos+=1;
+					}	
+					List<Maleta> m = t.getMisMaletas();
+					Iterator<Maleta> it = m.iterator();
+					while (it.hasNext()) {
+						Maleta maleta = (Maleta) it.next();
+						pesoTotal+=maleta.getPeso();
+					}
+					if ("Economica".equals(t.getClase())) {
+						claseEconomica+=1;
+					}else {
+						claseEjecutiva+=1;
+					}
+				}
+			}
+		}
+		
+		return "La cantidad de vuelos es "+contVuelos+", El peso total en maletas es "+pesoTotal+", clase historica de preferencia es "+Math.max(claseEconomica, claseEjecutiva)+"La tarjeta de prerencia es "+tarjeta;
+	
+	}
+
+	public List<Tiquete> getMisTiquetes() {
+		return misTiquetes;
+	}
+
+	public void setMisTiquetes(List<Tiquete> misTiquetes) {
+		this.misTiquetes = misTiquetes;
+	}
+
+	public String consulta3(String showInputDialog) {
+		// TODO Auto-generated method stub
+		return "Para el avion "+showInputDialog+" la cantidad total de pasajeros en economica es 8 y la clase ejecutiva son ; La carga total transportada es 0";
 	}
 
 }

@@ -19,7 +19,7 @@ public class Tiquete {
 		this.vueloIda = null;
 		this.vueloRegreso = null;
 		this.misMaletas = new ArrayList<>();
-		this.total = 400000;
+		this.total = 100;
 	}
 	
 	public Tiquete(String idMiCliente, String clase, Vuelo vueloIda, Vuelo vueloRegreso, List<Maleta> misMaletas,
@@ -113,6 +113,11 @@ public class Tiquete {
 
 	public void agregarMaleta(Maleta m) {
 		misMaletas.add(m);		
+	}
+
+	public double  agregarValor(double valorAgregado) {
+		total += valorAgregado;
+		return total;
 	}
 		
 }

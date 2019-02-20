@@ -87,4 +87,12 @@ public class Vuelo implements Serializable{
 	public void setMiAeronave(Aeronave miAeronave) {
 		this.miAeronave = miAeronave;
 	}
+
+
+	public boolean getTarjeta() {
+		return true;
+	}
+
+	
+
 }

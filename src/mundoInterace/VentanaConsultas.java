@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import java.awt.BorderLayout;
@@ -32,11 +33,13 @@ public class VentanaConsultas implements ActionListener {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 739, 417);
 		frame.getContentPane().setLayout(null);
-
+		aerolinea=ae;
+		
+		
 		JLabel lblRequisitosFuncionales = new JLabel("REQUISITOS FUNCIONALES");
 		lblRequisitosFuncionales.setFont(new Font("Dialog", Font.BOLD, 22));
 		lblRequisitosFuncionales.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRequisitosFuncionales.setBounds(0, 12, 579, 44);
+		lblRequisitosFuncionales.setBounds(0, 12, 727, 44);
 		frame.getContentPane().add(lblRequisitosFuncionales);
 
 		btnPunto = new JButton("Punto 1");
@@ -83,19 +86,28 @@ public class VentanaConsultas implements ActionListener {
 		txtPunto4.setBounds(176, 315, 551, 61);
 		frame.getContentPane().add(txtPunto4);
 		frame.setVisible(true);
+		System.out.println("ASDÑFJK ASDLÑKFJ ASLDK FJALSKDJ F");
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnPunto) {
-			txtPunto1.setText("");
+			System.out.println("LLEGO 0.1");
+			String cedula = JOptionPane.showInputDialog("Ingrese la cedula del cliente que desea obtener la informacion");
+			System.out.println("LLEGO 0.2");
+			String impr = aerolinea.consulta1(cedula);
+			
+			
+			
+			txtPunto1.setText(impr);
 		}
 		if (e.getSource() == btnPunto_2) {
 			txtPunto2.setText("");
 		}
 		if (e.getSource() == btnPunto_3) {
-			txtPunto3.setText("");
+			String con3 = aerolinea.consulta3(JOptionPane.showInputDialog("Ingrese el nombre del avion"));
+			txtPunto3.setText(con3);
 		}
 		if (e.getSource() == btnPunto_4) {
 			txtPunto4.setText("");

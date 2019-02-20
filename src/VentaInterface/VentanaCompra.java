@@ -1,6 +1,7 @@
 package VentaInterface;
 
 import java.awt.EventQueue;
+import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -42,10 +43,11 @@ public class VentanaCompra implements ActionListener {
 	private JFrame panel;
 
 	private ButtonGroup BGModalidad, BGClase;
-	private JComboBox<String> comboBoxCiudadDestino, comboBoxCiudadOrigen, comboBoxFechaSalida, comboBoxFechaRegreso;
+	private JComboBox<String> comboBoxCiudadDestino, comboBoxCiudadOrigen;
 
 	private JRadioButton RadioButtonIdaYRegreso, RadioButtonSoloIda, rdbtnEconomica, rdbtnEjecutiva,rdbtnTarjetaDebito,rdbtnTarjetaCredito;
-	private JButton btnRegistro, btnCargarDatos, btnVerDisponibilidad, btnContinuar, btnAgregarMaleta,btnContinuar2,btnVerificarCupo ,btnComprar;
+	private JButton btnRegistro, btnCargarDatos, btnVerDisponibilidad, btnContinuar, btnAgregarMaleta,btnContinuar2,btnVerificarCupo ,btnComprar,btnEquiAdi,btnMascota ;
+	
 	private JLabel nombre, direccion, fecha, correo,lblMaleta;
 	private Compra miCompra;
 	private JTextPane ResumenMaletas; 
@@ -191,10 +193,10 @@ public class VentanaCompra implements ActionListener {
 		JPanel panelEquipaje = new JPanel();
 		tabbedPane.addTab("Equipaje", null, panelEquipaje, null);
 		panelEquipaje.setLayout(null);
-		tabbedPane.setEnabledAt(1, false);
+		//tabbedPane.setEnabledAt(1, false);
 
 		btnAgregarMaleta = new JButton("Agregar Maleta");
-		btnAgregarMaleta.setBounds(12, 168, 207, 25);
+		btnAgregarMaleta.setBounds(12, 168, 236, 25);
 		btnAgregarMaleta.addActionListener(this);
 		panelEquipaje.add(btnAgregarMaleta);
 		contMaletas = 0;
@@ -225,9 +227,19 @@ public class VentanaCompra implements ActionListener {
 		panelEquipaje.add(ResumenMaletas);
 		
 		btnContinuar2 = new JButton("Continuar");
-		btnContinuar2.setBounds(12, 214, 207, 53);
+		btnContinuar2.setBounds(12, 283, 207, 53);
 		btnContinuar2.addActionListener(this);
 		panelEquipaje.add(btnContinuar2);
+		
+		btnMascota= new JButton("Agregar Mascota\n");
+		btnMascota.setBounds(12, 205, 236, 25);
+		btnMascota.addActionListener(this);
+		panelEquipaje.add(btnMascota);
+		
+		btnEquiAdi = new JButton("Agregar equipaje adicional");
+		btnEquiAdi.setBounds(12, 242, 236, 25);
+		btnEquiAdi.addActionListener(this);
+		panelEquipaje.add(btnEquiAdi );
 
 		// **************************************************************PANEL
 		// CLIENTE********************************************************************************************
@@ -359,6 +371,7 @@ public class VentanaCompra implements ActionListener {
 	boolean clas = false;
 	boolean continuar = false;
 	boolean cupo = false;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -413,7 +426,7 @@ public class VentanaCompra implements ActionListener {
 			boolean verPeso = verificarPeso(pe);
 			
 			if (verPeso && verDim) {
-				ResumenMaletas.setText(ResumenMaletas.getText()+"Maleta " + (contMaletas+1) + ": " +dimensiones.getText()+" "+ pe+" \n");
+				ResumenMaletas.setText(ResumenMaletas.getText()+"Maleta " + (contMaletas+1) + ": " +dimensiones.getText()+" Peso "+ pe+" \n");
 				contMaletas++;
 				lblMaleta.setText("Maleta " + (contMaletas+1) + ":");
 				Maleta m = new Maleta(dimensiones.getText(), pe);
@@ -422,6 +435,14 @@ public class VentanaCompra implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Maleta "+contMaletas+" agregada");
 			}
 			
+		}
+		
+		if (e.getSource() == btnMascota) {
+			AgregarMascota();
+		}
+		
+		if (e.getSource()==btnEquiAdi) {
+			AgregarEquipajeAdicional();
 		}
 		
 		if (e.getSource()==btnContinuar2) {
@@ -543,6 +564,61 @@ public class VentanaCompra implements ActionListener {
 
 		}
 	}
+	int contMascota=1;
+	private void AgregarMascota() {
+		boolean v = true;
+		int pe = 0;
+		while (v) {
+			try {
+				String pes = JOptionPane.showInputDialog("Si la mascota pesa entre 3 y 9 Kg tiene una tarifa de 48 dolares \n Si pesa más de 9kg tiene un costo de 2 dolares por cada kg extra \n Ingrese el peso de la mascota "+contMascota);
+				pe = Integer.parseInt(pes);
+				v=false;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Por favor ingrese solo numeros");
+			}			
+		}
+		double valorAgregado = 0;
+		if (pe<10) {
+			valorAgregado = 48;
+		}else {
+			valorAgregado = 48+(pe-9)*2;
+		}
+		JOptionPane.showMessageDialog(null, "El precio agregado es de "+valorAgregado);
+		double v1 = miCompra.getMiTiquete().agregarValor(valorAgregado);
+		
+		ResumenMaletas.setText(ResumenMaletas.getText()+ "\n Mascota "+contMascota+" peso: "+pe+" valor= "+valorAgregado+" \n");
+		contMascota++;
+		Maleta m = new Maleta("mascota",pe);
+		miCompra.getMiTiquete().agregarMaleta(m);
+		JOptionPane.showMessageDialog(null, "El valor total hasta el momento es de "+v1);
+
+	}
+
+	int contEquipajeExtra = 1 ;
+	private void AgregarEquipajeAdicional() {
+		
+		boolean v = true;
+		int pe = 0;
+		while (v) {
+			try {
+				String pes = JOptionPane.showInputDialog("Recuerde que por Kg tiene un costo de 8 dolares mas el 6.75% de impuesto sobre el total \n Ingrese el peso del equipaje extra "+contEquipajeExtra);
+				pe = Integer.parseInt(pes);
+				v=false;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Por favor ingrese solo numeros");
+			}			
+		}
+		
+		double valorAgregado = Math.floor(pe*8*1.0675);
+		JOptionPane.showMessageDialog(null, "El precio agregado es de "+valorAgregado);
+		double v1 = miCompra.getMiTiquete().agregarValor(valorAgregado);
+		
+		ResumenMaletas.setText(ResumenMaletas.getText()+ "\n Equipaje extra "+contEquipajeExtra+" peso: "+pe+" valor= "+valorAgregado+" \n");
+		contEquipajeExtra++;
+		Maleta m = new Maleta("0-0-0",pe);
+		miCompra.getMiTiquete().agregarMaleta(m);
+		JOptionPane.showMessageDialog(null, "El valor total hasta el momento es de "+v1);
+	}
 
 	private boolean verificarPeso(int p) {
 		if (miCompra.getMiTiquete().getVueloIda().getMiRuta().getAtributos().get("Tipo vuelo").equals("Nacional")) {
@@ -593,6 +669,8 @@ public class VentanaCompra implements ActionListener {
 			
 		return false;
 	}
+
+	
 
 	private boolean verificarDimensionesMaleta() {
 		String[] dim = dimensiones.getText().split("-");

@@ -20,6 +20,10 @@ public class Cliente {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getIdentificacion() {
 		return identificacion;
 	}
