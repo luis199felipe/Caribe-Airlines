@@ -552,9 +552,12 @@ public class CaribeAirlines {
 		int HorasVuelo=0;
 		int TarjetaCredito=0;
 		int TarjetaDebito=0;
+		double pagoAdicionalMaletas=0;
+		double pagoAdicionalMascotas=0;
 		String tarjeta="";
 		if (c==null) {
 			JOptionPane.showMessageDialog(null, "Idetificacion exite en la base de datos");
+			return "";
 		}else {
 			System.out.println("LLEGO 3");
 			for (int i = 0; i < misTiquetes.size(); i++) {
@@ -576,8 +579,15 @@ public class CaribeAirlines {
 						while (it.hasNext()) {
 							Maleta maleta = (Maleta) it.next();
 							pesoTotal+=maleta.getPeso();
+							if (maleta.getDimenciones().equals("0-0-0")) {
+								pagoAdicionalMaletas += maleta.getPeso()*8*1.0675;
+							}
+							if (maleta.getDimenciones().equals("mascota")) {
+								if (maleta.getPeso()>9) {
+									pagoAdicionalMascotas += (maleta.getPeso()-9)*2;
+								}
+							}	
 						}
-					
 					}else {
 						contVuelos+=1;
 					}	
@@ -595,8 +605,14 @@ public class CaribeAirlines {
 				}
 			}
 		}
+		String clasePre = "";
+		if (claseEconomica>claseEjecutiva) {
+			clasePre = "Economica";
+		}else {
+			clasePre = "Ejecutiva";
+		}
 		
-		return "La cantidad de vuelos es "+contVuelos+", El peso total en maletas es "+pesoTotal+", clase historica de preferencia es "+Math.max(claseEconomica, claseEjecutiva)+"La tarjeta de prerencia es "+tarjeta;
+		return "Para el cliente "+c.getNombre()+": La cantidad de vuelos es "+contVuelos+", El peso total en maletas es "+pesoTotal+", pago total en equipaje adicional es:"+ Math.floor(pagoAdicionalMaletas)+ ", El pago realizado por todas las mascotas es "+pagoAdicionalMascotas+"La clase historica de preferencia es "+clasePre+", Las horas totales de vuelo son "+HorasVuelo+",La tarjeta de prerencia es "+tarjeta;
 	
 	}
 

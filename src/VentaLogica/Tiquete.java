@@ -12,6 +12,7 @@ public class Tiquete {
 	private Vuelo vueloRegreso;
 	private List<Maleta> misMaletas;
 	private double total;
+	private String silla;
 	
 	public Tiquete() {
 		this.idMiCliente = "";
@@ -22,14 +23,15 @@ public class Tiquete {
 		this.total = 100;
 	}
 	
-	public Tiquete(String idMiCliente, String clase, Vuelo vueloIda, Vuelo vueloRegreso, List<Maleta> misMaletas,
+	public Tiquete(String idMiCliente, String clase, Vuelo vueloIda, Vuelo vueloRegreso,String silla, List<Maleta> misMaletas,
 			double total) {
+		this.silla = silla;
 		this.idMiCliente = idMiCliente;
 		this.clase = clase;
 		this.vueloIda = vueloIda;
 		this.vueloRegreso = vueloRegreso;
 		this.misMaletas = misMaletas;
-		this.total = 400000;
+		this.total = 100 ;
 	}
 	
 	

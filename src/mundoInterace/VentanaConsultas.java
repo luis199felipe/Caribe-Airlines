@@ -86,7 +86,7 @@ public class VentanaConsultas implements ActionListener {
 		txtPunto4.setBounds(176, 315, 551, 61);
 		frame.getContentPane().add(txtPunto4);
 		frame.setVisible(true);
-		System.out.println("ASDÑFJK ASDLÑKFJ ASLDK FJALSKDJ F");
+		
 
 	}
 

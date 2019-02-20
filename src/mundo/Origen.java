@@ -315,13 +315,14 @@ public void crearMisTripulantes() {
 		
 		Maleta m1= new Maleta("10-10-12", 20);
 		Maleta m2= new Maleta("10-22-12", 10);
+		Maleta m3= new Maleta("0-0-0", 10);
+		Maleta m4= new Maleta("mascota", 5);
 		m.add(m1);
 		m.add(m2);
-		
-		Tiquete tiq = new Tiquete("12345678","ecomomica",aerolinea.getMisVuelos().get(1),aerolinea.getMisVuelos().get(7),m,1300000);
+		m.add(m3);
+		m.add(m4);
+		Tiquete tiq = new Tiquete("12345678","ecomomica",aerolinea.getMisVuelos().get(1),aerolinea.getMisVuelos().get(7),"A1",m,1300000);
 		misTiquetes.add(tiq);
-		
-		
 		aerolinea.setMisTiquetes(misTiquetes);
 		
 	}
