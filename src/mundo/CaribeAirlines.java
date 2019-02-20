@@ -69,10 +69,11 @@ public class CaribeAirlines {
 		System.out.println("Debio creear las tarjetas ");
 		creaciones.crearTarjetasClientes();
 	}
-	public List<Aeronave> obtenerAeronaveFiltro(String tipoVuelo){
+
+	public List<Aeronave> obtenerAeronaveFiltro(String tipoVuelo) {
 		List<Aeronave> misAeronavesFiltradas = new ArrayList<>();
 		for (int i = 0; i < misAeronaves.size(); i++) {
-			if(misAeronaves.get(i).getTipoAeronave().getAtributos().get("TipoVuelo").equals(tipoVuelo)) {
+			if (misAeronaves.get(i).getTipoAeronave().getAtributos().get("TipoVuelo").equals(tipoVuelo)) {
 				misAeronavesFiltradas.add(misAeronaves.get(i));
 			}
 		}
@@ -215,13 +216,15 @@ public class CaribeAirlines {
 	}
 
 	public String[][] llenarTablaDeDatosMasDetallesTripulacion(Tripulacion miTripulacion) {
-		int row = miTripulacion.getMisVuelos().size() + miTripulacion.getAuxiliares().size() + 2 + 1;
+		int row = miTripulacion.getMisVuelos().size() + miTripulacion.getAuxiliares().size() + 2 + 1 + 1;
 		String[][] tabla = new String[row][2];
 
-		tabla[0][0] = "Piloto";
-		tabla[0][1] = miTripulacion.getMiTripulacion().get("Piloto");
-		tabla[1][0] = "Copiloto";
-		tabla[1][1] = miTripulacion.getMiTripulacion().get("Copiloto");
+		tabla[0][0] = "idTripulacion";
+		tabla[0][1] = "Trip" + miTripulacion.getMiTripulacion().get("IdTripulacion");
+		tabla[1][0] = "Piloto";
+		tabla[1][1] = miTripulacion.getMiTripulacion().get("Piloto");
+		tabla[2][0] = "Copiloto";
+		tabla[2][1] = miTripulacion.getMiTripulacion().get("Copiloto");
 
 		List<String> mostrar = new ArrayList<>();
 		String palabra = "";
@@ -234,17 +237,17 @@ public class CaribeAirlines {
 			}
 		}
 
-		for (int j = 2; j < miTripulacion.getAuxiliares().size() + 2; j++) {
+		for (int j = 3; j < miTripulacion.getAuxiliares().size() + 2; j++) {
 			tabla[j][0] = "auxiliar " + (j - 1);
 			tabla[j][1] = mostrar.get(j - 2);
 		}
 
-		tabla[2 + miTripulacion.getAuxiliares().size()][0] = "Tipo Tripulacion";
-		tabla[2 + miTripulacion.getAuxiliares().size()][1] = miTripulacion.getTipoTripulacion();
+		tabla[3 + miTripulacion.getAuxiliares().size()][0] = "Tipo Tripulacion";
+		tabla[3 + miTripulacion.getAuxiliares().size()][1] = miTripulacion.getTipoTripulacion();
 
 		int i = 0;
 
-		for (int j = 2 + miTripulacion.getAuxiliares().size() + 1; j < tabla.length; j++) {
+		for (int j = 3 + miTripulacion.getAuxiliares().size() + 1; j < tabla.length; j++) {
 			tabla[j][0] = "Vuelo " + (i + 1);
 			tabla[j][1] = miTripulacion.getMisVuelos().get(i).getMiRuta().getAtributos().get("Origen") + " / "
 					+ miTripulacion.getMisVuelos().get(i).getMiRuta().getAtributos().get("Destino");
@@ -321,6 +324,9 @@ public class CaribeAirlines {
 	public String[][] llenarTablaDeMasDetalles(Vuelo miVuelo) {
 		int row = miVuelo.getAtributos().size() + miVuelo.getMiRuta().getAtributos().size()
 				+ miVuelo.getMiTripulacion().getAuxiliares().size() + 2;
+		System.out.println("vuelo"+miVuelo.getAtributos().size());
+		System.out.println("ruta"+ miVuelo.getMiRuta().getAtributos().size());
+		System.out.println("tripulacion"+ miVuelo.getMiTripulacion().getAuxiliares().size());
 		String[][] datos = new String[row][2];
 		int i = 0;
 		for (Iterator it = miVuelo.getAtributos().keySet().iterator(); it.hasNext();) {
@@ -391,6 +397,11 @@ public class CaribeAirlines {
 			misTripulantes.add(miTripulante);
 			return true;
 		}
+	}
+
+	public boolean crearVuelo(Vuelo miVueloAgregado) {
+		misVuelos.add(miVueloAgregado);
+		return true;
 	}
 
 	public boolean crearTripulacion(List<Tripulante> miTripulacionAgregada, String tipoTripulacion) {

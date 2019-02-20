@@ -40,12 +40,12 @@ import vueloLogica.Vuelo;
 public class VentanaVuelo extends JInternalFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JButton btnCrear, btnMasDetalles, btnVolver;
+	private JButton btnCrear, btnMasDetalles, btnVolver, btnGuardarCrearVuelo, btnVolverCrearVuelo;
 	private JLabel lblRegistro, lblCrearVuelo, lblRuta, lblTripulacion, lblAeronave, lblFecha, lblHoraSalida,
-			lblHoraLlegada, lblAlistamiento;
+			lblAlistamiento;
 	private JTable tablaVuelos, tablaRegistro, tablaMasDetalles;
-	private JTextField txtFecha,txtHoraSalida,txtHoraLlegada,txtAlistamiento;
-	private JComboBox comboBoxRuta,comboBoxTripulacion,comboBoxAeronave;
+	private JTextField txtFecha, txtHoraSalida, txtAlistamiento;
+	private JComboBox comboBoxRuta, comboBoxTripulacion, comboBoxAeronave;
 	private JScrollPane scrollPaneRegistro, scrollPaneMasDetalles;
 
 	private int posOpcion, posRegistro;
@@ -203,72 +203,74 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 		lblRuta.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		lblRuta.setBounds(X, 45, 100, LBL_HEIGHT);
 		contentPane.add(lblRuta);
-		
+
 		comboBoxRuta = new JComboBox();
 		comboBoxRuta.addActionListener(this);
-		comboBoxRuta.setBounds(X+200, 45, 150, LBL_HEIGHT);
+		comboBoxRuta.setBounds(X + 200, 45, 150, LBL_HEIGHT);
 		contentPane.add(comboBoxRuta);
 
 		lblTripulacion = new JLabel("Tripulacion");
 		lblTripulacion.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		lblTripulacion.setBounds(X, 77, 100, LBL_HEIGHT);
 		contentPane.add(lblTripulacion);
-		
+
 		comboBoxTripulacion = new JComboBox();
 		comboBoxTripulacion.addActionListener(this);
-		comboBoxTripulacion.setBounds(X+200, 77, 150, LBL_HEIGHT);
+		comboBoxTripulacion.setBounds(X + 200, 77, 150, LBL_HEIGHT);
 		contentPane.add(comboBoxTripulacion);
 
 		lblAeronave = new JLabel("Aeronave");
 		lblAeronave.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		lblAeronave.setBounds(X, 109, 100, LBL_HEIGHT);
 		contentPane.add(lblAeronave);
-		
+
 		comboBoxAeronave = new JComboBox();
 		comboBoxAeronave.addActionListener(this);
-		comboBoxAeronave.setBounds(X+200, 109, 150, LBL_HEIGHT);
+		comboBoxAeronave.setBounds(X + 200, 109, 150, LBL_HEIGHT);
 		contentPane.add(comboBoxAeronave);
 
 		lblFecha = new JLabel("Fecha");
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		lblFecha.setBounds(X, 141, 100, LBL_HEIGHT);
 		contentPane.add(lblFecha);
-		
+
 		txtFecha = new JTextField("");
 		txtFecha.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
-		txtFecha.setBounds(X+200, 141, 150, LBL_HEIGHT);
+		txtFecha.setBounds(X + 200, 141, 150, LBL_HEIGHT);
 		contentPane.add(txtFecha);
 
 		lblHoraSalida = new JLabel("HoraSalida");
 		lblHoraSalida.setFont(new Font("Tahoma", Font.BOLD, LETRA));
 		lblHoraSalida.setBounds(X, 173, 100, LBL_HEIGHT);
 		contentPane.add(lblHoraSalida);
-		
+
 		txtHoraSalida = new JTextField("");
 		txtHoraSalida.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
-		txtHoraSalida.setBounds(X+200, 173, 150, LBL_HEIGHT);
+		txtHoraSalida.setBounds(X + 200, 173, 150, LBL_HEIGHT);
 		contentPane.add(txtHoraSalida);
-
-		lblHoraLlegada = new JLabel("HoraLLegada");
-		lblHoraLlegada.setFont(new Font("Tahoma", Font.BOLD, LETRA));
-		lblHoraLlegada.setBounds(X, 206, 100, LBL_HEIGHT);
-		contentPane.add(lblHoraLlegada);
-		
-		txtHoraLlegada = new JTextField("");
-		txtHoraLlegada.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
-		txtHoraLlegada.setBounds(X+200, 206, 150, LBL_HEIGHT);
-		contentPane.add(txtHoraLlegada);
 
 		lblAlistamiento = new JLabel("Alistamiento(Horas)");
 		lblAlistamiento.setFont(new Font("Tahoma", Font.BOLD, LETRA));
-		lblAlistamiento.setBounds(X, 237, 150, LBL_HEIGHT);
+		lblAlistamiento.setBounds(X, 206, 100, LBL_HEIGHT);
 		contentPane.add(lblAlistamiento);
-		
+
 		txtAlistamiento = new JTextField("3");
 		txtAlistamiento.setEditable(false);
 		txtAlistamiento.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
-		txtAlistamiento.setBounds(X+200, 237, 150, LBL_HEIGHT);
+		txtAlistamiento.setBounds(X + 200, 206, 150, LBL_HEIGHT);
 		contentPane.add(txtAlistamiento);
+
+		btnVolverCrearVuelo = new JButton("Volver");
+		btnVolverCrearVuelo.addActionListener(this);
+		btnVolverCrearVuelo.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnVolverCrearVuelo.setBounds(10, 477, 113, 23);
+		contentPane.add(btnVolverCrearVuelo);
+
+		btnGuardarCrearVuelo = new JButton("Guardar");
+		btnGuardarCrearVuelo.addActionListener(this);
+		btnGuardarCrearVuelo.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
+		btnGuardarCrearVuelo.setBounds(251, 477, 113, 23);
+		contentPane.add(btnGuardarCrearVuelo);
 
 		verTablaPrincipal(true);
 		verMasDetalles(false);
@@ -296,6 +298,7 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 
 		btnCrear.setVisible(opcion);
 		btnMasDetalles.setVisible(opcion);
+		
 	}
 
 	public void verMasDetalles(boolean opcion) {
@@ -311,44 +314,171 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 		lblAeronave.setVisible(opcion);
 		lblFecha.setVisible(opcion);
 		lblHoraSalida.setVisible(opcion);
-		lblHoraLlegada.setVisible(opcion);
 		lblAlistamiento.setVisible(opcion);
-		
+
 		comboBoxRuta.setVisible(opcion);
 		comboBoxTripulacion.setVisible(opcion);
 		comboBoxAeronave.setVisible(opcion);
 		txtFecha.setVisible(opcion);
 		txtHoraSalida.setVisible(opcion);
-		txtHoraLlegada.setVisible(opcion);
 		txtAlistamiento.setVisible(opcion);
+		
+		btnGuardarCrearVuelo.setVisible(opcion);
+		btnVolverCrearVuelo.setVisible(opcion);
+	}
+	public void verRegistro() {
+		tablaRegistro.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+
+				for (int i = 0; i < tablaRegistro.getRowCount(); i++) {
+					tablaRegistro.setValueAt("", i, 0);
+				}
+
+				int row = tablaRegistro.rowAtPoint(e.getPoint());
+				obtenerPosRegistro(row);
+
+				DefaultTableCellRenderer alinear = new DefaultTableCellRenderer();
+				alinear.setHorizontalAlignment(SwingConstants.CENTER);// .LEFT .RIGHT .CENTER
+
+				tablaRegistro.getColumnModel().getColumn(0).setCellRenderer(alinear);
+
+				tablaRegistro.setValueAt("*", row, 0);
+			}
+
+		});
+		
+		tablaRegistro.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "", "Fecha", "Origen", "Destino" }));
+		tablaRegistro.getColumnModel().getColumn(0).setPreferredWidth(WIDTH - 3 * WIDTH_VUElO);
+		tablaRegistro.getColumnModel().getColumn(1).setPreferredWidth(WIDTH_VUElO);
+		tablaRegistro.getColumnModel().getColumn(2).setPreferredWidth(WIDTH_VUElO);
+		tablaRegistro.getColumnModel().getColumn(3).setPreferredWidth(WIDTH_VUElO);
+		tablaRegistro.setRowHeight(ROW_HEIGHT);
+
+		String[][] datos = new String[0][4];
+		datos = miAerolinea.llenarTablaDeDatosVuelo(posOpcion);// 0 nacional 1 internacional
+
+		DefaultTableModel modeloRegistro = (DefaultTableModel) tablaRegistro.getModel();
+		modeloRegistro.setRowCount(datos.length);
+
+		for (int i = 0; i < tablaRegistro.getRowCount(); i++) {
+			for (int j = 1; j < tablaRegistro.getColumnCount(); j++) {
+				tablaRegistro.setValueAt(datos[i][j - 1], i, j);
+			}
+		}
+		
+		
+		verTablaPrincipal(true);
+		verMasDetalles(false);
+		verCrearVuelo(false);
+		verRegistro(true);
 	}
 	public void crearVuelo(String tipoVuelo) {
-		
-		List<Ruta> ruta = miAerolinea.obtenerRutasFiltro(tipoVuelo);
-		List<Tripulacion> tripulacion = miAerolinea.obtenerListadoFiltroTripulaciones(tipoVuelo);
-		List<Aeronave> aeronave = miAerolinea.obtenerAeronaveFiltro(tipoVuelo);
+
+		List<Ruta> misRutasFiltradas = miAerolinea.obtenerRutasFiltro(tipoVuelo);
+		List<Tripulacion> misTripulacionesFiltradas = miAerolinea.obtenerListadoFiltroTripulaciones(tipoVuelo);
+		List<Aeronave> misAeronavesFiltradas = miAerolinea.obtenerAeronaveFiltro(tipoVuelo);
 
 		comboBoxRuta.addItem("");
 		comboBoxTripulacion.addItem("");
 		comboBoxAeronave.addItem("");
 
-		for (int i = 0; i < ruta.size(); i++) {
-			comboBoxRuta.addItem(ruta.get(i).getAtributos().get("Origen")+"/"+ruta.get(i).getAtributos().get("Destino"));
+		for (int i = 0; i < misRutasFiltradas.size(); i++) {
+			comboBoxRuta.addItem(misRutasFiltradas.get(i).getAtributos().get("Origen") + "-"
+					+ misRutasFiltradas.get(i).getAtributos().get("Destino"));
 		}
 
-		for (int i = 0; i < tripulacion.size(); i++) {
-			comboBoxTripulacion.addItem(tripulacion.get(i).getMiTripulacion().get("IdTripulacion"));
+		for (int i = 0; i < misTripulacionesFiltradas.size(); i++) {
+			comboBoxTripulacion
+					.addItem("Trip" + misTripulacionesFiltradas.get(i).getMiTripulacion().get("IdTripulacion"));
 		}
 
-		for (int i = 0; i < aeronave.size(); i++) {
-			comboBoxAeronave.addItem(aeronave.get(i).getMatricula());
+		for (int i = 0; i < misAeronavesFiltradas.size(); i++) {
+			comboBoxAeronave.addItem(misAeronavesFiltradas.get(i).getMatricula());
 		}
-		
+
+		btnGuardarCrearVuelo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean ruta = !comboBoxRuta.getSelectedItem().equals("");
+				boolean tripulacion = !comboBoxTripulacion.getSelectedItem().equals("");
+				boolean aeronave = !comboBoxAeronave.getSelectedItem().equals("");
+				boolean fecha = !txtFecha.getText().equals("");
+				boolean horaSalida = !txtHoraSalida.getText().equals("");
+				boolean alistamiento = !txtAlistamiento.getText().equals("");
+
+				if (ruta && tripulacion && aeronave && fecha && horaSalida && alistamiento) {
+
+					Ruta miRuta = null;
+					String viaje = String.valueOf(comboBoxRuta.getSelectedItem());
+					String[] ciudades = viaje.split("-");
+					String origen = ciudades[0];
+					String destino = ciudades[1];
+					for (int i = 0; i < misRutasFiltradas.size(); i++) {
+						if (misRutasFiltradas.get(i).getAtributos().get("Origen").equals(origen)
+								&& misRutasFiltradas.get(i).getAtributos().get("Destino").equals(destino)) {
+							miRuta = misRutasFiltradas.get(i);
+						}
+					}
+
+					Tripulacion miTripulacion = null;
+					String idTrip = String.valueOf(comboBoxTripulacion.getSelectedItem());
+					idTrip = idTrip.substring(4);
+					for (int i = 0; i < misTripulacionesFiltradas.size(); i++) {
+						if (misTripulacionesFiltradas.get(i).getMiTripulacion().get("IdTripulacion")
+								.equals(idTrip)) {
+							miTripulacion = misTripulacionesFiltradas.get(i);
+						}
+					}
+					Aeronave miAeronave = null;
+					for (int i = 0; i < misTripulacionesFiltradas.size(); i++) {
+						if (misAeronavesFiltradas.get(i).getMatricula().equals(comboBoxAeronave.getSelectedItem())) {
+							miAeronave = misAeronavesFiltradas.get(i);
+						}
+					}
+
+					String id = miAerolinea.getMisVuelos().get(miAerolinea.getMisVuelos().size() - 1).getAtributos()
+							.get("IdVuelo");
+					int idVuelo = Integer.parseInt(id) + 1;
+
+					Vuelo miVuelo = new Vuelo(String.valueOf(idVuelo), txtFecha.getText(), txtHoraSalida.getText(),
+							txtAlistamiento.getText(), miRuta, miTripulacion, miAeronave);
+
+					boolean vuelo = miAerolinea.crearVuelo(miVuelo);
+					
+					if (vuelo = true) {
+						JOptionPane.showMessageDialog(null, "Creado");
+						
+						verRegistro();
+
+						comboBoxRuta.removeAllItems();
+						comboBoxTripulacion.removeAllItems();
+						comboBoxAeronave.removeAllItems();
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Error al verificar:\nIdentificacion asociada a un\ntripulante ya creado");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Faltan campos por agregar");
+				}
+			}
+		});
+
+		btnVolverCrearVuelo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				verRegistro();
+
+				comboBoxRuta.removeAllItems();
+				comboBoxTripulacion.removeAllItems();
+				comboBoxAeronave.removeAllItems();
+			}
+		});
+
 		verTablaPrincipal(false);
 		verMasDetalles(false);
 		verCrearVuelo(true);
 		verRegistro(false);
 	}
+
 	public void verMasDetalles() {
 		if (posRegistro != -1) {
 
@@ -368,6 +498,10 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 				}
 			}
 			Vuelo miVuelo = misVuelos.get(posRegistro);
+			System.out.println("Tvuelo"+miVuelo.getAtributos().size());
+			System.out.println("Truta"+ miVuelo.getMiRuta().getAtributos().size());
+			System.out.println("Ttripulacion"+ miVuelo.getMiTripulacion().getAuxiliares().size());
+			
 			datos = miAerolinea.llenarTablaDeMasDetalles(miVuelo);
 
 			tablaMasDetalles
@@ -394,15 +528,13 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "seleccione un registro");
 		}
 	}
-	
-	
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCrear) {
 			if (posOpcion == 0) {
 				lblCrearVuelo.setText("Crear vuelo nacional");
 				crearVuelo("Nacional");
-			} else if (posOpcion == 1){
+			} else if (posOpcion == 1) {
 				lblCrearVuelo.setText("Crear vuelo internacional");
 				crearVuelo("Internacional");
 			}
