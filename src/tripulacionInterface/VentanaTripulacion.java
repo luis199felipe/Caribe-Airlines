@@ -616,6 +616,7 @@ public class VentanaTripulacion extends JInternalFrame implements ActionListener
 		for (int i = 0; i < auxiliares.size(); i++) {
 			comboBoxAuxiliar.addItem(auxiliares.get(i).getAtributos().get("Nombre"));
 		}
+		
 		if (comboBoxTipoTripulacion.getSelectedItem().equals("")) {
 			
 			btnTipoTripulacion.setEnabled(true);

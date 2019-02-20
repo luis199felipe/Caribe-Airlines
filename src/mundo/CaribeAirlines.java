@@ -69,22 +69,24 @@ public class CaribeAirlines {
 		System.out.println("Debio creear las tarjetas ");
 		creaciones.crearTarjetasClientes();
 	}
-
-	public List<Tarjeta> getTarjetas() {
-		return tarjetas;
+	public List<Aeronave> obtenerAeronaveFiltro(String tipoVuelo){
+		List<Aeronave> misAeronavesFiltradas = new ArrayList<>();
+		for (int i = 0; i < misAeronaves.size(); i++) {
+			if(misAeronaves.get(i).getTipoAeronave().getAtributos().get("TipoVuelo").equals(tipoVuelo)) {
+				misAeronavesFiltradas.add(misAeronaves.get(i));
+			}
+		}
+		return misAeronavesFiltradas;
 	}
 
-	public void setTarjetas(List<Tarjeta> tarjetas) {
-		System.out.println("Se guardaron las tarjetas " + tarjetas.size());
-		this.tarjetas = tarjetas;
-	}
-
-	public List<Cliente> getMisClientes() {
-		return misClientes;
-	}
-
-	public void setMisClientes(List<Cliente> misClientes) {
-		this.misClientes = misClientes;
+	public List<Ruta> obtenerRutasFiltro(String tipoVuelo) {
+		List<Ruta> misRutasFiltradas = new ArrayList<>();
+		for (int i = 0; i < misRutas.size(); i++) {
+			if (misRutas.get(i).getAtributos().get("Tipo vuelo").equals(tipoVuelo)) {
+				misRutasFiltradas.add(misRutas.get(i));
+			}
+		}
+		return misRutasFiltradas;
 	}
 
 	public int contarCantidadDeTripulantesDeMismoCargoEnUnaTripulacion(String cargo, List<Tripulante> miTripulacion) {
@@ -271,38 +273,38 @@ public class CaribeAirlines {
 		}
 		return tabla;
 	}
-	
+
 	public String[][] llenarTablaDeDatosVuelo(int posOpcion) {
 		String tipoVuelo = "";
 		int tamano = 0;
-		
-		if(posOpcion == 0) {
+
+		if (posOpcion == 0) {
 			tipoVuelo = "Nacional";
-		}else if(posOpcion == 1) {
+		} else if (posOpcion == 1) {
 			tipoVuelo = "Internacional";
 		}
-		
+
 		for (int i = 0; i < misVuelos.size(); i++) {
-			if(misVuelos.get(i).getMiRuta().getAtributos().get("Tipo vuelo").equalsIgnoreCase(tipoVuelo)) {
+			if (misVuelos.get(i).getMiRuta().getAtributos().get("Tipo vuelo").equalsIgnoreCase(tipoVuelo)) {
 				tamano++;
 			}
 		}
-		
+
 		String[][] tabla = new String[tamano][3];
-		
+
 		int j = 0;
 		for (int i = 0; i < misVuelos.size(); i++) {
-			if(misVuelos.get(i).getMiRuta().getAtributos().get("Tipo vuelo").equalsIgnoreCase(tipoVuelo)) {
+			if (misVuelos.get(i).getMiRuta().getAtributos().get("Tipo vuelo").equalsIgnoreCase(tipoVuelo)) {
 				tabla[j][0] = misVuelos.get(i).getAtributos().get("Fecha");
 				tabla[j][1] = misVuelos.get(i).getMiRuta().getAtributos().get("Origen");
 				tabla[j][2] = misVuelos.get(i).getMiRuta().getAtributos().get("Destino");
 				j++;
 			}
-			
+
 		}
 		return tabla;
 	}
-	
+
 	public String[][] llenarTablaDeDatosAeronave(int opcion) {
 		HashMap<String, Object> datos = misTipoAeronave.get(opcion).getAtributos();
 		int filas = datos.size();
@@ -359,8 +361,6 @@ public class CaribeAirlines {
 
 		return datos;
 	}
-
-	
 
 	public boolean agregarCliente(Cliente c) {
 		System.out.println("Lo agrego " + misClientes.size());
@@ -480,6 +480,23 @@ public class CaribeAirlines {
 
 	public void setMisTarjetas(List<Tarjeta> tarj) {
 		this.tarjetas = tarj;
+	}
+
+	public List<Tarjeta> getTarjetas() {
+		return tarjetas;
+	}
+
+	public void setTarjetas(List<Tarjeta> tarjetas) {
+		System.out.println("Se guardaron las tarjetas " + tarjetas.size());
+		this.tarjetas = tarjetas;
+	}
+
+	public List<Cliente> getMisClientes() {
+		return misClientes;
+	}
+
+	public void setMisClientes(List<Cliente> misClientes) {
+		this.misClientes = misClientes;
 	}
 
 	public Cliente getClienteID(String text) {

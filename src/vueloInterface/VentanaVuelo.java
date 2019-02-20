@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -28,17 +30,22 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import aeronaveInterface.VentanaAeronave;
+import aeronaveLogica.Aeronave;
 import mundo.CaribeAirlines;
 import tripulacionLogica.Tripulacion;
 import tripulacionLogica.Tripulante;
+import vueloLogica.Ruta;
 import vueloLogica.Vuelo;
 
 public class VentanaVuelo extends JInternalFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnCrear, btnMasDetalles, btnVolver;
-	private JLabel lblRegistro;
+	private JLabel lblRegistro, lblCrearVuelo, lblRuta, lblTripulacion, lblAeronave, lblFecha, lblHoraSalida,
+			lblHoraLlegada, lblAlistamiento;
 	private JTable tablaVuelos, tablaRegistro, tablaMasDetalles;
+	private JTextField txtFecha,txtHoraSalida,txtHoraLlegada,txtAlistamiento;
+	private JComboBox comboBoxRuta,comboBoxTripulacion,comboBoxAeronave;
 	private JScrollPane scrollPaneRegistro, scrollPaneMasDetalles;
 
 	private int posOpcion, posRegistro;
@@ -56,7 +63,7 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 	private static final int LBL_HEIGHT = 21;
 
 	public VentanaVuelo(CaribeAirlines miAerolinea) {
-		
+
 		this.miAerolinea = miAerolinea;
 
 		setTitle("Vuelos");
@@ -85,7 +92,7 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 		tablaVuelos.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				posRegistro = -1;
-				
+
 				int column = tablaVuelos.columnAtPoint(e.getPoint());
 				obtenerOpcionTablaPrincipal(column);
 
@@ -108,17 +115,18 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 						tablaRegistro.setValueAt(datos[i][j - 1], i, j);
 					}
 				}
-				
+
 				lblRegistro.setText("Registro de vuelos " + tablaVuelos.getValueAt(0, column) + "es");
 
 				verTablaPrincipal(true);
 				verMasDetalles(false);
+				verCrearVuelo(false);
 				verRegistro(true);
 			}
 		});
 
 		contentPane.add(tablaVuelos);
-		
+
 		lblRegistro = new JLabel("");
 		lblRegistro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistro.setBounds(10, 38, 354, 21);
@@ -150,7 +158,6 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 			}
 
 		});
-		
 
 		scrollPaneRegistro = new JScrollPane();
 		scrollPaneRegistro.setBounds(X, 65, WIDTH, HEIGHT);
@@ -168,7 +175,7 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
 		btnCrear.setBounds(131, 477, 113, 23);
 		contentPane.add(btnCrear);
-		
+
 		btnVolver = new JButton("volver");
 		btnVolver.addActionListener(this);
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, LETRA_BUTTON));
@@ -186,8 +193,86 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 		scrollPaneMasDetalles.setViewportView(tablaMasDetalles);
 		contentPane.add(scrollPaneMasDetalles);
 
+		lblCrearVuelo = new JLabel("");
+		lblCrearVuelo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrearVuelo.setBounds(X, 11, WIDTH, LBL_HEIGHT);
+		lblCrearVuelo.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		contentPane.add(lblCrearVuelo);
+
+		lblRuta = new JLabel("Ruta");
+		lblRuta.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblRuta.setBounds(X, 45, 100, LBL_HEIGHT);
+		contentPane.add(lblRuta);
+		
+		comboBoxRuta = new JComboBox();
+		comboBoxRuta.addActionListener(this);
+		comboBoxRuta.setBounds(X+200, 45, 150, LBL_HEIGHT);
+		contentPane.add(comboBoxRuta);
+
+		lblTripulacion = new JLabel("Tripulacion");
+		lblTripulacion.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblTripulacion.setBounds(X, 77, 100, LBL_HEIGHT);
+		contentPane.add(lblTripulacion);
+		
+		comboBoxTripulacion = new JComboBox();
+		comboBoxTripulacion.addActionListener(this);
+		comboBoxTripulacion.setBounds(X+200, 77, 150, LBL_HEIGHT);
+		contentPane.add(comboBoxTripulacion);
+
+		lblAeronave = new JLabel("Aeronave");
+		lblAeronave.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblAeronave.setBounds(X, 109, 100, LBL_HEIGHT);
+		contentPane.add(lblAeronave);
+		
+		comboBoxAeronave = new JComboBox();
+		comboBoxAeronave.addActionListener(this);
+		comboBoxAeronave.setBounds(X+200, 109, 150, LBL_HEIGHT);
+		contentPane.add(comboBoxAeronave);
+
+		lblFecha = new JLabel("Fecha");
+		lblFecha.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblFecha.setBounds(X, 141, 100, LBL_HEIGHT);
+		contentPane.add(lblFecha);
+		
+		txtFecha = new JTextField("");
+		txtFecha.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
+		txtFecha.setBounds(X+200, 141, 150, LBL_HEIGHT);
+		contentPane.add(txtFecha);
+
+		lblHoraSalida = new JLabel("HoraSalida");
+		lblHoraSalida.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblHoraSalida.setBounds(X, 173, 100, LBL_HEIGHT);
+		contentPane.add(lblHoraSalida);
+		
+		txtHoraSalida = new JTextField("");
+		txtHoraSalida.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
+		txtHoraSalida.setBounds(X+200, 173, 150, LBL_HEIGHT);
+		contentPane.add(txtHoraSalida);
+
+		lblHoraLlegada = new JLabel("HoraLLegada");
+		lblHoraLlegada.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblHoraLlegada.setBounds(X, 206, 100, LBL_HEIGHT);
+		contentPane.add(lblHoraLlegada);
+		
+		txtHoraLlegada = new JTextField("");
+		txtHoraLlegada.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
+		txtHoraLlegada.setBounds(X+200, 206, 150, LBL_HEIGHT);
+		contentPane.add(txtHoraLlegada);
+
+		lblAlistamiento = new JLabel("Alistamiento(Horas)");
+		lblAlistamiento.setFont(new Font("Tahoma", Font.BOLD, LETRA));
+		lblAlistamiento.setBounds(X, 237, 150, LBL_HEIGHT);
+		contentPane.add(lblAlistamiento);
+		
+		txtAlistamiento = new JTextField("3");
+		txtAlistamiento.setEditable(false);
+		txtAlistamiento.setFont(new Font("Tahoma", Font.PLAIN, LETRA));
+		txtAlistamiento.setBounds(X+200, 237, 150, LBL_HEIGHT);
+		contentPane.add(txtAlistamiento);
+
 		verTablaPrincipal(true);
 		verMasDetalles(false);
+		verCrearVuelo(false);
 		verRegistro(false);
 	}
 
@@ -205,10 +290,10 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 
 	public void verRegistro(boolean opcion) {
 		lblRegistro.setVisible(opcion);
-		
+
 		tablaRegistro.setVisible(opcion);
 		scrollPaneRegistro.setVisible(opcion);
-		
+
 		btnCrear.setVisible(opcion);
 		btnMasDetalles.setVisible(opcion);
 	}
@@ -219,6 +304,51 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 		scrollPaneMasDetalles.setVisible(opcion);
 	}
 
+	public void verCrearVuelo(boolean opcion) {
+		lblCrearVuelo.setVisible(opcion);
+		lblRuta.setVisible(opcion);
+		lblTripulacion.setVisible(opcion);
+		lblAeronave.setVisible(opcion);
+		lblFecha.setVisible(opcion);
+		lblHoraSalida.setVisible(opcion);
+		lblHoraLlegada.setVisible(opcion);
+		lblAlistamiento.setVisible(opcion);
+		
+		comboBoxRuta.setVisible(opcion);
+		comboBoxTripulacion.setVisible(opcion);
+		comboBoxAeronave.setVisible(opcion);
+		txtFecha.setVisible(opcion);
+		txtHoraSalida.setVisible(opcion);
+		txtHoraLlegada.setVisible(opcion);
+		txtAlistamiento.setVisible(opcion);
+	}
+	public void crearVuelo(String tipoVuelo) {
+		
+		List<Ruta> ruta = miAerolinea.obtenerRutasFiltro(tipoVuelo);
+		List<Tripulacion> tripulacion = miAerolinea.obtenerListadoFiltroTripulaciones(tipoVuelo);
+		List<Aeronave> aeronave = miAerolinea.obtenerAeronaveFiltro(tipoVuelo);
+
+		comboBoxRuta.addItem("");
+		comboBoxTripulacion.addItem("");
+		comboBoxAeronave.addItem("");
+
+		for (int i = 0; i < ruta.size(); i++) {
+			comboBoxRuta.addItem(ruta.get(i).getAtributos().get("Origen")+"/"+ruta.get(i).getAtributos().get("Destino"));
+		}
+
+		for (int i = 0; i < tripulacion.size(); i++) {
+			comboBoxTripulacion.addItem(tripulacion.get(i).getMiTripulacion().get("IdTripulacion"));
+		}
+
+		for (int i = 0; i < aeronave.size(); i++) {
+			comboBoxAeronave.addItem(aeronave.get(i).getMatricula());
+		}
+		
+		verTablaPrincipal(false);
+		verMasDetalles(false);
+		verCrearVuelo(true);
+		verRegistro(false);
+	}
 	public void verMasDetalles() {
 		if (posRegistro != -1) {
 
@@ -244,37 +374,44 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 					.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Detalles", "Informacion" }));
 			DefaultTableModel modeloRegistro = (DefaultTableModel) tablaMasDetalles.getModel();
 			modeloRegistro.setColumnCount(datos[0].length);
-			modeloRegistro.setRowCount(1+datos.length);
+			modeloRegistro.setRowCount(1 + datos.length);
 
 			tablaMasDetalles.setValueAt("Avion", 0, 0);
 			tablaMasDetalles.setValueAt(miVuelo.getMiAeronave().getMatricula(), 0, 1);
-			
+
 			for (int i = 1; i < tablaMasDetalles.getRowCount(); i++) {
 				for (int j = 0; j < tablaMasDetalles.getColumnCount(); j++) {
-					tablaMasDetalles.setValueAt(datos[i-1][j], i, j);
+					tablaMasDetalles.setValueAt(datos[i - 1][j], i, j);
 				}
 			}
 
 			verTablaPrincipal(true);
 			verMasDetalles(true);
+			verCrearVuelo(false);
 			verRegistro(false);
 
 		} else {
 			JOptionPane.showMessageDialog(null, "seleccione un registro");
 		}
 	}
-
+	
+	
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCrear) {
 			if (posOpcion == 0) {
-			} else {
+				lblCrearVuelo.setText("Crear vuelo nacional");
+				crearVuelo("Nacional");
+			} else if (posOpcion == 1){
+				lblCrearVuelo.setText("Crear vuelo internacional");
+				crearVuelo("Internacional");
 			}
 		}
 		if (e.getSource() == btnMasDetalles) {
 			verMasDetalles();
 		}
 		if (e.getSource() == btnVolver) {
-			
+
 			for (int i = 0; i < tablaRegistro.getRowCount(); i++) {
 				tablaRegistro.setValueAt("", i, 0);
 			}
