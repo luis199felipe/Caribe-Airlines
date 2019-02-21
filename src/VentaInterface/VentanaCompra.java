@@ -46,7 +46,7 @@ public class VentanaCompra implements ActionListener {
 	private JComboBox<String> comboBoxCiudadDestino, comboBoxCiudadOrigen;
 
 	private JRadioButton RadioButtonIdaYRegreso, RadioButtonSoloIda, rdbtnEconomica, rdbtnEjecutiva,rdbtnTarjetaDebito,rdbtnTarjetaCredito;
-	private JButton btnRegistro, btnCargarDatos, btnVerDisponibilidad, btnContinuar, btnAgregarMaleta,btnContinuar2,btnVerificarCupo ,btnComprar,btnEquiAdi,btnMascota ;
+	private JButton btnRegistro, btnCargarDatos, btnVerDisponibilidad, btnContinuar, btnAgregarMaleta,btnContinuar2,btnVerificarCupo ,btnComprar,btnEquiAdi,btnMascota, btnEscogerSilla ;
 	
 	private JLabel nombre, direccion, fecha, correo,lblMaleta;
 	private Compra miCompra;
@@ -187,6 +187,17 @@ public class VentanaCompra implements ActionListener {
 		btnContinuar.setBounds(440, 307, 254, 50);
 		btnContinuar.addActionListener(this);
 		panelViaje.add(btnContinuar);
+		
+		btnEscogerSilla = new JButton("Escoger Silla ");
+		btnEscogerSilla.setBounds(525, 167, 169, 25);
+		btnEscogerSilla.addActionListener(this);
+		panelViaje.add(btnEscogerSilla);
+		
+		txtSilla = new JTextField();
+		txtSilla.setText("\n");
+		txtSilla.setBounds(580, 200, 114, 19);
+		panelViaje.add(txtSilla);
+		txtSilla.setColumns(10);
 
 		// ***********************************************************PANEL
 		// EQUIPAJE********************************************************************************************
@@ -459,11 +470,22 @@ public class VentanaCompra implements ActionListener {
 		
 
 		// **************************************** PANEL VIAJE  *************************************************************************************
+		
+		if (e.getSource()==btnEscogerSilla) {
+			VentanaSilla vs = new VentanaSilla(miCompra.getAerolinea());
+			vs.frame.setVisible(true);
+			if (comboBoxCiudadDestino.getSelectedItem().equals("Monterrey") || comboBoxCiudadDestino.getSelectedItem().equals("Cancun") || comboBoxCiudadOrigen.getSelectedItem().equals("Monterrey") || comboBoxCiudadOrigen.getSelectedItem().equals("Cancun")) {
+				JOptionPane.showMessageDialog(null, "Su vuelo es nacional, Por favor escoja la silla del avion 1");
+			}else {
+				JOptionPane.showMessageDialog(null,"Su vuelo es internacional, Por favor escoja la silla del avion 2");
+			}
+		}
+		
+		
 		if (e.getActionCommand() == "Solo ida" || e.getActionCommand() == "Ida y regreso") {
 			moda = true;
 			fechaRegreso.setEnabled(true);
 			if (e.getActionCommand() == "Solo ida") {
-				
 				fechaRegreso.setEnabled(false);
 			}
 		}
@@ -494,6 +516,7 @@ public class VentanaCompra implements ActionListener {
 						mostrar += "El vuelo de ida se encuentra disponible para las " + vueloSalida.getAtributos().get("HoraSalida")
 								+ " \n";
 						miCompra.getMiTiquete().setVueloIda(vueloSalida);
+						miCompra.getMiTiquete().setSilla(txtSilla.getText());
 					} else {
 						mostrar += "El vuelo de ida NO se encuentra en la fecha seleccionada \n";
 
@@ -595,6 +618,7 @@ public class VentanaCompra implements ActionListener {
 	}
 
 	int contEquipajeExtra = 1 ;
+	private JTextField txtSilla;
 	private void AgregarEquipajeAdicional() {
 		
 		boolean v = true;

@@ -13,6 +13,7 @@ public class Tiquete {
 	private List<Maleta> misMaletas;
 	private double total;
 	private String silla;
+	private String miSilla;
 	
 	public Tiquete() {
 		this.idMiCliente = "";
@@ -120,6 +121,11 @@ public class Tiquete {
 	public double  agregarValor(double valorAgregado) {
 		total += valorAgregado;
 		return total;
+	}
+
+	public void setSilla(String silla) {
+		miSilla = silla;
+
 	}
 		
 }
