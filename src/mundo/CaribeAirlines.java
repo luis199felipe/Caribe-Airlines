@@ -36,7 +36,7 @@ public class CaribeAirlines {
 	private List<Tiquete> misTiquetes;
 
 	// Constructor
-	public CaribeAirlines() {
+	public CaribeAirlines() throws Exception{
 		misAeronaves = new ArrayList<>();
 		misTipoAeronave = new ArrayList<>();
 		misTripulantes = new ArrayList<>();
