@@ -219,7 +219,7 @@ public class CaribeAirlines {
 	}
 
 	public String[][] llenarTablaDeDatosMasDetallesTripulacion(Tripulacion miTripulacion) {
-		int row = miTripulacion.getMisVuelos().size() + miTripulacion.getAuxiliares().size() + 2 + 1 + 1;
+		int row = miTripulacion.getMisVuelos().size() + miTripulacion.getAuxiliares().size() + 2 + 2 ;
 		String[][] tabla = new String[row][2];
 
 		tabla[0][0] = "idTripulacion";
@@ -240,9 +240,9 @@ public class CaribeAirlines {
 			}
 		}
 
-		for (int j = 3; j < miTripulacion.getAuxiliares().size() + 2; j++) {
-			tabla[j][0] = "auxiliar " + (j - 1);
-			tabla[j][1] = mostrar.get(j - 2);
+		for (int j = 3; j < miTripulacion.getAuxiliares().size() + 3; j++) {
+			tabla[j][0] = "auxiliar " + (j - 2);
+			tabla[j][1] = mostrar.get(j - 3);
 		}
 
 		tabla[3 + miTripulacion.getAuxiliares().size()][0] = "Tipo Tripulacion";
@@ -250,7 +250,7 @@ public class CaribeAirlines {
 
 		int i = 0;
 
-		for (int j = 3 + miTripulacion.getAuxiliares().size() + 1; j < tabla.length; j++) {
+		for (int j = 4 + miTripulacion.getAuxiliares().size(); j < tabla.length; j++) {
 			tabla[j][0] = "Vuelo " + (i + 1);
 			tabla[j][1] = miTripulacion.getMisVuelos().get(i).getMiRuta().getAtributos().get("Origen") + " / "
 					+ miTripulacion.getMisVuelos().get(i).getMiRuta().getAtributos().get("Destino");
@@ -327,9 +327,7 @@ public class CaribeAirlines {
 	public String[][] llenarTablaDeMasDetalles(Vuelo miVuelo) {
 		int row = miVuelo.getAtributos().size() + miVuelo.getMiRuta().getAtributos().size()
 				+ miVuelo.getMiTripulacion().getAuxiliares().size() + 2;
-		System.out.println("vuelo"+miVuelo.getAtributos().size());
-		System.out.println("ruta"+ miVuelo.getMiRuta().getAtributos().size());
-		System.out.println("tripulacion"+ miVuelo.getMiTripulacion().getAuxiliares().size());
+		
 		String[][] datos = new String[row][2];
 		int i = 0;
 		for (Iterator it = miVuelo.getAtributos().keySet().iterator(); it.hasNext();) {
@@ -402,8 +400,19 @@ public class CaribeAirlines {
 		}
 	}
 
-	public boolean crearVuelo(Vuelo miVueloAgregado) {
+	public boolean crearVuelo(Vuelo miVueloAgregado, Aeronave miAeronave, Tripulacion miTripulacion) {
 		misVuelos.add(miVueloAgregado);
+		miTripulacion.getMisVuelos().add(miVueloAgregado);
+		for (int i = 0; i < misAeronaves.size(); i++) {
+			if(misAeronaves.get(i).getMatricula().equals(miAeronave.getMatricula())) {
+				misAeronaves.get(i).getRegistro().add(miVueloAgregado);
+			}
+		}
+		for (int i = 0; i < misTripulaciones.size(); i++) {
+			if(misTripulaciones.get(i).getMiTripulacion().get("IdTripulacion").equals(miTripulacion.getMiTripulacion().get("IdTripulacion"))) {
+				misTripulaciones.get(i).getMisVuelos().add(miVueloAgregado);
+			}
+		}
 		return true;
 	}
 

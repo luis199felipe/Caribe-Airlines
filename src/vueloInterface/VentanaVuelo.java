@@ -443,7 +443,7 @@ public class VentanaVuelo extends JInternalFrame implements ActionListener {
 					Vuelo miVuelo = new Vuelo(String.valueOf(idVuelo), txtFecha.getText(), txtHoraSalida.getText(),
 							txtAlistamiento.getText(), miRuta, miTripulacion, miAeronave);
 
-					boolean vuelo = miAerolinea.crearVuelo(miVuelo);
+					boolean vuelo = miAerolinea.crearVuelo(miVuelo, miAeronave, miTripulacion);
 					
 					if (vuelo = true) {
 						JOptionPane.showMessageDialog(null, "Creado");
