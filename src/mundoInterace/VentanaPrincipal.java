@@ -38,8 +38,9 @@ public class VentanaPrincipal implements ActionListener{
 
 	/**
 	 * Create the application.
+	 * @throws Exception 
 	 */
-	public VentanaPrincipal() {
+	public VentanaPrincipal() throws Exception {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 524);

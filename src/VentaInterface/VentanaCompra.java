@@ -176,6 +176,7 @@ public class VentanaCompra implements ActionListener {
 
 		fechaRegreso = new JDateChooser();
 		fechaRegreso.setBounds(485, 110, 209, 20);
+		fechaRegreso.setMinSelectableDate(new java.util.Date());
 		panelViaje.add(fechaRegreso);
 
 		btnVerDisponibilidad = new JButton("Ver disponibilidad de vuelos");
@@ -386,6 +387,20 @@ public class VentanaCompra implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if (comboBoxCiudadOrigen==e.getSource()) {
+				System.out.println(comboBoxCiudadOrigen.getSelectedIndex());
+			if (comboBoxCiudadOrigen.getSelectedIndex()!=0) {
+				comboBoxCiudadDestino.setEnabled(false);
+				comboBoxCiudadDestino.setSelectedIndex(0);
+				System.out.println("true");
+			}else {
+				System.out.println("false");
+				
+				comboBoxCiudadDestino.setEnabled(true);	
+			}
+			
+		}
 		
 		if (e.getSource()==btnComprar) {
 			if (txtResumenCompra.equals("")) {
