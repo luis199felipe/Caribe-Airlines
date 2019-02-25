@@ -165,8 +165,7 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 			}
 		}
 		if (e.getSource() == btnAsignar) {
-			AsignarMaletas as = new AsignarMaletas();
-			as.setVisible(true);
+			miVentanaEquipaje.getVentanaAsignarMaletas().setVisible(true);
 		}
 	}
 }
