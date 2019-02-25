@@ -31,13 +31,13 @@ public class Cola<T> {
 	}
 	
 	/**
-	 * Retorna y elimina el elemento que está al incio de la Cola
+	 * Retorna y elimina el elemento que estï¿½ al incio de la Cola
 	 * @return Primer elemento de la Cola
 	 */
 	public T desencolar() {
 		
 		if(estaVacia()) {
-			throw new RuntimeException("La Cola está vacía");
+			throw new RuntimeException("La Cola estï¿½ vacï¿½a");
 		}
 		
 		T dato = nodoPrimero.getValorNodo();
@@ -52,8 +52,8 @@ public class Cola<T> {
 	}
 	
 	/**
-	 * Verifica si la Cola está vacía
-	 * @return true si está vacía
+	 * Verifica si la Cola estï¿½ vacï¿½a
+	 * @return true si estï¿½ vacï¿½a
 	 */
 	public boolean estaVacia() {
 		return nodoPrimero == null;
@@ -91,7 +91,7 @@ public class Cola<T> {
 	}
 	
 	/**
-	 * Verifica si la Cola es idéntica a la actual
+	 * Verifica si la Cola es idï¿½ntica a la actual
 	 * @param cola Cola a comparar
 	 * @return True si son iguales
 	 */
@@ -128,7 +128,7 @@ public class Cola<T> {
 	}
 	
 	@Override
-	protected Cola<T> clone() {
+	public Cola<T> clone() {
 		
 		Cola<T> nueva = new Cola<>();
 		Nodo<T> aux = nodoPrimero;

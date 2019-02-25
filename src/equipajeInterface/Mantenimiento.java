@@ -63,26 +63,26 @@ public class Mantenimiento extends JInternalFrame implements ActionListener {
 		contentPane.add(btnRegresar);
 		
 		llenarTablaCarrosMovidos();
-		llenarTablaCarrosEnMantenimiento();
+		//llenarTablaCarrosEnMantenimiento();
 	}
 	
-	public void llenarTablaCarrosEnMantenimiento() {
-
-		DefaultTableModel modeloCarrosMantenimiento = (DefaultTableModel) tablaCarrosMantenimiento.getModel();
-
-		// String carrosMantenimiento[] = obtenerCarros();
-		int rowEspera = 3; // Math.ceil(carroEspera.length/10.0);
-		int posEspera = 0;
-		modeloCarrosMantenimiento.setRowCount(rowEspera);
-		for (int i = 0; i < tablaCarrosMantenimiento.getRowCount(); i++) {
-			for (int j = 0; j < tablaCarrosMantenimiento.getColumnCount(); j++) {
-				if (16 > posEspera) { // carrosMantenimiento.length > posEspera
-					tablaCarrosMantenimiento.setValueAt(posEspera, i, j); // carrosMantenimiento[posEspera];
-					posEspera++;
-				}
-			}
-		}
-	}
+//	public void llenarTablaCarrosEnMantenimiento() {
+//
+//		DefaultTableModel modeloCarrosMantenimiento = (DefaultTableModel) tablaCarrosMantenimiento.getModel();
+//
+//		// String carrosMantenimiento[] = obtenerCarros();
+//		int rowEspera = 3; // Math.ceil(carroEspera.length/10.0);
+//		int posEspera = 0;
+//		modeloCarrosMantenimiento.setRowCount(rowEspera);
+//		for (int i = 0; i < tablaCarrosMantenimiento.getRowCount(); i++) {
+//			for (int j = 0; j < tablaCarrosMantenimiento.getColumnCount(); j++) {
+//				if (16 > posEspera) { // carrosMantenimiento.length > posEspera
+//					tablaCarrosMantenimiento.setValueAt(posEspera, i, j); // carrosMantenimiento[posEspera];
+//					posEspera++;
+//				}
+//			}
+//		}
+//	}
 
 	public void llenarTablaCarrosMovidos() {
 		DefaultTableModel modeloCarros = (DefaultTableModel) tablaCarrosMovidos.getModel();

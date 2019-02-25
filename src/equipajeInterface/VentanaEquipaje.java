@@ -16,6 +16,7 @@ public class VentanaEquipaje extends JFrame {
 
 	private JPanel contentPane;
 	private JInternalFrame ventanaEncolar, ventanaMantenimiento, ventanaAsignarMaletas, ventanaEmbarqueAvion;
+	private Embarque miEmbarque ;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,10 +39,10 @@ public class VentanaEquipaje extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		Embarque miEmbarque = new Embarque((new Date()).toString());
+		miEmbarque = new Embarque((new Date()).toString());
 
 		ventanaEmbarqueAvion = new EmbarqueAvion(this);
-		ventanaEmbarqueAvion.setVisible(true);
+		ventanaEmbarqueAvion.setVisible(false);
 		contentPane.add(ventanaEmbarqueAvion);
 		
 		ventanaEncolar = new EncolarCarros(this);
@@ -49,12 +50,20 @@ public class VentanaEquipaje extends JFrame {
 		contentPane.add(ventanaEncolar);
 
 		ventanaMantenimiento = new Mantenimiento(this);
-		ventanaMantenimiento.setVisible(true);
+		ventanaMantenimiento.setVisible(false);
 		contentPane.add(ventanaMantenimiento);
 
 		ventanaAsignarMaletas = new AsignarMaletas(this);
-		ventanaAsignarMaletas.setVisible(true);
+		ventanaAsignarMaletas.setVisible(false);
 		contentPane.add(ventanaAsignarMaletas);
+	}
+
+	public Embarque getMiEmbarque() {
+		return miEmbarque;
+	}
+
+	public void setMiEmbarque(Embarque miEmbarque) {
+		this.miEmbarque = miEmbarque;
 	}
 
 	public JInternalFrame getVentanaEncolar() {
@@ -77,8 +86,12 @@ public class VentanaEquipaje extends JFrame {
 		return ventanaAsignarMaletas;
 	}
 
-	public void setVentanaAsignarMaletas(JInternalFrame ventanaAsignarMaletas) {
-		this.ventanaAsignarMaletas = ventanaAsignarMaletas;
+	public void activarVentanaMaletas() {
+		ventanaAsignarMaletas.setVisible(true);
+		
 	}
+
+
+
 
 }

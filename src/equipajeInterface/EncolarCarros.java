@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import EmbarqueLogica.Embarque;
 import mundo.CaribeAirlines;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -23,17 +24,20 @@ import javax.swing.JComboBox;
 public class EncolarCarros extends JInternalFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JTable tablaColaCarros, tablaCarrosEspera;
+	private JTable tablaColaCarros, tablaCarrosGaraje;
 	private JButton btnAsignar, btnAgregar;
 	private JComboBox comboBoxAgregarCarro;
-	
+
 	private VentanaEquipaje miVentanaEquipaje;
+	private Embarque miEmbarque;
 
 	private static final int X = 10;
 	private static final int WIDTH = 660;
 
 	public EncolarCarros(VentanaEquipaje miVentanaEquipaje) {
 		this.miVentanaEquipaje = miVentanaEquipaje;
+		miEmbarque = miVentanaEquipaje.getMiEmbarque();
+
 		setTitle("Cola de Carros");
 		setBounds(0, 0, 700, 220);
 		contentPane = new JPanel();
@@ -49,13 +53,13 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 		tablaColaCarros.setBounds(X, 11, WIDTH, 28);
 		contentPane.add(tablaColaCarros);
 
-		tablaCarrosEspera = new JTable();
-		tablaCarrosEspera.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "pos 10", "pos 09", "pos 08",
+		tablaCarrosGaraje = new JTable();
+		tablaCarrosGaraje.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "pos 10", "pos 09", "pos 08",
 				"pos 07", "pos 06", "pos 05", "pos 04", "pos 03", "pos 02", "pos 01" }));
-		tablaCarrosEspera.setEnabled(false);
-		tablaCarrosEspera.setRowHeight(29);
-		tablaCarrosEspera.setBounds(X, 84, WIDTH, 84);
-		contentPane.add(tablaCarrosEspera);
+		tablaCarrosGaraje.setEnabled(false);
+		tablaCarrosGaraje.setRowHeight(29);
+		tablaCarrosGaraje.setBounds(X, 84, WIDTH, 84);
+		contentPane.add(tablaCarrosGaraje);
 
 		comboBoxAgregarCarro = new JComboBox();
 		comboBoxAgregarCarro.setBounds(10, 50, 90, 23);
@@ -72,31 +76,33 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 		contentPane.add(btnAgregar);
 
 		llenarTablaColaCarros();
-		llenarTablaCarrosEspera();
+		llenarTablaCarrosGaraje();
 		llenarComboBoxCarros();
 
 	}
 
 	public void llenarComboBoxCarros() {
-
-		// String CarrosDisponibles[] = obtenercarros();
-		for (int i = 0; i < 10; i++) { // i < CarrosDisponibles.length
-			comboBoxAgregarCarro.addItem(i); // carrosDisponibles[i]
+		comboBoxAgregarCarro.removeAllItems();
+		String CarrosDisponibles[] = miEmbarque.obtenerCarrosGaraje();
+		//System.out.println("El tamano es "+CarrosDisponibles.length);
+		for (int i = 0; i < CarrosDisponibles.length; i++) { // i < CarrosDisponibles.length
+			comboBoxAgregarCarro.addItem( CarrosDisponibles[i]); 
 		}
 	}
 
-	public void llenarTablaCarrosEspera() {
-
-		DefaultTableModel modeloCarrosEspera = (DefaultTableModel) tablaCarrosEspera.getModel();
-
-		// String carrosEspera[] = obtenerCarros();
-		int rowEspera = 3; // Math.ceil(carroEspera.length/10.0);
+	public void llenarTablaCarrosGaraje() {
+		tablaCarrosGaraje.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "pos 10", "pos 09", "pos 08",
+				"pos 07", "pos 06", "pos 05", "pos 04", "pos 03", "pos 02", "pos 01" }));
+		DefaultTableModel modeloCarrosGaraje = (DefaultTableModel) tablaCarrosGaraje.getModel();
+		
+		String carrosGaraje[] = miEmbarque.obtenerCarrosGaraje();
+		int rowEspera = (int) Math.ceil(carrosGaraje.length/10.0);
 		int posEspera = 0;
-		modeloCarrosEspera.setRowCount(rowEspera);
-		for (int i = 0; i < tablaCarrosEspera.getRowCount(); i++) {
-			for (int j = 0; j < tablaCarrosEspera.getColumnCount(); j++) {
-				if (16 > posEspera) { // carrosEspera.length > posEspera
-					tablaCarrosEspera.setValueAt(posEspera, i, j); // carros[posEspera];
+		modeloCarrosGaraje.setRowCount(rowEspera);
+		for (int i = 0; i < tablaCarrosGaraje.getRowCount(); i++) {
+			for (int j = 0; j < tablaCarrosGaraje.getColumnCount(); j++) {
+				if (carrosGaraje.length > posEspera) { // 
+					tablaCarrosGaraje.setValueAt(carrosGaraje[posEspera], i, j); // 
 					posEspera++;
 				}
 			}
@@ -107,12 +113,13 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 		DefaultTableModel modeloCarros = (DefaultTableModel) tablaColaCarros.getModel();
 		modeloCarros.setRowCount(1);
 
-		// String carros[] = obtenerCarros();
-		int posCarros = 0;
-		for (int i = tablaColaCarros.getColumnCount() - 1; i >= 0; i--) {
-			if (5 > posCarros) { // carros.length > pos
-				tablaColaCarros.setValueAt(posCarros, 0, i); // carros[pos];
-				posCarros++;
+		String carros[] = miEmbarque.obtenerCarrosEncolados();
+	
+		int pos = 0;
+		for (int i = tablaColaCarros.getColumnCount() - 1; i >= 0  ; i--) {
+			if (i < carros.length) { // carros.length > pos
+				tablaColaCarros.setValueAt(carros[pos], 0, i); // carros[pos];
+				pos++;
 			}
 		}
 
@@ -122,14 +129,12 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 				int column = tablaColaCarros.columnAtPoint(e.getPoint());
 				int pos = tablaColaCarros.getColumnCount() - 1 - column;
 				String carro = String.valueOf(tablaColaCarros.getValueAt(0, column));
-				if(!carro.equals("null")) {
-					int confirmacion = JOptionPane.showConfirmDialog(null, "Desea enviar el carro "+ carro +" a mantenimiento");
-					if(confirmacion == 0) {
-						System.out.println("entro");
+				if (!carro.equals("null")) {
+					int confirmacion = JOptionPane.showConfirmDialog(null,"Desea enviar el carro " + carro + " a mantenimiento");
+					if (confirmacion == 0) {						
 						miVentanaEquipaje.getVentanaMantenimiento().setVisible(true);
-						
 					}
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "Ingrese un carro, selecciono un lugar vacio");
 				}
 			}
@@ -138,34 +143,29 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAgregar) {
-			// String carrosEncolados[] = obtenerCarros();
+			String carrosEncolados[] = miEmbarque.obtenerCarrosEncolados();
 			// (carrosEncolados.legth < 10)
-			if (true) { // se envia a tablaColaCarros
+			if (carrosEncolados.length < 10) { // se envia a tablaColaCarros
 
 				// Agregar a carros[] en la logica getcarros(comboBox.getItem);
 				// Eliminar carro agregado del carrosDisponibles[] en la logica de carros
 				// setCarros();
-
-				comboBoxAgregarCarro.removeAllItems();
-
+				miEmbarque.encolarCarroEmbarque(comboBoxAgregarCarro.getSelectedItem().toString());
+				
 				llenarTablaColaCarros();
+				llenarTablaCarrosGaraje();
 				llenarComboBoxCarros();
 
-			} else { // se envia a tablaCarrosEspera
+			} else {
 
-				// Agregar a carros[] en la logica getcarros(comboBox.getItem);
-				// Eliminar carro agregado del carrosDisponibles[] en la logica de carros
-				// setCarros();
-
-				comboBoxAgregarCarro.removeAllItems();
-
-				llenarTablaCarrosEspera();
-				llenarComboBoxCarros();
+				JOptionPane.showMessageDialog(null,
+						"Se lleno la cola de carros, por favor desencole para poder agregar mas.");
 
 			}
 		}
 		if (e.getSource() == btnAsignar) {
-			miVentanaEquipaje.getVentanaAsignarMaletas().setVisible(true);
+			miVentanaEquipaje.activarVentanaMaletas();
+			
 		}
 	}
 }

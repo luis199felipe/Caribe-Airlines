@@ -24,6 +24,14 @@ public class Carro {
 	}
 	
 	
+	
+	@Override
+	public String toString() {
+		return idCarro ;
+	}
+
+
+
 	public String getIdCarro() {
 		return idCarro;
 	}

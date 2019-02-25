@@ -10,10 +10,10 @@ public class Bicola<T> extends Cola<T>{
 	// inserta por el final de la Bicola
 	public void ponerFinal(T dato)
 	{
-		encolar(dato); // método heredado de ColaLista
+		encolar(dato); // mï¿½todo heredado de ColaLista
 	}
 	
-	// inserta por el frente; método propio de Bicola
+	// inserta por el frente; mï¿½todo propio de Bicola
 	public void ponerFrente(T dato)
 	{
 		Nodo<T> nuevoNodo;
@@ -24,6 +24,7 @@ public class Bicola<T> extends Cola<T>{
 		}
 		nuevoNodo.setSiguienteNodo(nodoPrimero);
 		nodoPrimero = nuevoNodo;
+		tamanio++;
 	}
 	
 	
@@ -31,12 +32,12 @@ public class Bicola<T> extends Cola<T>{
 	public T quitarFrente() 
 	{
 		T valor = desencolar();
-		return valor; // método heredado de ColaLista
+		return valor; // mï¿½todo heredado de ColaLista
 	}
 	
-	// retira elemento final; método propio de Bicola.
+	// retira elemento final; mï¿½todo propio de Bicola.
 	// Es necesario recorrer la bicola para situarse en
-	// el nodo anterior al final, para después enlazar.
+	// el nodo anterior al final, para despuï¿½s enlazar.
 	public T quitarFinal() throws Exception
 	{
 		T aux;
@@ -57,8 +58,22 @@ public class Bicola<T> extends Cola<T>{
 			}
 		}
 		else
-			throw new Exception("Eliminar de una bicola vacía");
+			throw new Exception("Eliminar de una bicola vacï¿½a");
 		return aux;
+	}
+	
+	@Override
+	public Bicola<T> clone() {
+		
+		Bicola<T> nueva = new Bicola<>();
+		Nodo<T> aux = nodoPrimero;
+		
+		while(aux!=null) {
+			nueva.encolar( aux.getValorNodo() );
+			aux = aux.getSiguienteNodo();
+		}
+		
+		return nueva;		
 	}
 	
 

@@ -12,18 +12,21 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import EmbarqueLogica.Embarque;
 import mundo.CaribeAirlines;
 
 public class AsignarMaletas extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private Embarque miEmbarque;
+	private JComboBox comboBoxCarrosEncolados;
 
 	private VentanaEquipaje miVentanaEquipaje; 
 
 	public AsignarMaletas(VentanaEquipaje miVentanaEquipaje) {
 		this.miVentanaEquipaje = miVentanaEquipaje;
-		
+		miEmbarque = this.miVentanaEquipaje.getMiEmbarque();
 		setTitle("Asignar maletas");
 		setBounds(0, 220, 380, 450);
 		contentPane = new JPanel();
@@ -66,12 +69,26 @@ public class AsignarMaletas extends JInternalFrame {
 		lblAgregarMaletas.setBounds(10, 76, 144, 20);
 		contentPane.add(lblAgregarMaletas);
 
-		JLabel lblCarro = new JLabel("Carro #01");
-		lblCarro.setBounds(12, 12, 70, 15);
+		JLabel lblCarro = new JLabel("Carro        #");
+		lblCarro.setBounds(12, 12, 115, 15);
 		contentPane.add(lblCarro);
 		
 		JButton btnEnviarCarro = new JButton("Enviar carro");
 		btnEnviarCarro.setBounds(245, 386, 108, 23);
 		contentPane.add(btnEnviarCarro);
+		
+		JComboBox comboBoxCarrosEncolados = new JComboBox();
+		comboBoxCarrosEncolados.setBounds(133, 7, 130, 23);
+		contentPane.add(comboBoxCarrosEncolados);
+		llenarComboBoxCarros();
+	}
+	
+	public void llenarComboBoxCarros() {
+		comboBoxCarrosEncolados.removeAllItems();
+		String CarrosDisponibles[] = miEmbarque.obtenerCarrosEncolados();
+		//System.out.println("El tamano es "+CarrosDisponibles.length);
+		for (int i = 0; i < CarrosDisponibles.length; i++) { // i < CarrosDisponibles.length
+			comboBoxCarrosEncolados.addItem( CarrosDisponibles[i]); 
+		}		
 	}
 }
