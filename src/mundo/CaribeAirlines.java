@@ -16,6 +16,7 @@ import aeronaveInterface.VentanaAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
+import listasEnlazadas.ListaSimple;
 import tripulacionData.DatosTripulacion;
 import tripulacionData.DatosTripulante;
 import tripulacionLogica.Tripulacion;
@@ -31,9 +32,10 @@ public class CaribeAirlines {
 	private List<Ruta> misRutas;
 	private List<Tripulacion> misTripulaciones;
 	private List<Tripulante> misTripulantes;
-	private List<Cliente> misClientes;
+	private ListaSimple<Cliente> misClientes;
 	private List<Tarjeta> tarjetas;
 	private List<Tiquete> misTiquetes;
+	private List<Maleta> misMaletas;
 
 	// Constructor
 	public CaribeAirlines() throws Exception{
@@ -43,7 +45,7 @@ public class CaribeAirlines {
 		misTripulaciones = new ArrayList<>();
 		misVuelos = new ArrayList<>();
 		misRutas = new ArrayList<>();
-		misClientes = new ArrayList<>();
+		misClientes = new ListaSimple();
 		tarjetas = new ArrayList<Tarjeta>();
 		misTiquetes = new ArrayList<Tiquete>();
 
@@ -67,9 +69,12 @@ public class CaribeAirlines {
 		creaciones.RegistroVuelos();
 
 		creaciones.crearMisClientes();
-		System.out.println("Debio creear las tarjetas ");
+		//System.out.println("Debio creear las tarjetas ");
 		creaciones.crearTarjetasClientes();
+
 		creaciones.crearMisTiquetes();
+		
+		creaciones .crearMisMaletas();
 
 	}
 
@@ -370,7 +375,7 @@ public class CaribeAirlines {
 	}
 
 	public boolean agregarCliente(Cliente c) {
-		System.out.println("Lo agrego " + misClientes.size());
+		System.out.println("Lo agrego " + misClientes.getTamanio());
 		Iterator<Cliente> it = misClientes.iterator();
 		while (it.hasNext()) {
 			Cliente cliente = (Cliente) it.next();
@@ -380,7 +385,7 @@ public class CaribeAirlines {
 				return false;
 			}
 		}
-		misClientes.add(c);
+		misClientes.agregarfinal(c);
 		return true;
 	}
 
@@ -514,11 +519,11 @@ public class CaribeAirlines {
 		this.tarjetas = tarjetas;
 	}
 
-	public List<Cliente> getMisClientes() {
+	public ListaSimple<Cliente> getMisClientes() {
 		return misClientes;
 	}
 
-	public void setMisClientes(List<Cliente> misClientes) {
+	public void setMisClientes(ListaSimple<Cliente> misClientes) {
 		this.misClientes = misClientes;
 	}
 
@@ -546,9 +551,9 @@ public class CaribeAirlines {
 		System.out.println("LLEGO 0.4");
 		Cliente c = new Cliente();
 		System.out.println("LLEGO 1");
-		for (int i = 0; i < misClientes.size(); i++) {
-			if (misClientes.get(i).getIdentificacion().equals(ident)) {
-				c=misClientes.get(i);
+		for (int i = 0; i < misClientes.getTamanio(); i++) {
+			if (misClientes.obtenerValorNodo(i).getIdentificacion().equals(ident)) {
+				c=misClientes.obtenerValorNodo(i);
 			}
 		}
 		System.out.println("LLEGO 2");

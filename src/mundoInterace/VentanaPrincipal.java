@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import VentaInterface.VentanaCompra;
+import equipajeInterface.VentanaEquipaje;
 import mundo.CaribeAirlines;
 
 import javax.swing.ImageIcon;
@@ -17,7 +18,7 @@ import javax.swing.JLabel;
 public class VentanaPrincipal implements ActionListener{
 
 	private JFrame frame;
-	private JButton btnAdministrador,btnCliente,btnConsultas ;
+	private JButton btnAdministrador,btnCliente,btnConsultas,btnEmbarqueEquipaje  ;
 	private CaribeAirlines aerolinea;
 
 	/**
@@ -58,19 +59,24 @@ public class VentanaPrincipal implements ActionListener{
 		
 		
 		btnAdministrador = new JButton("ADMINISTRADOR");
-		btnAdministrador.setBounds(160, 422, 214, 43);
+		btnAdministrador.setBounds(69, 422, 214, 43);
 		btnAdministrador.addActionListener(this);
 		frame.getContentPane().add(btnAdministrador);
 		
 		btnCliente = new JButton("CLIENTE");
 		btnCliente.addActionListener(this);
-		btnCliente.setBounds(389, 422, 214, 43);
+		btnCliente.setBounds(519, 422, 214, 43);
 		frame.getContentPane().add(btnCliente);
 		
 		btnConsultas = new JButton("CONSULTAS");
-		btnConsultas.setBounds(615, 422, 214, 43);
+		btnConsultas.setBounds(745, 422, 214, 43);
 		btnConsultas.addActionListener(this);
 		frame.getContentPane().add(btnConsultas);
+		
+		btnEmbarqueEquipaje = new JButton("EMBARQUE  EQUIPAJE\n");
+		btnEmbarqueEquipaje.setBounds(295, 422, 214, 43);
+		btnEmbarqueEquipaje.addActionListener(this);
+		frame.getContentPane().add(btnEmbarqueEquipaje);
 		
 		
 		
@@ -90,7 +96,10 @@ public class VentanaPrincipal implements ActionListener{
 		
 		if (e.getSource()==btnConsultas) {
 			VentanaConsultas vc = new VentanaConsultas(aerolinea);
-			
+		}
+		if (e.getSource() == btnEmbarqueEquipaje) {
+			VentanaEquipaje ve = new VentanaEquipaje();
+			ve.setVisible(true);
 		}
 		
 	}

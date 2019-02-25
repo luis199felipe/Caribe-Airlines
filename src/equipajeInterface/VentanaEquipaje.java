@@ -2,12 +2,14 @@ package equipajeInterface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import EmbarqueLogica.Embarque;
 import mundo.CaribeAirlines;
 
 public class VentanaEquipaje extends JFrame {
@@ -36,12 +38,15 @@ public class VentanaEquipaje extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		Embarque miEmbarque = new Embarque((new Date()).toString());
+		
+		
 		ventanaEncolar = new EncolarCarros(this);
 		ventanaEncolar.setVisible(true);
 		contentPane.add(ventanaEncolar);
 		
 		ventanaMantenimiento = new Mantenimiento(this);
-		ventanaMantenimiento.setVisible(false);
+		ventanaMantenimiento.setVisible(true);
 		contentPane.add(ventanaMantenimiento);
 	}
 

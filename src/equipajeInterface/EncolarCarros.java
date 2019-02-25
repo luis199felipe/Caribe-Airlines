@@ -63,12 +63,12 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 
 		btnAsignar = new JButton("Asignar equipaje");
 		btnAsignar.addActionListener(this);
-		btnAsignar.setBounds(535, 50, 135, 23);
+		btnAsignar.setBounds(431, 50, 239, 23);
 		contentPane.add(btnAsignar);
 
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(this);
-		btnAgregar.setBounds(110, 50, 90, 23);
+		btnAgregar.setBounds(110, 50, 167, 23);
 		contentPane.add(btnAgregar);
 
 		llenarTablaColaCarros();
@@ -165,7 +165,8 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 			}
 		}
 		if (e.getSource() == btnAsignar) {
-
+			AsignarMaletas as = new AsignarMaletas();
+			as.setVisible(true);
 		}
 	}
 }

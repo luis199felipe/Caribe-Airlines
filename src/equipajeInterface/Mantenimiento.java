@@ -59,7 +59,7 @@ public class Mantenimiento extends JInternalFrame implements ActionListener {
 
 		btnRegresar = new JButton("Regresar uno a uno ");
 		btnRegresar.addActionListener(this);
-		btnRegresar.setBounds(454, 50, 170, 23);
+		btnRegresar.setBounds(384, 50, 240, 23);
 		contentPane.add(btnRegresar);
 		
 		llenarTablaCarrosMovidos();

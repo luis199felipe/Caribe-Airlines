@@ -11,6 +11,7 @@ import aeronaveData.DatosAeronave;
 import aeronaveLogica.Aeronave;
 import aeronaveLogica.DistribucionSillas;
 import aeronaveLogica.TipoAeronave;
+import listasEnlazadas.ListaSimple;
 import tripulacionLogica.Tripulacion;
 import tripulacionLogica.Tripulante;
 import vueloData.DatosRuta;
@@ -262,7 +263,7 @@ public void crearMisTripulantes() {
 	}
 	
 	public void crearMisClientes() {
-		List<Cliente> clientes = new ArrayList<Cliente>();
+		ListaSimple<Cliente> clientes = new ListaSimple();
 		Cliente c1 = new Cliente("12345678", "Andres", "Garcia", "Mz 20 # 10", "andres@gmail.com", "14/12/1990");
 		Cliente c2 = new Cliente("1234132342", "Julio", "Padilla", "Torre Alhambra", "julio@gmail.com", "10/10/1989");
 		Cliente c3 = new Cliente("679567956", "Juan", "Ariza", "Armenia", "ja@gmail.com", "29/11/1993");
@@ -273,15 +274,15 @@ public void crearMisTripulantes() {
 		Cliente c8 = new Cliente("54763425", "Jorge", "Arias", "Bogotá", "jorAr@gmail.com", "04/02/1960");
 		Cliente c9 = new Cliente("87654321", "Jhon", "Perez", "Pereira", "jperez@gmail.com", "17/12/1950");
 		
-		clientes.add(c1);
-		clientes.add(c2);
-		clientes.add(c3);
-		clientes.add(c4);
-		clientes.add(c5);
-		clientes.add(c6);
-		clientes.add(c7);
-		clientes.add(c8);
-		clientes.add(c9);
+		clientes.agregarfinal(c1);
+		clientes.agregarfinal(c2);
+		clientes.agregarfinal(c3);
+		clientes.agregarfinal(c4);
+		clientes.agregarfinal(c5);
+		clientes.agregarfinal(c6);
+		clientes.agregarfinal(c7);
+		clientes.agregarfinal(c8);
+		clientes.agregarfinal(c9);
 		
 		aerolinea.setMisClientes(clientes);
 	}
@@ -324,6 +325,38 @@ public void crearMisTripulantes() {
 		Tiquete tiq = new Tiquete("12345678","ecomomica",aerolinea.getMisVuelos().get(1),aerolinea.getMisVuelos().get(7),"A1",m,1300000);
 		misTiquetes.add(tiq);
 		aerolinea.setMisTiquetes(misTiquetes);
+		
+	}
+
+	public void crearMisMaletas() {
+		List<Maleta> m = new ArrayList<Maleta>();
+		Maleta m1= new Maleta("10-10-12", 200);
+		Maleta m2= new Maleta("10-22-12", 250);
+		Maleta m3= new Maleta("0-0-0", 50);
+		
+
+		Maleta m4 = new Maleta("11-15-15", 100);
+		Maleta m5 = new Maleta("12-15-15", 100);
+		Maleta m6 = new Maleta("13-15-15", 150);
+		Maleta m7 = new Maleta("14-15-15", 150);
+		
+		Maleta m8 = new Maleta("15-12-15", 250 );
+		Maleta m9 = new Maleta("15-13-15", 250 );
+		
+		
+		Maleta m10 = new Maleta("15-15-15", 500 );
+		
+		m.add(m1);
+		m.add(m2);
+		m.add(m3);
+		m.add(m4);
+		m.add(m5);
+		m.add(m6);
+		m.add(m7);
+		m.add(m8);
+		m.add(m9);
+		m.add(m10);
+		
 		
 	}
 	
