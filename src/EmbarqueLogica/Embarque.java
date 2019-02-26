@@ -1,27 +1,39 @@
 package EmbarqueLogica;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import VentaLogica.Maleta;
+import VentaLogica.MaletaEmbarque;
+import VentaLogica.MaletaEmbarque;
 import colas.Bicola;
 import colas.Cola;
+import mundo.CaribeAirlines;
 import pilas.Pila;
 
 public class Embarque {
-	
 	private Bicola<Carro>  carrosEncolados;/// Estos son los carros disponibles 0-N
 	private Bicola<Carro> carrosGaraje;// La pila donde se guardan los carros mientras se mueve uno a mantenimiento.
-	private Pila<Carro> esperaCarros;// La pila donde se guardan los carros mientras se mueve uno a mantenimiento.
-	private ArrayList<Maleta> miCargaAvion; // Contiene Las colas de los carros de cada Avion
+	private Bicola<Carro> carrosMantenimiento;// La pila donde se guardan los carros mientras se mueve uno a mantenimiento.
+	private ArrayList<MaletaEmbarque> miCargaAvion; // Contiene Las colas de los carros de cada Avion
 	private String fecha; // Digamos que cada embarque se hace por dia.
+	private ArrayList<MaletaEmbarque> misMaletas;
 
-	public Embarque(String fecha) {
+	public ArrayList<MaletaEmbarque> getMisMaletas() {
+		return misMaletas;
+	}
+
+
+	public void setMisMaletas(ArrayList<MaletaEmbarque> misMaletas) {
+		this.misMaletas = misMaletas;
+	}
+
+
+	public Embarque(String fecha ) {
 		this.carrosEncolados = new Bicola<Carro>();
-		this.esperaCarros = new Pila<Carro>();
-		
-		this.miCargaAvion = new ArrayList<Maleta>();
-		
-		
+		this.carrosMantenimiento = new Bicola<Carro>();
+		this.miCargaAvion = new ArrayList<MaletaEmbarque>();
+		misMaletas =new ArrayList<MaletaEmbarque>();
+		crearMisMaletas();
 		this.carrosGaraje = new Bicola<Carro>();
 		for (int i = 0; i < 22; i++) {
 			carrosGaraje.encolar(new Carro(i+"", 0, null, false));
@@ -47,7 +59,7 @@ public class Embarque {
 		while (!aux.estaVacia()) {
 			
 			Carro c= aux.pop();
-			System.out.println("encolo "+c.getIdCarro());
+			
 			carrosGaraje.ponerFrente(c);
 		}
 	}
@@ -70,7 +82,7 @@ public class Embarque {
 		int cont = 0;
 		
 		while (!copia.estaVacia()) {
-			System.out.println("Error "+cont+" "+c.length+" "+copia.getTamano()+" "+!copia.estaVacia());
+			//System.out.println("Error "+cont+" "+c.length+" "+copia.getTamano()+" "+!copia.estaVacia());
 			c[cont] = copia.desencolar().toString();
 			cont++;
 		}
@@ -100,16 +112,16 @@ public class Embarque {
 	public void setMisCarros(Bicola<Carro> misCarros) {
 		this.carrosEncolados = misCarros;
 	}
-	public Pila<Carro> getEsperaCarros() {
-		return esperaCarros;
+	public Bicola<Carro> getEsperaCarros() {
+		return carrosMantenimiento;
 	}
-	public void setEsperaCarros(Pila<Carro> esperaCarros) {
-		this.esperaCarros = esperaCarros;
+	public void setEsperaCarros(Bicola<Carro> carrosMantenimiento2) {
+		this.carrosMantenimiento = carrosMantenimiento2;
 	}
-	public ArrayList<Maleta> getMiCargaAvion() {
+	public ArrayList<MaletaEmbarque> getMiCargaAvion() {
 		return miCargaAvion;
 	}
-	public void setMiCargaAvion(ArrayList<Maleta> miCargaAvion) {
+	public void setMiCargaAvion(ArrayList<MaletaEmbarque> miCargaAvion) {
 		this.miCargaAvion = miCargaAvion;
 	}
 	public String getFecha() {
@@ -119,7 +131,38 @@ public class Embarque {
 		this.fecha = fecha;
 	}
 
-	
+	public void crearMisMaletas() {
+		
+		MaletaEmbarque m1= new MaletaEmbarque("151","10-10-12", 200);
+		MaletaEmbarque m2= new MaletaEmbarque("65","10-22-12", 250);
+		MaletaEmbarque m3= new MaletaEmbarque("869","0-0-0", 50);
+		
+
+		MaletaEmbarque m4 = new MaletaEmbarque("984","11-15-15", 100);
+		MaletaEmbarque m5 = new MaletaEmbarque("15","12-15-15", 100);
+		MaletaEmbarque m6 = new MaletaEmbarque("26","13-15-15", 150);
+		MaletaEmbarque m7 = new MaletaEmbarque("844","14-15-15", 150);
+		
+		MaletaEmbarque m8 = new MaletaEmbarque("659","15-12-15", 250 );
+		MaletaEmbarque m9 = new MaletaEmbarque("84","15-13-15", 250 );
+		
+		
+		MaletaEmbarque m10 = new MaletaEmbarque("654","15-15-15", 500 );
+		
+		misMaletas.add(m1);
+		misMaletas.add(m2);
+		misMaletas.add(m3);
+		misMaletas.add(m4);
+		misMaletas.add(m5);
+		misMaletas.add(m6);
+		misMaletas.add(m7);
+		misMaletas.add(m8);
+		misMaletas.add(m9);
+		misMaletas.add(m10);
+		
+		
+	}
+
 
 	
 }

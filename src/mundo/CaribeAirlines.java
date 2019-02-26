@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import VentaLogica.Cliente;
 import VentaLogica.Maleta;
+import VentaLogica.MaletaEmbarque;
 import VentaLogica.Tarjeta;
 import VentaLogica.Tiquete;
 import aeronaveData.DatosAeronave;
@@ -39,15 +40,17 @@ public class CaribeAirlines {
 
 	// Constructor
 	public CaribeAirlines() throws Exception{
+		misClientes = new ListaSimple();
+		
 		misAeronaves = new ArrayList<>();
 		misTipoAeronave = new ArrayList<>();
 		misTripulantes = new ArrayList<>();
 		misTripulaciones = new ArrayList<>();
 		misVuelos = new ArrayList<>();
-		misRutas = new ArrayList<>();
-		misClientes = new ListaSimple();
+		misRutas = new ArrayList<>();		
 		tarjetas = new ArrayList<Tarjeta>();
 		misTiquetes = new ArrayList<Tiquete>();
+		misMaletas = new ArrayList<Maleta>();
 
 		Origen creaciones = new Origen(this);
 
@@ -641,6 +644,10 @@ public class CaribeAirlines {
 	public String consulta3(String showInputDialog) {
 		// TODO Auto-generated method stub
 		return "Para el avion "+showInputDialog+" la cantidad total de pasajeros en economica es 8 y la clase ejecutiva son ; La carga total transportada es 0";
+	}
+
+	public void setMisMaletas(List<Maleta> m) {
+		misMaletas = m;
 	}
 
 }

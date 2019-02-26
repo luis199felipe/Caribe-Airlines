@@ -42,7 +42,7 @@ public class VentanaEquipaje extends JFrame {
 		miEmbarque = new Embarque((new Date()).toString());
 
 		ventanaEmbarqueAvion = new EmbarqueAvion(this);
-		ventanaEmbarqueAvion.setVisible(false);
+		ventanaEmbarqueAvion.setVisible(true);
 		contentPane.add(ventanaEmbarqueAvion);
 		
 		ventanaEncolar = new EncolarCarros(this);
@@ -54,8 +54,9 @@ public class VentanaEquipaje extends JFrame {
 		contentPane.add(ventanaMantenimiento);
 
 		ventanaAsignarMaletas = new AsignarMaletas(this);
-		ventanaAsignarMaletas.setVisible(false);
+		ventanaAsignarMaletas.setVisible(true);
 		contentPane.add(ventanaAsignarMaletas);
+		
 	}
 
 	public Embarque getMiEmbarque() {
@@ -86,10 +87,6 @@ public class VentanaEquipaje extends JFrame {
 		return ventanaAsignarMaletas;
 	}
 
-	public void activarVentanaMaletas() {
-		ventanaAsignarMaletas.setVisible(true);
-		
-	}
 
 
 

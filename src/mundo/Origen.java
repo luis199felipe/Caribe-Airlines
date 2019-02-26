@@ -357,7 +357,7 @@ public void crearMisTripulantes() {
 		m.add(m9);
 		m.add(m10);
 		
-		
+		aerolinea.setMisMaletas(m);
 	}
 	
 	

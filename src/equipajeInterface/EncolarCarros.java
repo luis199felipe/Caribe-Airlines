@@ -25,7 +25,7 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTable tablaColaCarros, tablaCarrosGaraje;
-	private JButton btnAsignar, btnAgregar;
+	private JButton btnAgregar;
 	private JComboBox comboBoxAgregarCarro;
 
 	private VentanaEquipaje miVentanaEquipaje;
@@ -64,11 +64,6 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 		comboBoxAgregarCarro = new JComboBox();
 		comboBoxAgregarCarro.setBounds(10, 50, 90, 23);
 		contentPane.add(comboBoxAgregarCarro);
-
-		btnAsignar = new JButton("Asignar equipaje");
-		btnAsignar.addActionListener(this);
-		btnAsignar.setBounds(431, 50, 239, 23);
-		contentPane.add(btnAsignar);
 
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(this);
@@ -110,6 +105,8 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 	}
 
 	public void llenarTablaColaCarros() {
+		tablaColaCarros.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "pos 10", "pos 09", "pos 08",
+				"pos 07", "pos 06", "pos 05", "pos 04", "pos 03", "pos 02", "pos 01" }));
 		DefaultTableModel modeloCarros = (DefaultTableModel) tablaColaCarros.getModel();
 		modeloCarros.setRowCount(1);
 
@@ -117,7 +114,7 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 	
 		int pos = 0;
 		for (int i = tablaColaCarros.getColumnCount() - 1; i >= 0  ; i--) {
-			if (i < carros.length) { // carros.length > pos
+			if (carros.length > pos) { // carros.length > pos
 				tablaColaCarros.setValueAt(carros[pos], 0, i); // carros[pos];
 				pos++;
 			}
@@ -163,9 +160,6 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 
 			}
 		}
-		if (e.getSource() == btnAsignar) {
-			miVentanaEquipaje.activarVentanaMaletas();
-			
-		}
+		
 	}
 }
