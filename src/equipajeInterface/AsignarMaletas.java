@@ -134,7 +134,7 @@ public class AsignarMaletas extends JInternalFrame  implements ActionListener{
 				JOptionPane.showMessageDialog(null, "No hay carro cargado para enviar");
 			}else {
 				pesoTotalCarro=0;
-				
+				miVentanaEquipaje.getVentanaEmbarqueAvion().setVisible(true);
 			}
 		}
 	}

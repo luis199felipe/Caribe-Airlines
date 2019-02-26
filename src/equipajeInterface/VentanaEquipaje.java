@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.Date;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -18,18 +19,6 @@ public class VentanaEquipaje extends JFrame {
 	private JInternalFrame ventanaEncolar, ventanaMantenimiento, ventanaAsignarMaletas, ventanaEmbarqueAvion;
 	private Embarque miEmbarque ;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaEquipaje frame = new VentanaEquipaje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public VentanaEquipaje() {
 		setTitle("Embarque de equipaje");
@@ -42,7 +31,7 @@ public class VentanaEquipaje extends JFrame {
 		miEmbarque = new Embarque((new Date()).toString());
 
 		ventanaEmbarqueAvion = new EmbarqueAvion(this);
-		ventanaEmbarqueAvion.setVisible(true);
+		ventanaEmbarqueAvion.setVisible(false);
 		contentPane.add(ventanaEmbarqueAvion);
 		
 		ventanaEncolar = new EncolarCarros(this);
@@ -85,6 +74,11 @@ public class VentanaEquipaje extends JFrame {
 
 	public JInternalFrame getVentanaAsignarMaletas() {
 		return ventanaAsignarMaletas;
+	}
+
+	public  JInternalFrame getVentanaEmbarqueAvion() {
+		// TODO Auto-generated method stub
+		return ventanaEmbarqueAvion;
 	}
 
 

@@ -130,6 +130,8 @@ public class EncolarCarros extends JInternalFrame implements ActionListener {
 					int confirmacion = JOptionPane.showConfirmDialog(null,"Desea enviar el carro " + carro + " a mantenimiento");
 					if (confirmacion == 0) {						
 						miVentanaEquipaje.getVentanaMantenimiento().setVisible(true);
+						miEmbarque.agregarMantenimiento(carro);
+						
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Ingrese un carro, selecciono un lugar vacio");

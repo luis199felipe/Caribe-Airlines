@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import EmbarqueLogica.Embarque;
+
 import javax.swing.JButton;
 
 public class Mantenimiento extends JInternalFrame implements ActionListener {
@@ -23,12 +26,14 @@ public class Mantenimiento extends JInternalFrame implements ActionListener {
 	private JButton btnMover, btnRegresar;
 
 	private VentanaEquipaje miVentanaEquipaje;
+	private Embarque miEmbarque;
 	
 	private static final int X = 10;
 	private static final int WIDTH = 614;
 
 	public Mantenimiento(VentanaEquipaje miVentanaEquipaje) {
 		this.miVentanaEquipaje = miVentanaEquipaje;
+		miEmbarque = this.miVentanaEquipaje.getMiEmbarque();
 		setTitle("Manteniento");
 		setBounds(700, 0, 650, 220);
 		contentPane = new JPanel();
@@ -52,7 +57,7 @@ public class Mantenimiento extends JInternalFrame implements ActionListener {
 		tablaCarrosMantenimiento.setBounds(X, 84, WIDTH, 84);
 		contentPane.add(tablaCarrosMantenimiento);
 
-		btnMover = new JButton("Mover uno a uno ");
+		btnMover = new JButton("Actualizar\n");
 		btnMover.addActionListener(this);
 		btnMover.setBounds(10, 50, 170, 23);
 		contentPane.add(btnMover);
@@ -63,36 +68,38 @@ public class Mantenimiento extends JInternalFrame implements ActionListener {
 		contentPane.add(btnRegresar);
 		
 		llenarTablaCarrosMovidos();
-		//llenarTablaCarrosEnMantenimiento();
+		llenarTablaCarrosEnMantenimiento();
 	}
 	
-//	public void llenarTablaCarrosEnMantenimiento() {
-//
-//		DefaultTableModel modeloCarrosMantenimiento = (DefaultTableModel) tablaCarrosMantenimiento.getModel();
-//
-//		// String carrosMantenimiento[] = obtenerCarros();
-//		int rowEspera = 3; // Math.ceil(carroEspera.length/10.0);
-//		int posEspera = 0;
-//		modeloCarrosMantenimiento.setRowCount(rowEspera);
-//		for (int i = 0; i < tablaCarrosMantenimiento.getRowCount(); i++) {
-//			for (int j = 0; j < tablaCarrosMantenimiento.getColumnCount(); j++) {
-//				if (16 > posEspera) { // carrosMantenimiento.length > posEspera
-//					tablaCarrosMantenimiento.setValueAt(posEspera, i, j); // carrosMantenimiento[posEspera];
-//					posEspera++;
-//				}
-//			}
-//		}
-//	}
+	public void llenarTablaCarrosEnMantenimiento() {
+
+		DefaultTableModel modeloCarrosMantenimiento = (DefaultTableModel) tablaCarrosMantenimiento.getModel();
+		
+		String carrosMantenimiento[] = miEmbarque.obtenerCarrosMantenimiento();
+		int rowEspera = 3; // Math.ceil(carroEspera.length/10.0);
+		int posEspera = 0;
+		modeloCarrosMantenimiento.setRowCount(rowEspera);
+		for (int i = 0; i < tablaCarrosMantenimiento.getRowCount(); i++) {
+			for (int j = 0; j < tablaCarrosMantenimiento.getColumnCount(); j++) {
+				if (carrosMantenimiento.length > posEspera) { // carrosMantenimiento.length > posEspera
+					tablaCarrosMantenimiento.setValueAt(carrosMantenimiento[posEspera], i, j); // carrosMantenimiento[posEspera];
+					posEspera++;
+				}
+			}
+		}
+	}
+
+
 
 	public void llenarTablaCarrosMovidos() {
 		DefaultTableModel modeloCarros = (DefaultTableModel) tablaCarrosMovidos.getModel();
 		modeloCarros.setRowCount(1);
 
-		// String carrosMovidos[] = obtenerCarros();
+		String carrosMovidos[] = miEmbarque.obtenerCarrosMantenimiento();
 		int posCarros = 0;
 		for (int i = tablaCarrosMovidos.getColumnCount() - 1; i >= 0; i--) {
-			if (5 > posCarros) { // carrosMovidos.length > pos
-				tablaCarrosMovidos.setValueAt(posCarros, 0, i); // carrosMovidos[pos];
+			if (carrosMovidos.length > posCarros) { // carrosMovidos.length > pos
+				tablaCarrosMovidos.setValueAt(carrosMovidos[posCarros], 0, i); // carrosMovidos[pos];
 				posCarros++;
 			}
 		}
@@ -101,7 +108,10 @@ public class Mantenimiento extends JInternalFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		if (btnMover==e.getSource()) {
+			//llenarTablaCarrosMovidos();
+			llenarTablaCarrosEnMantenimiento();
+		}
 	}
 
 }

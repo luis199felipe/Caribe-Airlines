@@ -14,6 +14,7 @@ public class Embarque {
 	private Bicola<Carro>  carrosEncolados;/// Estos son los carros disponibles 0-N
 	private Bicola<Carro> carrosGaraje;// La pila donde se guardan los carros mientras se mueve uno a mantenimiento.
 	private Bicola<Carro> carrosMantenimiento;// La pila donde se guardan los carros mientras se mueve uno a mantenimiento.
+	private Bicola<Carro> carrosMovidos;
 	private ArrayList<MaletaEmbarque> miCargaAvion; // Contiene Las colas de los carros de cada Avion
 	private String fecha; // Digamos que cada embarque se hace por dia.
 	private ArrayList<MaletaEmbarque> misMaletas;
@@ -30,11 +31,14 @@ public class Embarque {
 
 	public Embarque(String fecha ) {
 		this.carrosEncolados = new Bicola<Carro>();
+		this.carrosGaraje = new Bicola<Carro>();
 		this.carrosMantenimiento = new Bicola<Carro>();
+		this.carrosMovidos = new Bicola<Carro>();
 		this.miCargaAvion = new ArrayList<MaletaEmbarque>();
+		
 		misMaletas =new ArrayList<MaletaEmbarque>();
 		crearMisMaletas();
-		this.carrosGaraje = new Bicola<Carro>();
+		
 		for (int i = 0; i < 22; i++) {
 			carrosGaraje.encolar(new Carro(i+"", 0, null, false));
 		}
@@ -63,6 +67,48 @@ public class Embarque {
 			carrosGaraje.ponerFrente(c);
 		}
 	}
+
+	public void agregarMantenimiento(String carro) {
+		Pila<Carro> aux = new Pila<Carro>();
+		boolean encontrado = false;
+		while (!encontrado && !carrosEncolados.estaVacia()) {
+			Carro c = carrosEncolados.desencolar();
+			if (!c.getIdCarro().equals(carro)) {
+				aux.push(c);
+			}else {
+				encontrado = true;
+				carrosMantenimiento.encolar(c);
+			}
+		}
+		//System.out.println("Va a empezar a meter de nuevo"+!aux.estaVacia()+" "+aux.getTamano()+" tamaño cola "+carrosGaraje+"");
+		while (!aux.estaVacia()) {
+			
+			Carro c= aux.pop();
+			carrosEncolados.ponerFrente(c);
+		}
+		
+	}
+	
+	
+	public String[] obtenerCarrosMantenimiento() {
+		String[] c = new String[carrosMantenimiento.getTamano()];
+		//	System.out.println("El tamano de carros encolados es  "+c.length);
+			Bicola copia = carrosEncolados.clone();
+			int cont = 0;
+			while (!copia.estaVacia()) {
+				c[cont] = copia.desencolar().toString();
+				cont++;
+			}
+			return c;
+
+	}
+
+	public String[] obtenerCarrosMovidos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 	public String[] obtenerCarrosEncolados() {
 		String[] c = new String[carrosEncolados.getTamano()];
@@ -162,6 +208,10 @@ public class Embarque {
 		
 		
 	}
+
+
+
+
 
 
 	
